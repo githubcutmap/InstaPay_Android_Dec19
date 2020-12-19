@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:id="@+id/ll_top"
+        android:weightSum="3"
+        >
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/id_sp_loanStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_weight="2"
+            android:fontFamily="sans-serif"
+            android:background="@drawable/editbox"
+            android:entries="@array/loansSearch"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/b_get"
+            android:text="Get"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/bentham"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            android:layout_weight="1"
+
+            >
+
+        </Button>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listview_agents"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+    </ListView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/id_rv_agents"/>
+
+    <ListView
+        android:id="@+id/listview_loan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:visibility="gone">
+
+    </ListView>
+
+    <ListView
+        android:id="@+id/listview_loandetails"
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:visibility="gone"
+        >
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:id="@+id/ll_buttons"
+android:visibility="gone"
+        >
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/reject"
+            android:text="Reject"
+            android:textStyle="bold"
+            android:fontFamily="@font/bentham"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:background="@drawable/button1"
+
+            >
+
+        </Button>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="40dp"
+            android:id="@+id/confirm"
+            android:text="Confirm"
+            android:fontFamily="@font/bentham"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:background="@drawable/button"
+
+            >
+
+        </Button>
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".aeps.activity_Aeps_Ministatement"
+    android:background="@drawable/bg1"
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+
+    <ImageView
+                android:id="@+id/aeps_balenquiry"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ministatement" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Ministatement"
+            android:layout_margin="30dp"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/maroon"
+            android:textStyle="bold"
+            android:textSize="22sp" />
+        </LinearLayout>
+
+        <ScrollView android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="370dp"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_margin="20dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+
+
+
+                    <!-- <TextView
+                         android:id="@+id/aagg"
+                         android:layout_width="match_parent"
+                         android:layout_height="40dp"
+                         android:text="Select Bank"
+                         android:textColor="#000000"
+                         android:fontFamily="sans-serif-medium"
+                         android:textSize="16sp"
+                         android:layout_column="1"/>
+            -->
+
+
+                    <!--<TextView
+                        android:id="@+id/accnw"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Name"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:layout_column="1"/>-->
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:layout_margin="5dp"
+                        app:hintTextAppearance="@style/tf"
+app:boxBackgroundColor="#f1f1f1"
+app:boxStrokeColor="@color/colorPrimary"
+style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <AutoCompleteTextView
+                            android:id="@+id/bank_auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_column="3"
+                            android:background="@drawable/editbox"
+                            android:hint="Select Bank"
+                            android:paddingLeft="10dp"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif"
+                            android:textColor="@color/grayblack" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <!-- <TextView
+                         android:id="@+id/amggnw"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="Phone Number"
+                         android:textColor="#000000"
+                         android:fontFamily="sans-serif-medium"
+                         android:textSize="16sp"
+                         android:layout_column="1"/>
+                   -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_field2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:layout_margin="5dp"
+                        app:hintTextAppearance="@style/tf"
+app:boxBackgroundColor="#f1f1f1"
+app:boxStrokeColor="@color/colorPrimary"
+style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <EditText
+                            android:id="@+id/entered_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="3"
+                            android:background="@drawable/editbox"
+                            android:ems="10"
+                            android:fontFamily="sans-serif"
+                            android:hint="Name"
+                            android:inputType="textPersonName"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/grayblack"
+                            android:textCursorDrawable="@null"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <!--
+                                <TextView
+                                    android:id="@+id/aanw"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:text="Aadhaar Number"
+                                    android:textColor="#000000"
+                                    android:textSize="16sp"
+                                    android:layout_column="1"/>-->
+
+                   <!-- <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_field3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:layout_margin="5dp"
+                        app:hintTextAppearance="@style/tf"
+app:boxBackgroundColor="#f1f1f1"
+app:boxStrokeColor="@color/colorPrimary"
+style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <EditText
+                            android:id="@+id/enteredphone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="3"
+                            android:background="@drawable/editbox"
+                            android:ems="10"
+                            android:fontFamily="sans-serif"
+                            android:hint="Phone Number"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/grayblack"
+                            android:textCursorDrawable="@null"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:passwordToggleEnabled="true"
+                        app:hintTextAppearance="@style/tf"
+app:boxBackgroundColor="#f1f1f1"
+app:boxStrokeColor="@color/colorPrimary"
+style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_margin="5dp"
+                        android:layout_column="3">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/aadhaar_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="13"
+                            android:fontFamily="sans-serif"
+                            android:inputType="numberPassword"
+                            android:maxLength="12"
+                            android:textColor="#6B6B6B"
+                            android:hint="Aadhar Number"
+                            android:paddingLeft="10dp"
+                            android:background="@drawable/editbox"
+                            app:hintTextAppearance="@style/tf"
+app:boxBackgroundColor="#f1f1f1"
+app:boxStrokeColor="@color/colorPrimary"
+style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--    <TextView
+                            android:id="@+id/amnw"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Amount"
+                            android:textColor="#000000"
+                            android:fontFamily="sans-serif-medium"
+                            android:textSize="16sp"
+                            android:layout_column="1"/>-->
+
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/submitbtn"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:enabled="true"
+                    android:text="FETCH"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF"
+                    android:textColorLink="#FFFFFF"
+                    android:fontFamily="@font/bentham"
+                    android:textStyle="bold"
+                    android:textSize="16dp" />
+                <ImageView
+                    android:id="@+id/backimg"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button3"
+                    app:srcCompat="@drawable/backarrow" />
+            </LinearLayout>
+        </ScrollView>
+
+        <include
+            android:id="@+id/aeps_withdraw_footer"
+            layout="@layout/footer_template" />
+    </LinearLayout>

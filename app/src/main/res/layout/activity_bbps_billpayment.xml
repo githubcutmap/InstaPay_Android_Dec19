@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/lightcolor">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@color/lightcream">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="BHARAT BILLPAY PAYMENT SYSTEM"
+                android:fontFamily="@font/helveticaneuemed"
+                android:textColor="@color/grayblack"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bbps_logo"
+                android:padding="5dp"></ImageView>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="From Account"
+            android:textSize="16dp"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/helveticaneuemedium"
+            android:textColor="@color/grey_colour"></TextView>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="14dp"
+            android:layout_margin="10dp"
+            android:id="@+id/from_acc"
+            android:fontFamily="@font/helveticaneuemedium"
+            android:textColor="@color/grey_colour"></TextView>
+
+<TableRow
+    android:id="@+id/hr1"
+    android:layout_height="1dp"
+    android:layout_width="match_parent"
+    android:background="@color/grey_colour"></TableRow>
+
+
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Category"
+            android:textSize="16dp"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/helveticaneuemedium"
+            android:textColor="@color/grey_colour"></TextView>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="14dp"
+            android:layout_margin="10dp"
+            android:id="@+id/category"
+            android:fontFamily="@font/helveticaneubold"
+            android:textColor="@color/grey_colour"></TextView>
+
+        <TableRow
+            android:id="@+id/hr2"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="@color/grey_colour"></TableRow>
+
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Biller"
+            android:textSize="16dp"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/helveticaneuemedium"
+            android:textColor="@color/grey_colour"></TextView>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="16dp"
+            android:layout_margin="10dp"
+            android:id="@+id/biller"
+            android:fontFamily="@font/helveticaneuemedium"
+            android:textColor="@color/black"></TextView>
+
+        <TableRow
+            android:id="@+id/hr3"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="@color/grey_colour"></TableRow>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="CA Number"
+            android:textSize="16dp"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/helveticaneuemedium"
+            android:textColor="@color/grey_colour"></TextView>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="16dp"
+            android:layout_margin="10dp"
+            android:id="@+id/ca_no"
+            android:fontFamily="@font/helveticaneubold"
+            android:textColor="@color/black"></TextView>
+
+        <TableRow
+            android:id="@+id/hr4"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="@color/grey_colour"></TableRow>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Amount"
+            android:textSize="16dp"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/helveticaneuemedium"
+            android:textColor="@color/grey_colour"></TextView>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="16dp"
+            android:layout_margin="10dp"
+            android:id="@+id/amount"
+            android:fontFamily="@font/helveticaneubold"
+            android:textColor="@color/black"></TextView>
+
+        <TableRow
+            android:id="@+id/hr5"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="@color/grey_colour"></TableRow>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="20dp"
+            android:layout_gravity="right"
+            android:gravity="right">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BACK"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:id="@+id/back"
+                android:padding="10dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:shadowColor="@color/gray_dark"
+                android:background="@color/white"></Button>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/helveticaneuemedium"
+            android:text="PROCEED"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/orange_button"></Button>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/helveticaneuemedium"
+            android:text="EDIT"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:shadowColor="@color/gray_dark"
+            android:background="@color/white"></Button>
+        </LinearLayout>
+
+
+    </TableLayout>
+
+
+</LinearLayout>

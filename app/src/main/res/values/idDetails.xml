@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="idDetails">
+        <item>Aadhaar Card</item>
+        <item>Driving License</item>
+        <item>PAN</item>
+        <item>Others</item>
+
+    </string-array>
+</resources>

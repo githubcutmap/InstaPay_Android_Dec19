@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".bbps.bbps_receipt"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@color/lightcream">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="BHARAT BILLPAY PAYMENT SYSTEM"
+                android:fontFamily="@font/helveticaneuemed"
+                android:textColor="@color/grayblack"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bbps_logo"
+                android:padding="5dp"></ImageView>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Connection Number"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/grey_colour"
+                android:textSize="16sp"
+                android:layout_column="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:id="@+id/number"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/black"
+                android:gravity="right"
+                android:textSize="16sp"
+                android:layout_column="2"/>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category"
+            android:fontFamily="@font/helveticaneuemedium"
+            android:textColor="@color/grey_colour"
+            android:textSize="16sp"
+            android:layout_column="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:id="@+id/category"
+            android:fontFamily="@font/helveticaneuemedium"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_column="2"/>
+    </TableRow>
+
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Operator"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/grey_colour"
+                android:textSize="16sp"
+                android:layout_column="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:id="@+id/operator"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_column="2"/>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Txn Ref ID"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/grey_colour"
+                android:textSize="16sp"
+                android:layout_column="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:id="@+id/txn_refid"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_column="2"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mobile Number"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/grey_colour"
+                android:textSize="16sp"
+                android:layout_column="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:id="@+id/mobile_num"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_column="2"/>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bill Number"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/grey_colour"
+                android:textSize="16sp"
+                android:layout_column="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:id="@+id/bill_no"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_column="2"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BBPS Ref ID"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/grey_colour"
+                android:textSize="16sp"
+                android:layout_column="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:id="@+id/bbps_refid"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_column="2"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transaction Time"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/grey_colour"
+                android:textSize="16sp"
+                android:layout_column="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:id="@+id/trans_time"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_column="2"/>
+        </TableRow>
+
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/bbpslogo1"></ImageView>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/grey_colour"
+                android:textSize="16sp"
+                android:layout_column="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:id="@+id/amount"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_column="2"/>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+
+            android:background="@color/lightcolor"
+            android:layout_marginTop="50dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Payment"
+                android:fontFamily="@font/helveticaneubold"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_column="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:id="@+id/total_payment"
+                android:fontFamily="@font/helveticaneuemedium"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_column="2"/>
+        </TableRow>
+
+</TableLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="BACK"
+        android:fontFamily="@font/helveticaneuemedium"
+        android:id="@+id/back"
+        android:padding="10dp"
+        android:layout_margin="20dp"
+        android:layout_marginLeft="10dp"
+        android:shadowColor="@color/gray_dark"
+        android:background="@color/white"></Button>
+</LinearLayout>

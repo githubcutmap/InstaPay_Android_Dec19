@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/profile"
+        app:showAsAction="ifRoom"
+
+        android:title="TODO" >
+    <menu>
+    <item
+        android:id="@+id/action_dropdown_myacc"
+        android:title="My Account"/>
+        <item
+            android:id="@+id/action_dropdown_logout"
+            android:title="Logout"/>
+        <item
+            android:id="@+id/action_dropdown_eodreport"
+            android:title="EOD Report"/>
+        <item
+            android:id="@+id/action_dropdown_aboutmint"
+            android:title="About MINT"/>
+    </menu>
+    </item>
+
+</menu>

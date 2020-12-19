@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:background="@drawable/bg1">
+
+    <ImageView
+        android:id="@+id/logout"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/logout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+
+
+        <TextView
+            android:id="@+id/textMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:fontFamily="@font/aclonica"
+            android:gravity="left"
+            android:text="Good Morning !"
+            android:textColor="@color/brown"
+            android:layout_weight="3"
+            android:textSize="22sp" />
+
+
+        <TextView
+            android:id="@+id/agent_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/aclonica"
+            android:text="Tirumala"
+            android:textColor="@color/brown"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/menu_timestamp_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:layout_gravity="left"
+            android:textColor="@color/brown"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="left"
+            android:text="Your Last Login Time"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/menu_timestamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:layout_gravity="left"
+            android:textColor="@color/brown"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="left"
+            android:textSize="18sp"
+            android:text="-- --"
+            />
+
+
+    </LinearLayout>
+
+
+    <ScrollView android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+
+    <LinearLayout
+        android:layout_height="160dp"
+        android:layout_width="160dp"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_weight="1">
+        <ImageView
+            android:id="@+id/aeps_withdraw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:layout_weight="1"
+            android:padding="13dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/bluecard"
+            app:srcCompat="@drawable/aeps_withdraw" />
+
+        <TextView
+            android:id="@+id/wd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/bentham"
+            android:textStyle="bold"
+            android:gravity="center|bottom"
+            android:text="Withdraw"
+            android:textColor="@color/maroon"
+            android:textSize="18sp" />
+    </LinearLayout>
+            <LinearLayout
+                android:layout_height="160dp"
+                android:layout_width="160dp"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/image_ministatement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top"
+                    android:layout_weight="1"
+                    android:padding="16dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/orangecard"
+                    app:srcCompat="@drawable/ministatement" />
+
+                <TextView
+                    android:id="@+id/ms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bentham"
+                    android:gravity="center|bottom"
+                    android:textStyle="bold"
+                    android:text="Mini\nStatement"
+                    android:textColor="@color/maroon"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_height="160dp"
+                android:layout_width="160dp"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/aeps_balenquiry"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top"
+                    android:layout_weight="1"
+                    android:padding="16dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/purplecard"
+                    app:srcCompat="@drawable/balance_enquiry" />
+
+                <TextView
+                    android:id="@+id/be"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bentham"
+                    android:gravity="center|bottom"
+                    android:textStyle="bold"
+                    android:text="Balance Enquiry"
+                    android:textColor="@color/maroon"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_height="160dp"
+                android:layout_width="160dp"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/aadhaar_pay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top"
+                    android:layout_weight="1"
+                    android:padding="13dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/greencard"
+                    app:srcCompat="@drawable/ac_opning" />
+
+                <TextView
+                    android:id="@+id/aadharpay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/bentham"
+                    android:gravity="bottom"
+                    android:textStyle="bold"
+                    android:text="Aadhaar Pay"
+                    android:textColor="@color/maroon"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_height="160dp"
+                android:layout_width="160dp"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/deposit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top"
+                    android:layout_weight="1"
+                    android:padding="13dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/pinkcard"
+                    app:srcCompat="@drawable/deposit" />
+
+                <TextView
+                    android:id="@+id/deposit1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/bentham"
+                    android:gravity="center|bottom"
+                    android:textStyle="bold"
+                    android:text="Deposit"
+                    android:textColor="@color/maroon"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+
+
+
+            <LinearLayout
+                android:layout_height="160dp"
+                android:layout_width="160dp"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1">
+                    <ImageView
+                        android:id="@+id/rrnstatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/skybluecard"
+                        app:srcCompat="@drawable/rrnstatus" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/bentham"
+                        android:gravity="center|bottom"
+                        android:textStyle="bold"
+                        android:text="RRN \nStatus"
+                         android:textColor="@color/maroon"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/backimg"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+
+                android:background="@drawable/button1"
+                app:srcCompat="@drawable/backarrow" />
+
+        </LinearLayout>
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:elevation="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="bottom"
+        android:layout_gravity="bottom"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="20dp">
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+    </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+    <include
+        android:id="@+id/menu_footer"
+        layout="@layout/footer_template"/>
+
+
+
+</LinearLayout>

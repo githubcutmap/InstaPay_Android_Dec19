@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/deposit"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+           android:layout_margin="10dp"
+            android:background="@drawable/eodreport"/>
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="30dp"
+            android:text="EOD Report"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/maroon"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="290dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/border"
+        android:layout_marginLeft="10dp"
+        >
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/radio_group_by"
+        android:weightSum="3"
+        >
+        <RadioButton android:id="@+id/radio_today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today"
+            android:fontFamily="@font/bentham"
+            android:textStyle="bold"
+            android:checked="true"
+            android:layout_weight="1"/>
+        <RadioButton android:id="@+id/radio_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Month"
+            android:fontFamily="@font/bentham"
+            android:textStyle="bold"
+            android:checked="false"
+            android:layout_weight="1"/>
+        <RadioButton android:id="@+id/radio_custom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Custom"
+            android:fontFamily="@font/bentham"
+            android:textStyle="bold"
+            android:checked="false"
+            android:layout_weight="1"/>
+    </RadioGroup>
+
+
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:textStyle="bold"
+                android:text="From"
+                android:textSize="16sp"
+                android:layout_column="1"/>
+            <TextView
+                android:id="@+id/col1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:textStyle="bold"
+                android:text=" : "
+                android:textSize="16sp"
+                android:layout_column="2"/>
+
+            <TextView
+                android:id="@+id/view_from_date"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/grayblack"
+                android:textStyle="bold"
+                android:layout_column="3"
+                android:visibility="invisible"
+                />
+
+            <Button
+                android:id="@+id/btn_from_date"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_column="4"
+                android:fontFamily="@font/bentham"
+                android:textStyle="bold"
+                android:background="@drawable/calander"
+                android:visibility="invisible"/>
+
+
+
+
+
+        </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:id="@+id/to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:textStyle="bold"
+            android:text="To"
+            android:textSize="16sp"
+            android:layout_column="1"/>
+        <TextView
+            android:id="@+id/col2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:textStyle="bold"
+            android:text=" : "
+            android:textSize="16sp"
+            android:layout_column="2"/>
+
+        <TextView
+            android:id="@+id/view_to_date"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+                android:textColor="@color/grayblack"
+                android:textStyle="bold"
+            android:layout_column="3"
+            android:visibility="invisible"
+            />
+        <Button
+            android:id="@+id/btn_to_date"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:fontFamily="@font/bentham"
+            android:textStyle="bold"
+            android:background="@drawable/calander"
+            android:onClick="setDate"
+            android:layout_column="4"
+            android:visibility="invisible"/>
+
+
+    </TableRow>
+</TableLayout>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

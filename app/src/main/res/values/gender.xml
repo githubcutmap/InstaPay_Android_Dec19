@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+
+
+    </string-array>
+    <string-array name="category">
+        <item>Category</item>
+        <item>SC</item>
+        <item>OBC</item>
+        <item>Minority</item>
+        <item>Others</item>
+
+    </string-array>
+
+    <string-array name="purposeLoan">
+        <item>Purpose of Loan</item>
+        <item>Working Capital</item>
+        <item>Purchase of Assets</item>
+    </string-array>
+
+    <string-array name="ro">
+        <item>Regional Office</item>
+        <item>Khammam</item>
+        <item>Srikakulam</item>
+        <item>Parvatipuram</item>
+        <item>Visakhapatnam</item>
+        <item>Nalgonda</item>
+    </string-array>
+
+
+    <string-array name="loansSearch">
+        <item>Select Category</item>
+        <item>Pending</item>
+        <item>Completed</item>
+        <item>Search By ID</item>
+    </string-array>
+
+    <string-array name="lineofactivity">
+        <item>Line of Activity</item>
+        <item>Kirana Shop</item>
+        <item>Pan Shop</item>
+        <item>Tailor Shop</item>
+        <item>Chicken Shop</item>
+        <item>Auto</item>
+        <item>Fancy Shop</item>
+        <item>Tiffin Center</item>
+        <item>Business</item>
+        <item>Fruits &amp; Vegetables Shop</item>
+        <item>Milk Vendor</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="unit">
+        <item>Unit Name</item>
+        <item>Kirana Shop</item>
+        <item>Pan Shop</item>
+        <item>Tailor Shop</item>
+        <item>Chicken Shop</item>
+        <item>Auto</item>
+        <item>Fancy Shop</item>
+        <item>Tiffin Center</item>
+        <item>Business</item>
+        <item>Fruits &amp; Vegetables Shop</item>
+        <item>Milk Vendor</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="loansBank">
+        <item>Select Bank</item>
+        <item>APGVB</item>
+    </string-array>
+
+    <string-array name="loansType">
+        <item>Select Scheme</item>
+        <item>Suyog</item>
+        <item>Jagananna Thodu</item>
+    </string-array>
+
+
+</resources>

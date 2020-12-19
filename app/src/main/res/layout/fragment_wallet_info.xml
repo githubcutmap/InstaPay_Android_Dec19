@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:id="@+id/ll"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/success_green"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wallet Amount: "
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NA"
+            android:id="@+id/tv_walletamount"
+            android:fontFamily="@font/helveticaneubold"
+            android:textSize="22sp"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:weightSum="12">
+
+        <TableRow
+            android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:background="@drawable/colour_1"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Withdraw \nTransaction: "
+                  android:fontFamily="@font/bentham"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/id_totalwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NA "
+                    android:fontFamily="@font/helveticaneubold"
+                    android:textSize="20sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:background="@drawable/colour_6"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total BalanceEnquiry \nTransaction: "
+                  android:fontFamily="@font/bentham"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/id_totalbe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NA "
+                android:fontFamily="@font/helveticaneubold"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        </TableRow>
+
+
+       <TableRow
+            android:gravity="center">
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:background="@drawable/colour_3"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:layout_row="1"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MiniStatement \nTransaction: "
+
+                  android:fontFamily="@font/bentham"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/id_totalms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NA "
+                android:fontFamily="@font/helveticaneubold"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:background="@drawable/colour_4"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transaction \nAmount till date:"
+
+                  android:fontFamily="@font/bentham"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/id_totaltransamountT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NA "
+                android:fontFamily="@font/helveticaneubold"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:background="@drawable/colour_5"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Withdrawal \nTransactions Current date: "
+
+                  android:fontFamily="@font/bentham"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/id_totalwdtransCurrent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NA "
+                android:fontFamily="@font/helveticaneubold"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:background="@drawable/colour_2"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Withdrawal \nTransactions last 7 days: "
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NA "
+                android:fontFamily="@font/helveticaneubold"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:background="@drawable/colour_1"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Commission Amount till\ndate: "
+
+                  android:fontFamily="@font/bentham"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/id_comAmountTillDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NA "
+                android:fontFamily="@font/helveticaneubold"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:background="@drawable/colour_6"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Commission Amount current \ndate: "
+                  android:fontFamily="@font/bentham"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/commAmountCurrentDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NA "
+                android:fontFamily="@font/helveticaneubold"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:background="@drawable/colour_3"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Commission Amount last 7days: "
+
+                  android:fontFamily="@font/bentham"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NA "
+                android:fontFamily="@font/helveticaneubold"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:background="@drawable/colour_4"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount Transferred till date: "
+
+                  android:fontFamily="@font/bentham"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/id_amountTransferTillDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NA "
+                android:fontFamily="@font/helveticaneubold"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="110dp"
+            android:background="@drawable/colour_5"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount Transferred Current Date: "
+
+                  android:fontFamily="@font/bentham"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/id_amountTransferCurrentDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NA "
+                android:fontFamily="@font/helveticaneubold"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="110dp"
+            android:background="@drawable/colour_2"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount Transferred Last 7Days Date: "
+                  android:fontFamily="@font/bentham"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NA "
+                android:fontFamily="@font/helveticaneubold"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        </TableRow>
+    </TableLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

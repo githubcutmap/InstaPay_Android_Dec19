@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg1"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/maroon"
+            android:textStyle="bold"
+            android:text="Identification"
+            android:textSize="24sp" />
+    </LinearLayout>
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/border"
+
+        >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/yui_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Application ID is "
+                android:textStyle="bold"
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:textSize="16sp"
+                android:layout_column="1"/>
+
+            <TextView
+                android:id="@+id/col"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:text=" : "
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_column="2"/>
+
+
+            <TextView
+                android:id="@+id/uniqueId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/grayblack"
+                android:textCursorDrawable="@null"
+                android:layout_column="3"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/loan_amount_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loan Amount(Rs) "
+                android:textStyle="bold"
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:textSize="16sp"
+                android:layout_column="1"/>
+
+            <TextView
+                android:id="@+id/col1"
+                android:layout_width="11dp"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:text=" :"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/loan_payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/grayblack"
+                android:textCursorDrawable="@null"
+                android:backgroundTint="@android:color/secondary_text_light"
+                android:layout_column="3"/>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/id_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID Details "
+                android:textStyle="bold"
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:textSize="16sp"
+                android:layout_column="1"/>
+
+            <TextView
+                android:id="@+id/col5"
+                android:layout_width="11dp"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:text=" :"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/iddetails"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/editbox"
+                android:padding="10dp"
+                android:ems="10"
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:layout_column="3"
+                android:entries="@array/idDetails"/>
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/occupation_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:text="Business Unit &amp; Customer\n Photo (Max: 1MB) "
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/col2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:text=" : "
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_column="2"/>
+
+            <Button
+                android:id="@+id/customer_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:fontFamily="@font/bentham"
+                android:textStyle="bold"
+                android:text="Upload" />
+
+            <ImageView
+                android:id="@+id/customer_success"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/success"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                />
+
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/address_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID Proof (Max: 1MB) "
+                android:textStyle="bold"
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:textSize="16sp"
+                android:layout_column="1"/>
+
+            <TextView
+                android:id="@+id/col3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:text=" : "
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_column="2"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/customer_idproof"
+                android:layout_column="3"
+                android:fontFamily="@font/bentham"
+                android:textStyle="bold"
+                android:text="Upload"/>
+
+            <ImageView
+                android:id="@+id/customer_idproof_success"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/success"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/aaddress_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Property Proof (Max: 1MB) "
+                android:textStyle="bold"
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:textSize="16sp"
+                android:layout_column="1"/>
+
+            <TextView
+                android:id="@+id/col4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bentham"
+                android:textColor="@color/grayblack"
+                android:text=" : "
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_column="2"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/property_idproof"
+                android:layout_column="3"
+                android:fontFamily="@font/bentham"
+                android:textStyle="bold"
+                android:text="Upload"/>
+
+            <ImageView
+                android:id="@+id/propertyproof_success"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/success"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                />
+        </TableRow>
+    </TableLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/cancel"
+            android:text="Cancel"
+            android:fontFamily="@font/bentham"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            >
+
+        </Button>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="40dp"
+            android:id="@+id/upload"
+            android:text="Upload"
+            android:fontFamily="@font/bentham"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            >
+
+        </Button>
+    </LinearLayout>
+
+
+</LinearLayout>

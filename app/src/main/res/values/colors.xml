@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0072b5</color>
+    <color name="colorPrimaryDark">#f29ea9</color>
+    <color name="colorAccent">#0072b5</color>
+    <color name="black">#000000 </color>
+    <color name="white">#ffffff</color>
+    <color name="textColorPrimary">#ffffff</color>
+    <color name="title_colour">#ffffff</color>
+    <color name="gold_colour">#FFD700</color>
+    <color name="gray_dark"> #000000</color>
+    <color name="grey_colour">#959695</color>
+    <color name="silver_colour">#C0C0C0</color>
+    <color name="black_colour">#000000</color>
+    <color name="dialogButtonText">#008000</color>
+    <color name="colorblue">#0290b5</color>
+    <color name="success_green">#00C851</color>
+    <color name="success_green_dark">#007E33</color>
+    <color name="bgcolour"> #e1f5ff</color>
+    <color name="backgroundcolour">#ccbfb7</color>
+    <color name="cardcolour">#dbf3c8</color>
+    <color name="bluegreen">#0290b5</color>
+    <color name="header">#554c85</color>
+    <color name="cream">#fbbccd</color>
+    <color name="whiteshade">#fef0bf</color>
+    <color name="bpink">#ffafbd</color>
+    <color name="palegreen">#AFF1DA</color>
+    <color name="paleyellow">#F9EA8F</color>
+    <color name="brown">#4A0C0A</color>
+    <color name="maroon">#6e001a </color>
+    <color name="grayblack">#424949 </color>
+    <color name="pink">#fc5d74</color>
+    <color name="orange">#fb9548</color>
+    <color name="darkblue">#109ef0</color>
+    <color name="lightblue">#05d8dc</color>
+    <color name="red">#9D0303</color>
+    <color name="lightcream">#ffe6e6</color>
+    <color name="lightcolor">#F0F0F0</color>
+
+
+
+</resources>

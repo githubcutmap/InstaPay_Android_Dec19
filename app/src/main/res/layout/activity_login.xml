@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context=".agent_login.activity_Login"
+    android:theme="@style/AppTheme.NoActionBar"
+    android:background="@drawable/background1">
+
+
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MINT"
+        android:textSize="26sp"
+        android:textColor="#fff"
+        android:fontFamily="sans-serif-medium"
+        android:layout_margin="20dp"
+     />-->
+
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/mint_logo" />
+
+
+    <!--<TextView
+        android:id="@+id/finger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/bentham"
+        android:text="Welcome To MINT APP"
+        android:textColor="#fff"
+        android:textSize="24sp"
+        android:textStyle="bold" />-->
+
+
+    <!--LinearLayout-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp">
+                <TextView
+                    android:id="@+id/tv_andid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Android ID: "
+                    android:textColor="#000000"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/androidId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="Id"
+                    android:textColor="#000000"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20sp" />
+    </LinearLayout-->
+
+    <!--<androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:gravity="center"
+        app:cardBackgroundColor="@color/cream"
+        android:layout_gravity="center"
+        app:cardCornerRadius="20dp">-->
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+
+            android:background="@drawable/lightpink"
+            android:weightSum="4"
+            android:layout_marginLeft="5dp">
+
+            <TextView
+                android:id="@+id/tv_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/bentham"
+                android:text="Bank Mitra ID"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:fontFamily="sans-serif"
+                android:textColor="#000000"
+                android:maxLength="4"
+                android:inputType="number"
+                android:textSize="20sp"
+
+                android:background="@null"
+                android:layout_weight="3"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/lightpink"
+        android:weightSum="4"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:id="@+id/tv_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/bentham"
+            android:text="Password"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#000000"
+            android:maxLength="10"
+            android:inputType="textPassword"
+            android:textSize="20sp"
+            android:background="@null"
+            android:layout_weight="3"/>
+    </LinearLayout>
+    <!--
+    </androidx.cardview.widget.CardView>-->
+ <!--   <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="@color/cream"
+        app:cardCornerRadius="20dp">-->
+       <!-- <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/lightpink"
+            android:weightSum="2"
+            android:layout_marginLeft="5dp">
+
+            <TextView
+                android:id="@+id/tv_usebr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bentham"
+                android:text="Select Option   "
+                android:layout_marginLeft="10dp"
+                android:textColor="#000000"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:layout_weight="1"/>
+
+
+            <EditText
+                android:id="@+id/select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:layout_gravity="center"
+                android:fontFamily="@font/bentham"
+                android:hint="Click on arrow"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:backgroundTint="@color/colorAccent"
+                android:layout_weight="1"/>
+            <ImageView
+                android:id="@+id/right_arrow"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical|right"
+                android:src="@drawable/rightarrow"></ImageView>
+        </LinearLayout>--><!--
+    </androidx.cardview.widget.CardView>-->
+    <!--ImageView
+        android:id="@+id/fp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/fingerprint" /-->
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        app:cardCornerRadius="20dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:background="@color/bgcolour"/>
+        <!--LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="60dp"
+            android:weightSum="3"
+            android:background="@color/bgcolour">
+
+            <Switch
+                android:id="@+id/otpSwitch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="OTP"
+                android:textOff="Off"
+                android:textOn="On" />
+
+            <Switch
+                android:id="@+id/emailSwitch2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:gravity="center"
+                android:text="Email"
+                android:textOff="Off"
+                android:textOn="On" />
+
+            <Switch
+                android:id="@+id/fpSwitch3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:checked="true"
+                android:text="FP"
+                android:textOff="Off"
+                android:textOn="On" />-->
+
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="150dp"
+        android:layout_height="58dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="LOGIN"
+        android:fontFamily="@font/bentham"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        />
+
+
+<!--    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Test"
+        android:outlineAmbientShadowColor="@color/colorPrimary"
+        android:outlineSpotShadowColor="@color/colorPrimary"
+        app:boxBackgroundColor="#f1f1f1"
+        app:boxStrokeColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </com.google.android.material.textfield.TextInputLayout>-->
+
+
+    <TextView
+        android:id="@+id/andid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:textColor="#000"
+        android:text=""
+        android:textSize="17sp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:textColor="#000"
+        android:text="version"
+        android:textSize="15sp">
+
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/dateofr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:textColor="#000"
+        android:text="date"
+        android:textSize="15sp">
+
+    </TextView>
+    <include
+        android:id="@+id/login_footer"
+        layout="@layout/footer_template" />
+
+
+</LinearLayout>

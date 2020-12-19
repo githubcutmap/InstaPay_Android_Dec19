@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/bg1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/maroon"
+            android:textStyle="bold"
+            android:text="LOAN"
+            android:id="@+id/tv_bankname"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="24sp"/>
+    </LinearLayout>
+
+
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="70dp"
+        android:id="@+id/applyloan"
+        android:text="Apply Loan"
+        android:fontFamily="@font/bentham"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+    </Button>
+
+
+
+
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:id="@+id/view_reg"
+        android:text="View Application"
+        android:fontFamily="@font/bentham"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+    </Button>
+    <ImageView
+        android:id="@+id/backimg"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/button1"
+        app:srcCompat="@drawable/backarrow" />
+    <include
+        android:id="@+id/loan_main_footer"
+        layout="@layout/footer_template"/>
+
+
+</LinearLayout>

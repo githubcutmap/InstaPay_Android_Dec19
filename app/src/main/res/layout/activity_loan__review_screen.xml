@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".loans.LoanActivity_ReviewScreen">
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+             android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                android:textStyle="bold"
+                android:text="Preview"
+                android:textSize="24sp"/>
+
+
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border_black_thin" >
+
+
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/beneficiary_id_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Application ID"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif"
+            android:textColor="@color/grayblack"
+                        android:layout_column="1"/>
+
+                    <TextView
+                        android:id="@+id/col0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bentham"
+                        android:textColor="@color/grayblack"
+                        android:text=" : "
+                        android:textSize="16sp"
+                        android:layout_column="2"/>
+
+
+                    <TextView
+                        android:id="@+id/beneficiary_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#6B6B6B"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif"
+                        android:layout_column="3"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/beneficiary_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        android:textStyle="bold"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:textSize="16sp"
+                        android:layout_column="1"/>
+
+                    <TextView
+                        android:id="@+id/col1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:text=" : "
+                        android:textSize="16sp"
+                        android:layout_column="2"/>
+
+
+                    <TextView
+                        android:id="@+id/beneficiary_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#6B6B6B"
+                        android:fontFamily="@font/bentham"
+                        android:layout_column="3"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/beneficiary_phone_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contact No."
+                        android:textStyle="bold"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:textSize="16sp"
+                        android:layout_column="1"/>
+
+                    <TextView
+                        android:id="@+id/col2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:text=" : "
+                        android:textSize="16sp"
+                        android:layout_column="2"/>
+
+
+                    <TextView
+                        android:id="@+id/beneficiary_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#6B6B6B"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif"
+                        android:layout_column="3"/>
+                </TableRow>
+
+
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/beneficiary_bank_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bank Branch"
+                        android:textStyle="bold"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:textSize="16sp"
+                        android:layout_column="1"/>
+
+                    <TextView
+                        android:id="@+id/col5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:text=" : "
+                        android:textSize="16sp"
+                        android:layout_column="2"/>
+
+
+                    <TextView
+                        android:id="@+id/beneficiary_bank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#6B6B6B"
+                        android:fontFamily="@font/bentham"
+                        android:layout_column="3"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/beneficiary_gender_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gender"
+                        android:textStyle="bold"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:textSize="16sp"
+                        android:layout_column="1"/>
+
+                    <TextView
+                        android:id="@+id/col6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:text=" : "
+                        android:textSize="16sp"
+                        android:layout_column="2"/>
+
+
+                    <TextView
+                        android:id="@+id/beneficiary_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#6B6B6B"
+                        android:fontFamily="@font/bentham"
+                        android:layout_column="3"/>
+                </TableRow>
+
+               <!-- <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/beneficiary_loan_type_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Loan Type"
+                        android:textStyle="bold"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:textSize="16sp"
+                        android:layout_column="1"/>
+
+                    <TextView
+                        android:id="@+id/col7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:text=" : "
+                        android:textSize="16sp"
+                        android:layout_column="2"/>
+
+
+                    <TextView
+                        android:id="@+id/beneficiary_loan_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#6B6B6B"
+                        android:fontFamily="@font/bentham"
+                        android:layout_column="3"/>
+                </TableRow>-->
+
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/beneficiary_loan_amount_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Loan Amount (Rs)"
+                        android:textStyle="bold"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:textSize="16sp"
+                        android:layout_column="1"/>
+
+                    <TextView
+                        android:id="@+id/col9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:text=" : "
+                        android:textSize="16sp"
+                        android:layout_column="2"/>
+
+
+                    <TextView
+                        android:id="@+id/beneficiary_loan_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#6B6B6B"
+                        android:fontFamily="sans-serif"
+                        android:layout_column="3"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/beneficiary_occupation_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Line Of Activity"
+                        android:textStyle="bold"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:textSize="16sp"
+                        android:layout_column="1"/>
+
+                    <TextView
+                        android:id="@+id/col10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:text=" : "
+                        android:textSize="16sp"
+                        android:layout_column="2"/>
+
+
+                    <TextView
+                        android:id="@+id/beneficiary_occupation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#6B6B6B"
+                        android:fontFamily="@font/bentham"
+                        android:layout_column="3"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/beneficiary_loan_purpose_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Loan Purpose"
+                        android:textStyle="bold"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:textSize="16sp"
+                        android:layout_column="1"/>
+
+                    <TextView
+                        android:id="@+id/col11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:text=" : "
+                        android:textSize="16sp"
+                        android:layout_column="2"/>
+
+
+                    <TextView
+                        android:id="@+id/beneficiary_loan_purpose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#6B6B6B"
+                        android:fontFamily="@font/bentham"
+                        android:layout_column="3"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/beneficiary_tenure_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tenure"
+                        android:textStyle="bold"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:textSize="16sp"
+                        android:layout_column="1"/>
+
+                    <TextView
+                        android:id="@+id/col12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                     android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+                        android:text=" : "
+                        android:textSize="16sp"
+                        android:layout_column="2"/>
+
+
+                    <TextView
+                        android:id="@+id/beneficiary_tenure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#6B6B6B"
+                        android:text="24 Months"
+                        android:fontFamily="sans-serif"
+                        android:layout_column="3"/>
+                </TableRow>
+
+
+            </TableLayout>
+
+            <CheckBox
+                android:id="@+id/id_cb_tandc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:checked="false"
+                android:fontFamily="@font/bentham"
+                android:onClick="onCheckboxClicked"
+                android:text="I agree the above information entered by me are correct and verified."
+                android:textColor="#6B6B6B" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="80dp"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/cancel"
+                    android:text="Cancel"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/bentham"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    >
+
+                </Button>
+
+                <Button
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="40dp"
+                    android:id="@+id/confirm"
+                    android:text="Confirm"
+                    android:fontFamily="@font/bentham"
+                    android:textStyle="bold"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:enabled="false"
+
+                    >
+
+                </Button>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg1">
+
+    <ImageView
+        android:id="@+id/logout"
+        android:layout_width="35dp"
+        android:layout_height="31dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/logout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/textMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:fontFamily="@font/aclonica"
+            android:gravity="left"
+            android:text="Good Morning !"
+            android:textColor="@color/brown"
+            android:layout_weight="3"
+            android:textSize="22sp" />
+
+
+        <TextView
+            android:id="@+id/agent_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/aclonica"
+            android:text="Username"
+            android:textColor="@color/brown"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/menu_timestamp_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:layout_gravity="left"
+            android:textColor="@color/brown"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="left"
+            android:text="Your Last Login Time"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/menu_timestamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:layout_gravity="left"
+            android:textColor="@color/brown"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="left"
+            android:textSize="18sp"
+            android:text="-- --"
+            />
+
+
+    </LinearLayout>
+
+
+    <ScrollView android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+
+                <LinearLayout
+                    android:layout_height="160dp"
+                    android:layout_width="160dp"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:id="@+id/ll_aeps">
+                    <ImageView
+                        android:id="@+id/aeps"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bluecard"
+                        app:srcCompat="@drawable/aeps"/>
+
+                    <TextView
+                        android:id="@+id/wd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/bentham"
+                        android:textStyle="bold"
+                        android:gravity="center|bottom"
+                        android:text="AEPS"
+                        android:textColor="@color/maroon"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_height="160dp"
+                    android:layout_width="160dp"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:id="@+id/ll_bbps">
+                    <ImageView
+                        android:id="@+id/bbps"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:padding="18dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/greencard"
+                        app:srcCompat="@drawable/bbps_logo" />
+
+                    <TextView
+                        android:id="@+id/aadharpay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/bentham"
+                        android:gravity="bottom"
+                        android:textStyle="bold"
+                        android:text="            BBPS"
+                        android:textColor="@color/maroon"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_height="160dp"
+                    android:layout_width="160dp"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:id="@+id/ll_card">
+                    <ImageView
+                        android:id="@+id/card"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/pinkcard"
+                        app:srcCompat="@drawable/card1" />
+
+                    <TextView
+                        android:id="@+id/deposit1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/bentham"
+                        android:gravity="center|bottom"
+                        android:textStyle="bold"
+                        android:text="CARD"
+                        android:textColor="@color/maroon"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_height="160dp"
+                    android:layout_width="160dp"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:id="@+id/ll_loan">
+                    <ImageView
+                        android:id="@+id/loan"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/orangecard"
+                        app:srcCompat="@drawable/loan" />
+
+                    <TextView
+                        android:id="@+id/ms"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/bentham"
+                        android:gravity="center|bottom"
+                        android:textStyle="bold"
+                        android:text="LOAN"
+                        android:textColor="@color/maroon"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_height="160dp"
+                    android:layout_width="160dp"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:id="@+id/agent_profile">
+
+                    <ImageView
+                        android:id="@+id/agentprofile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/skybluecard"
+                        android:padding="25dp"
+                        app:srcCompat="@drawable/profile" />
+
+                    <TextView
+                        android:id="@+id/profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/bentham"
+                        android:gravity="center|bottom"
+                        android:textStyle="bold"
+                        android:text="PROFILE"
+                        android:textColor="@color/maroon"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_height="160dp"
+                    android:layout_width="160dp"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:id="@+id/ll_pan">
+                    <ImageView
+                        android:id="@+id/pan"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:padding="13dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/purplecard"
+                        app:srcCompat="@drawable/pancard" />
+
+                    <TextView
+                        android:id="@+id/be"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/bentham"
+                        android:gravity="center|bottom"
+                        android:textStyle="bold"
+                        android:text="PAN"
+                        android:textColor="@color/maroon"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+               <!-- <LinearLayout
+                    android:layout_height="160dp"
+                    android:layout_width="160dp"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:id="@+id/ll_rrnstatus">
+                    <ImageView
+                        android:id="@+id/rrnstatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/skybluecard"
+                        app:srcCompat="@drawable/rrnstatus" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/bentham"
+                        android:gravity="center|bottom"
+                        android:textStyle="bold"
+                        android:text="RRN \nStatus"
+                        android:textColor="@color/maroon"
+                        android:textSize="18sp" />
+                </LinearLayout>-->
+
+
+            </LinearLayout>
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:elevation="10dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="bottom"
+                android:layout_gravity="bottom"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="4"
+                    >
+
+
+                    <!--   <LinearLayout
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="1"
+                           android:orientation="vertical"
+                           android:layout_margin="5dp"
+                           android:background="@color/grey_colour"
+                           android:weightSum="2">
+
+                           <ImageView
+                               android:id="@+id/aeps"
+                               android:layout_width="50dp"
+                               android:layout_height="50dp"
+                               android:layout_gravity="center"
+                               android:layout_weight="1"
+                               android:src="@drawable/aeps"></ImageView>
+
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_weight="1"
+                               android:text="AEPS"
+                               android:fontFamily="@font/aclonica"
+                               android:textColor="@color/black"
+                               android:layout_gravity="center"
+                               android:textSize="12sp"
+                               />
+                       </LinearLayout>-->
+
+                    <!--<LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:weightSum="2">
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:id="@+id/card"
+                            android:src="@drawable/card1"
+                            android:layout_gravity="center"
+                            android:layout_weight="1">
+
+                        </ImageView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="CARD"
+                            android:fontFamily="@font/aclonica"
+                            android:textColor="@color/black"
+                            android:layout_gravity="center"
+                            android:textSize="12sp"/>
+
+                    </LinearLayout>
+
+-->
+                    <!--   <LinearLayout
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="1"
+                           android:orientation="vertical"
+                           android:weightSum="2">
+                           <ImageView
+                               android:id="@+id/billPayments"
+                               android:layout_width="50dp"
+                               android:layout_height="50dp"
+                               android:layout_gravity="center"
+                               android:src="@drawable/billpayments"
+                               android:layout_weight="1">
+
+                           </ImageView>
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_weight="1"
+                               android:text="Bill Payment"
+                               android:fontFamily="@font/aclonica"
+                               android:textColor="@color/black"
+                               android:layout_gravity="center"
+                               android:textSize="12sp"/>
+                       </LinearLayout>-->
+
+                    <!--  <LinearLayout
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:orientation="vertical"
+                          android:weightSum="2">
+
+                          <ImageView
+                              android:layout_width="50dp"
+                              android:layout_height="50dp"
+                              android:id="@+id/loan"
+                              android:layout_gravity="center"
+                              android:src="@drawable/loan"
+                              android:layout_weight="1">
+
+                          </ImageView>
+                          <TextView
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="1"
+                              android:text="Loan"
+                              android:id="@+id/tv_loan"
+                              android:layout_gravity="center"
+                              android:textSize="12sp"
+                              android:fontFamily="@font/aclonica"
+                              android:textColor="@color/black"/>
+                      </LinearLayout>-->
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </ScrollView>
+    <include
+        android:id="@+id/menu_footer"
+        layout="@layout/footer_template"/>
+
+
+
+</LinearLayout>
