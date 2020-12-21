@@ -38,10 +38,10 @@ import okhttp3.Response;
 public class WalletFragment extends Fragment {
     OkHttpClient httpClient;
     Utils utils;
-    TextView tv_amountTransferTillDate,tv_amountTransferCurrentDate,tv_commissionAmountCurrentDate, tv_commissionAmountTillDate, tv_totalwd, tv_totalms, tv_walletamount, tv_totalbe, tv_totaltransAmountT, tv_totalWDtransCurrentDate;
+    TextView tv_totComlastsevenDays,tv_totWDlastsevenDays,tv_totTransferlastsevenDays,tv_amountTransferTillDate,tv_amountTransferCurrentDate,tv_commissionAmountCurrentDate, tv_commissionAmountTillDate, tv_totalwd, tv_totalms, tv_walletamount, tv_totalbe, tv_totaltransAmountT, tv_totalWDtransCurrentDate;
     SharedPreferences preferences;
     public static final String mypreference = "mypref";
-    String pastweekDate,amountTransferTillDate,amountTransferCurrentDate,commissionAmountCurrentDate, commissionAmountTillDate, currentDate, totalWDtransCurrentDate, totaltransAmountT, totalWithdrawCount, totalMinistatementCount, agentPhn, agentId, password, totalBECount, walletAmount;
+    String totTransferlastsevenDays,totWDlastsevenDays,totComlastsevenDays,pastweekDate,amountTransferTillDate,amountTransferCurrentDate,commissionAmountCurrentDate, commissionAmountTillDate, currentDate, totalWDtransCurrentDate, totaltransAmountT, totalWithdrawCount, totalMinistatementCount, agentPhn, agentId, password, totalBECount, walletAmount;
 
     public WalletFragment() {
         // Required empty public constructor
@@ -64,6 +64,9 @@ public class WalletFragment extends Fragment {
         tv_commissionAmountCurrentDate = v.findViewById(R.id.commAmountCurrentDate);
         tv_amountTransferCurrentDate=v.findViewById(R.id.id_amountTransferCurrentDate);
         tv_amountTransferTillDate=v.findViewById(R.id.id_amountTransferTillDate);
+        tv_totComlastsevenDays=v.findViewById(R.id.totComlastsevenDays);
+        tv_totWDlastsevenDays=v.findViewById(R.id.totWDlastsevenDays);
+        tv_totTransferlastsevenDays=v.findViewById(R.id.totTransferlastsevenDays);
         SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
         String currentDateandTime = sdf.format(new Date());
         Date cdate= null;
@@ -100,7 +103,7 @@ public class WalletFragment extends Fragment {
     }
 
     class apiCall_getagentdetails extends AsyncTask<Request, Void, String> {
-        String response_String, jsonString, jsonString2, jsonString3, jsonString4, jsonString5;
+        String response_String, jsonString, jsonString2, jsonString3, jsonString4, jsonString5,jsonString6,jsonString7;
 
 
         ProgressDialog dialog = new ProgressDialog(getActivity(), ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
@@ -624,7 +627,7 @@ JSONObject jsonObject5=new JSONObject();
 
 
             });
-            //10.Amount Transferred Till Date
+            //9.Amount Transferred Till Date
             Request request9= new Request.Builder()
                     .url("https://aepsapi.gramtarang.org:8008/mint/aeps/TransferredAmountByagentID")
                     .addHeader("Accept", "*/*")
@@ -679,7 +682,7 @@ JSONObject jsonObject5=new JSONObject();
 
                 }
             });
-            //11.Amount Transferred Current Date
+            //10.Amount Transferred Current Date
 
             Request request10 = new Request.Builder()
                     .url("https://aepsapi.gramtarang.org:8008/mint/aeps/TransferredAmountByagentIDandDate")
@@ -729,6 +732,202 @@ JSONObject jsonObject5=new JSONObject();
                         });
                         //tv_totalwd.setText(count);
                         Log.d("TAG", "Transfer Amount Current Date " + commissionAmountCurrentDate);
+
+                    }
+
+                }
+
+
+            });
+            //11.Total Withdrawal Transactions last 7 days
+            JSONObject jsonObject6 = new JSONObject();
+            try {
+                jsonObject6.put("agentid", agentPhn);
+                jsonObject6.put("datefrom", pastweekDate);
+                jsonObject6.put("dateto", currentDate);
+
+                jsonString6 = jsonObject6.toString();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            MediaType JSON6 = MediaType.parse("application/json");
+            RequestBody body6 = RequestBody.create(JSON6, jsonString6);
+            Request request11 = new Request.Builder()
+                    .url("https://aepsapi.gramtarang.org:8008/mint/aeps/CountRangeDateWithdrawal")
+                    .addHeader("Accept", "*/*")
+                    // .addHeader("Authorization","Basic MTAxMDpUZXN0QDEyMw==")
+                    .post(body6)
+                    .build();
+            httpClient.newCall(request11).enqueue(new Callback() {
+                @Override
+                //of the api calling got failed then it will go for onFailure,inside this we have added one alertDialog
+                public void onFailure(Call call, IOException e) {
+                    Log.d("TAG", "response onfailure" + e);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            DialogActivity.DialogCaller.showDialog(getActivity(), "Alert", "Invalid Credentials.\nPlease Contact Administrator", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                        }
+                    });
+
+                }
+
+                //if API call got success then it will go for this onResponse also where we are collection
+                //the response as well
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    assert response.body() != null;
+                    response_String = response.body().string();
+                    System.out.println("RESPONSE IS" + response_String);
+                    if (response_String != null) {
+                        JSONObject jsonResponse = null;
+                        try {
+                            jsonResponse = new JSONObject(response_String);
+                           totWDlastsevenDays = jsonResponse.getString("count");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                tv_totWDlastsevenDays.setText(totWDlastsevenDays);
+                            }
+                        });
+                        //tv_totalwd.setText(count);
+                        Log.d("TAG", "Withdrawal Last Seven Days " + totWDlastsevenDays);
+
+                    }
+
+                }
+
+
+            });
+            //12.Total Commission Last Seven Days
+            JSONObject jsonObject7 = new JSONObject();
+            try {
+                jsonObject7.put("agentid", agentId);
+                jsonObject7.put("datefrom", pastweekDate);
+                jsonObject7.put("dateto", currentDate);
+
+                jsonString7 = jsonObject7.toString();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            MediaType JSON7 = MediaType.parse("application/json");
+            RequestBody body7 = RequestBody.create(JSON7, jsonString7);
+            Request request12 = new Request.Builder()
+                    .url("https://aepsapi.gramtarang.org:8008/mint/aeps/CommissionSumByagentIDandDateRange")
+                    .addHeader("Accept", "*/*")
+                    // .addHeader("Authorization","Basic MTAxMDpUZXN0QDEyMw==")
+                    .post(body7)
+                    .build();
+            httpClient.newCall(request12).enqueue(new Callback() {
+                @Override
+                //of the api calling got failed then it will go for onFailure,inside this we have added one alertDialog
+                public void onFailure(Call call, IOException e) {
+                    Log.d("TAG", "response onfailure" + e);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            DialogActivity.DialogCaller.showDialog(getActivity(), "Alert", "Invalid Credentials.\nPlease Contact Administrator", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                        }
+                    });
+
+                }
+
+                //if API call got success then it will go for this onResponse also where we are collection
+                //the response as well
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    assert response.body() != null;
+                    response_String = response.body().string();
+                    System.out.println("RESPONSE IS" + response_String);
+                    if (response_String != null) {
+                        JSONObject jsonResponse = null;
+                        try {
+                            jsonResponse = new JSONObject(response_String);
+                           totComlastsevenDays = jsonResponse.getString("sum");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                tv_totComlastsevenDays.setText(totComlastsevenDays);
+                            }
+                        });
+                        //tv_totalwd.setText(count);
+                        Log.d("TAG", "Total Commission Last Seven Days " + totComlastsevenDays);
+
+                    }
+
+                }
+
+
+            });
+            //13.Amount Transferred Last Seven Days
+            Request request13 = new Request.Builder()
+                    .url("https://aepsapi.gramtarang.org:8008/mint/aeps/TransferredAmountByagentIDandDateRange")
+                    .addHeader("Accept", "*/*")
+                    // .addHeader("Authorization","Basic MTAxMDpUZXN0QDEyMw==")
+                    .post(body7)
+                    .build();
+            httpClient.newCall(request13).enqueue(new Callback() {
+                @Override
+                //of the api calling got failed then it will go for onFailure,inside this we have added one alertDialog
+                public void onFailure(Call call, IOException e) {
+                    Log.d("TAG", "response onfailure" + e);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            DialogActivity.DialogCaller.showDialog(getActivity(), "Alert", "Invalid Credentials.\nPlease Contact Administrator", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                        }
+                    });
+
+                }
+
+                //if API call got success then it will go for this onResponse also where we are collection
+                //the response as well
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    assert response.body() != null;
+                    response_String = response.body().string();
+                    System.out.println("RESPONSE IS" + response_String);
+                    if (response_String != null) {
+                        JSONObject jsonResponse = null;
+                        try {
+                            jsonResponse = new JSONObject(response_String);
+                            totTransferlastsevenDays = jsonResponse.getString("sum");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                tv_totTransferlastsevenDays.setText(totTransferlastsevenDays);
+                            }
+                        });
+                        //tv_totalwd.setText(count);
+                        Log.d("TAG", "Total Amount Transferred Last Seven Days " + totTransferlastsevenDays);
 
                     }
 
