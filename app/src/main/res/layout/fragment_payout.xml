@@ -1,14 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".agent_login.Payout">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".agent_login.Payout"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Spinner
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:id="@+id/id_sp_key"
+        android:fontFamily="@font/bentham"
+        android:background="@drawable/editbox"
+        />
 
-</FrameLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:layout_margin="5dp"
+        app:hintTextAppearance="@style/tf"
+        app:boxBackgroundColor="#f1f1f1"
+        app:boxStrokeColor="@color/colorPrimary"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <AutoCompleteTextView
+
+            android:id="@+id/bank_auto"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_column="3"
+            android:hint="Select Bank"
+            android:paddingLeft="10dp"
+            android:background="@drawable/editbox"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/grayblack" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_field1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:layout_margin="5dp"
+        app:hintTextAppearance="@style/tf"
+        app:boxBackgroundColor="#f1f1f1"
+        app:boxStrokeColor="@color/colorPrimary"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <EditText
+            android:id="@+id/id_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/editbox"
+            android:paddingLeft="10dp"
+            android:maxLength="6"
+            android:hint="Amount"
+            android:inputType="numberSigned"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/grayblack"
+            android:textCursorDrawable="@null" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+</LinearLayout>

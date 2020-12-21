@@ -47,6 +47,7 @@ public class PendingFragment extends Fragment {
     Spinner sp_agents;
     SharedPreferences preferences;
     public final String mypreference = "mypref";
+   // Utils utils;
 
 
 
@@ -72,7 +73,7 @@ public class PendingFragment extends Fragment {
 
 
     private void api_getAgentsList(View v){
-
+       // utils.getprogressDialog(getActivity(),"Loading","Please Wait");
         preferences = getActivity().getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         username=preferences.getString("Username","No name defined");
         password=preferences.getString("Password","No name defined");
@@ -147,6 +148,7 @@ public class PendingFragment extends Fragment {
     }
 
     private void setspinner(ArrayList<String> managerAgents, View v) {
+       // utils.dismissProgressDialog();
         String[] AgentArray = managerAgents.toArray(new String[0]);
         //String[] AgentArray1 = ManagerAgents1.toArray(new String[0]);
         Log.d("ViewApplication"," convert array to string: "+managerAgents);
