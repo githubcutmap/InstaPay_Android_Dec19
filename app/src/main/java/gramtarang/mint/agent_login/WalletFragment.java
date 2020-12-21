@@ -98,11 +98,11 @@ public class WalletFragment extends Fragment {
         currentDate = df.format(c);
 
 
-        new apiCall_getagentdetails().execute();
+        new apiCall_getWalletDashboardDetails().execute();
         return v;
     }
 
-    class apiCall_getagentdetails extends AsyncTask<Request, Void, String> {
+    class apiCall_getWalletDashboardDetails extends AsyncTask<Request, Void, String> {
         String response_String, jsonString, jsonString2, jsonString3, jsonString4, jsonString5,jsonString6,jsonString7;
 
 

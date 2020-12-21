@@ -271,14 +271,7 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
                     if (response_String != null) {
                         JSONObject jsonResponse = null;
                         JSONObject jsonResponse1=null;
-try{
-    jsonResponse = new JSONObject(response_String);
-    jsonResponse1=jsonResponse.getJSONObject("llist1");
-    outletid=jsonResponse1.getString("aepism");
-} catch (JSONException e) {
-    e.printStackTrace();
-}
-                        try {
+                  try {
                             jsonResponse = new JSONObject(response_String);
                             jsonResponse1=jsonResponse.getJSONObject("llist1");
                             //JSONArray llist1 = jsonResponse.getJSONArray("llist1");
