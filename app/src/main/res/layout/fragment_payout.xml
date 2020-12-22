@@ -12,47 +12,61 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="10dp"
-        android:id="@+id/id_sp_key"
+        android:id="@+id/id_sp_spkey"
+        android:spinnerMode="dialog"
+        android:fontFamily="@font/bentham"
+        android:background="@drawable/editbox"
+        android:entries="@array/spkey"
+        />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:spinnerMode="dialog"
+        android:id="@+id/id_sp_bank"
         android:fontFamily="@font/bentham"
         android:background="@drawable/editbox"
         />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_field"
+<!--    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_field13"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         app:hintTextAppearance="@style/tf"
         app:boxBackgroundColor="#f1f1f1"
         app:boxStrokeColor="@color/colorPrimary"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <AutoCompleteTextView
-
-            android:id="@+id/bank_auto"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_column="3"
-            android:hint="Select Bank"
             android:paddingLeft="10dp"
             android:background="@drawable/editbox"
+            android:id="@+id/id_actv_bank"
+            android:hint="Bank"
             android:textSize="16sp"
             android:fontFamily="sans-serif"
-            android:textColor="@color/grayblack" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textColor="@color/grayblack"
+            />
+    </com.google.android.material.textfield.TextInputLayout>-->
+
+
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         app:hintTextAppearance="@style/tf"
         app:boxBackgroundColor="#f1f1f1"
         app:boxStrokeColor="@color/colorPrimary"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <EditText
-            android:id="@+id/id_amount"
+            android:id="@+id/id_et_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/editbox"
@@ -65,6 +79,42 @@
             android:textColor="@color/grayblack"
             android:textCursorDrawable="@null" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_field2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:layout_margin="10dp"
+        app:hintTextAppearance="@style/tf"
+        app:boxBackgroundColor="#f1f1f1"
+        app:boxStrokeColor="@color/colorPrimary"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <EditText
+            android:id="@+id/id_et_remarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/editbox"
+            android:paddingLeft="10dp"
+            android:hint="Remarks"
+            android:inputType="text"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/grayblack"
+            android:textCursorDrawable="@null" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/id_button_submit"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Submit"
+        android:fontFamily="@font/bentham"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        />
 
 
 

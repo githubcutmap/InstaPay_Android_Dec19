@@ -187,7 +187,7 @@ public class BankInfo extends Fragment {
         tv_bankAccountNo.setText(aBankAccountNo);
         tv_ifsccode.setText(aIfscCode);
         tv_branch.setText(aBranch);
-        if(status.equals("1")){
+        if(aStatus.equals("1")){
             tv_status.setText("ACTIVE");
         }
         else{

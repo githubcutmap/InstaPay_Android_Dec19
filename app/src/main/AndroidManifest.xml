@@ -36,7 +36,9 @@
         <activity
             android:name=".agent_login.activity_AgentProfile"
             android:label="@string/title_activity__agent_profile"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" >
+
+        </activity>
         <activity android:name=".loans.LoanActivity_Category" />
         <activity android:name=".bbps.bbps_receipt" />
         <activity android:name=".bbps.bbps_billpayment" />

@@ -75,6 +75,13 @@
         <item>APGVB</item>
     </string-array>
 
+    <string-array name="spkey">
+        <item>Select Type</item>
+        <item>IMPS</item>
+        <item>NEFT</item>
+        <item>RTGS</item>
+    </string-array>
+
     <string-array name="loansType">
         <item>Select Scheme</item>
         <item>Suyog</item>
