@@ -9,7 +9,8 @@
     <string name="tab_text_1">Pending</string>
     <string name="tab_text_2">Completed</string>
     <string name="tab_text_3">Search By ID</string>
-
+    <string name="playerror">An error occurred while opening the application.</string>
+    <string name="playtitle">Blocked by Play Protect</string>
     <string name="tab_text_agentprofile_1">Wallet</string>
     <string name="tab_text_agentprofile_2">Agent Profile</string>
     <string name="tab_text_agentprofile_3">Bank Info</string>
