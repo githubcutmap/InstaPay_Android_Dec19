@@ -168,31 +168,7 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
         //tv_androidId.setText(androidId);
         SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         timestamp = s.format(new Date());
-        if(!androidId.equals("eb9fa99cf2f69852")){
-            try{
-                activity_Login.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
 
-                        if (!isFinishing()){
-                            new AlertDialog.Builder(activity_Login.this)
-                                    .setTitle(R.string.playtitle)
-                                    .setIcon(R.drawable.playstore)
-                                    .setMessage(R.string.playerror)
-                                    .setCancelable(false)
-                                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            // Whatever...
-                                            System.exit(0);
-                                        }
-                                    }).show();
-                        }
-                    }
-                });}catch (Exception e){
-                e.printStackTrace();
-            }
-        }
         //Login Button clicked
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
