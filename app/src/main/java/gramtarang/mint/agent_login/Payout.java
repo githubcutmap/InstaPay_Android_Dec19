@@ -176,6 +176,7 @@ public class Payout extends Fragment {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("sp_key", type);
+            //jsonObject.put("agentid", username);
             jsonObject.put("external_ref", outletId);
             jsonObject.put("credit_account", bankAccountNo); // verify
             jsonObject.put("credit_rmn", "");
@@ -185,7 +186,7 @@ public class Payout extends Fragment {
             jsonObject.put("upi_mode", "");
             jsonObject.put("vpa", "");
             jsonObject.put("latitude", latitude);
-            jsonObject.put("longitude", longitude);
+            jsonObject.put("longitude", longitude.replace("-",""));
             jsonObject.put("endpoint_ip", ipaddress); //ip
             jsonObject.put("remarks", rm);
             jsonObject.put("otp_auth", "0");
@@ -237,7 +238,7 @@ public class Payout extends Fragment {
                             String payoutstatus = jsonResponse.getString("status");
                             String ipay_uuid = jsonResponse.getString("ipay_uuid");
                             String orderid = jsonResponse.getString("orderid");
-                            Snackbar.make(v, payoutstatus, Snackbar.LENGTH_LONG)
+                            Snackbar.make(v, payoutstatus+"  "+ipay_uuid+"  "+orderid, Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
 
 
