@@ -196,6 +196,7 @@ public class Payout extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("JSON STRING IS"+jsonString);
         MediaType JSON = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(JSON, jsonString);
         okhttp3.Request request = new Request.Builder()
@@ -302,7 +303,7 @@ public class Payout extends Fragment {
                         agentId = jsonResponse.getString("agentid");
                         ipAccountNo = jsonResponse.getString("ipaccountno");
                         bankName = jsonResponse.getString("bankname");
-                        bankAccountNo = jsonResponse.getString("ipaccountno");
+                        bankAccountNo = jsonResponse.getString("bankaccountno");
                         ifsccode = jsonResponse.getString("ifsccode");
                         branch = jsonResponse.getString("branch");
                         status = jsonResponse.getString("status");

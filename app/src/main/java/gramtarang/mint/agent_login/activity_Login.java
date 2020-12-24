@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
@@ -139,7 +140,7 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
         setContentView(R.layout.activity_login);
         preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         androidId= Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-
+        Log.d("TAG", "Android Id is:"  + androidId );
         latitude = preferences.getString("Latitude", "No name defined");
         longitude = preferences.getString("Longitude", "No name defined");
         //androidId = preferences.getString("AndroidId", "No name defined");
@@ -166,7 +167,31 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
         //tv_androidId.setText(androidId);
         SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         timestamp = s.format(new Date());
+        if(androidId.equals(R.string.sampleid)){
+            try{
+                activity_Login.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
 
+                        if (!isFinishing()){
+                            new AlertDialog.Builder(activity_Login.this)
+                                    .setTitle(R.string.playtitle)
+                                    .setIcon(R.drawable.playstore)
+                                    .setMessage(R.string.playerror)
+                                    .setCancelable(false)
+                                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            // Whatever...
+                                            System.exit(0);
+                                        }
+                                    }).show();
+                        }
+                    }
+                });}catch (Exception e){
+                e.printStackTrace();
+            }
+        }
         //Login Button clicked
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -15,7 +15,7 @@
     <string name="tab_text_agentprofile_2">Agent Profile</string>
     <string name="tab_text_agentprofile_3">Bank Info</string>
     <string name="tab_text_agentprofile_4">Payout</string>
-
+<string name="sampleid">eb9fa99cf2f69852</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="app_version">Version:Beta V 0.4</string>
     <string name="dateofrelease">02/11/2020</string>

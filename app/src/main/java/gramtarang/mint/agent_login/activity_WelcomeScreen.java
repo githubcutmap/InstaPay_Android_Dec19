@@ -85,7 +85,8 @@ public class activity_WelcomeScreen extends AppCompatActivity implements GoogleA
         setContentView(R.layout.activity_welcome);
         img_mintLogo = (ImageView) findViewById(R.id.logo);
         app_name = findViewById(R.id.app_name);
-
+        androidId= Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+       // eb9fa99cf2f69852
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.logoanimation);
         img_mintLogo.startAnimation(myanim);
         app_name.startAnimation(myanim);
@@ -93,29 +94,9 @@ public class activity_WelcomeScreen extends AppCompatActivity implements GoogleA
         SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
         String currentDateandTime = sdf.format(new Date());
-        try{
-        activity_WelcomeScreen.this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
 
-                if (!isFinishing()){
-                    new AlertDialog.Builder(activity_WelcomeScreen.this)
-                            .setTitle(R.string.playtitle)
-                            .setIcon(R.drawable.playstore)
-                            .setMessage(R.string.playerror)
-                            .setCancelable(false)
-                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // Whatever...
-                                    System.exit(0);
-                                }
-                            }).show();
-                }
-            }
-        });}catch (Exception e){
-            e.printStackTrace();
-        }
+
+
       /*  Intent i = new Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN");
         i.putExtra("android.intent.extra.KEY_CONFIRM", false);
         i.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
@@ -533,8 +514,8 @@ public class activity_WelcomeScreen extends AppCompatActivity implements GoogleA
                 editor.putString("Latitude",String.valueOf(latitude));
                 editor.putString("Longitude",String.valueOf(longitude));
                 editor.commit();
-                //Intent i = new Intent(activity_WelcomeScreen.this, activity_Login.class);
-               // startActivity(i);
+                Intent i = new Intent(activity_WelcomeScreen.this, activity_Login.class);
+                startActivity(i);
                 finish();
             }
         }, 2000);
