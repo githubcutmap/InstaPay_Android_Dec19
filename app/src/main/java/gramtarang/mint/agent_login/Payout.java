@@ -225,20 +225,25 @@ public class Payout extends Fragment {
 
                 if (response_String != null) {
                     Log.d("TAG","Response is+"+response_String.toString());
-                    JSONObject jsonResponse = null;
-                    try {
-                        jsonResponse = new JSONObject(response_String);
-
-                        String payoutstatus = jsonResponse.getString("status");
-                        String ipay_uuid = jsonResponse.getString("ipay_uuid");
-                        String orderid = jsonResponse.getString("orderid");
-                        Snackbar.make(v, payoutstatus, Snackbar.LENGTH_LONG)
+                    if(response_String.equals("Insufficient Funds to transfer pls contact customer support")){
+                        Snackbar.make(v, "Insufficient Funds to transfer pls contact customer support", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
-
-
-                    }catch (JSONException e) {
-                        e.printStackTrace();
                     }
+                    JSONObject jsonResponse = null;
+
+                        try {
+                            jsonResponse = new JSONObject(response_String);
+
+                            String payoutstatus = jsonResponse.getString("status");
+                            String ipay_uuid = jsonResponse.getString("ipay_uuid");
+                            String orderid = jsonResponse.getString("orderid");
+                            Snackbar.make(v, payoutstatus, Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                 } else {
                     Snackbar.make(v, "You are not getting any Response From Server !! ", Snackbar.LENGTH_LONG)
