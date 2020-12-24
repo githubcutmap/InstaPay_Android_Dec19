@@ -140,6 +140,7 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
         setContentView(R.layout.activity_login);
         preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         androidId= Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+
         Log.d("TAG", "Android Id is:"  + androidId );
         latitude = preferences.getString("Latitude", "No name defined");
         longitude = preferences.getString("Longitude", "No name defined");
@@ -167,7 +168,7 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
         //tv_androidId.setText(androidId);
         SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         timestamp = s.format(new Date());
-        if(androidId.equals(R.string.sampleid)){
+        if(!androidId.equals("eb9fa99cf2f69852")){
             try{
                 activity_Login.this.runOnUiThread(new Runnable() {
                     @Override
