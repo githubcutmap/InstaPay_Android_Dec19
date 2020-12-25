@@ -1,36 +1,26 @@
 package gramtarang.instamoney.aeps;
-
-import android.annotation.SuppressLint;
+//IMPORTS
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import gramtarang.instamoney.R;
 import gramtarang.instamoney.agent_login.Dashboard;
-import gramtarang.instamoney.agent_login.activity_AgentsProfile;
 import gramtarang.instamoney.agent_login.activity_Login;
-
 import gramtarang.instamoney.utils.LogOutTimer;
 import gramtarang.instamoney.utils.Utils;
-import okhttp3.OkHttpClient;
-
-
-/*activity_Aeps_HomeScreen activity is the base activity of all transactions
-*/
 public class activity_Aeps_HomeScreen extends AppCompatActivity implements LogOutTimer.LogOutListener {
+
+    //LOGOUT TIMER
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -68,27 +58,41 @@ public class activity_Aeps_HomeScreen extends AppCompatActivity implements LogOu
         Intent intent=new Intent(getApplicationContext(), activity_Login.class);
         startActivity(intent);
     }
+    //BACK PRESSED HANDLING
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
 
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Click again to exit.", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+                Intent intent = new Intent(getApplicationContext(), activity_Login.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        }, 2000);
+    }
+
+
+
+    //DECLARATIONS
     private static final String TAG ="MenuScreen" ;
-    String androidId,lastlogin_time,response_String, bankmitra_id,jsonString,agentname;
-    OkHttpClient client;
-    TextView menu_timestamp,textMessage;
-    TextView time;
-    TextView agent_name;
-    TextView transName;
+    String androidId,lastlogin_time,response_String, bankmitra_id,jsonString,agentname,title,message;
+    TextView menu_timestamp,textMessage,agent_name;
     ImageView aadhaarPay,aepsBalance,aepsWithdraw,aepsDeposit,ministatement,eodreport,accOpen,loan,rrnStatus,billPayments,card,logout,backimg;
-
-
-    Switch transSwitch;
-    String agent_firstname,agent_lastname,title,message;
-
     private static final int REQUEST_CODE = 101;
     SharedPreferences preferences;
     public static final String mypreference = "mypref";
     Utils utils = new Utils();
+    boolean doubleBackToExitPressedOnce = false;
 
-
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
@@ -129,46 +133,40 @@ public class activity_Aeps_HomeScreen extends AppCompatActivity implements LogOu
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    @SuppressLint("HardwareIds")
+    @SuppressLint("HardwareIds")*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        //LAYOUT ELEMENTS DECLARATION
         super.onCreate(savedInstanceState);
-        //adjustFontScale(getResources().getConfiguration());
-        onConfigurationChanged(getResources().getConfiguration());
         setContentView(R.layout.activity_menu_screen);
-client=new OkHttpClient();
+        menu_timestamp=findViewById(R.id.menu_timestamp);
+        textMessage = findViewById(R.id.textMessage);
+        agent_name = findViewById(R.id.agent_name);
+        aepsBalance=findViewById(R.id.aeps_balenquiry);
+        aepsWithdraw=findViewById(R.id.aeps_withdraw);
+        aepsDeposit = findViewById(R.id.deposit);
+        ministatement=findViewById(R.id.image_ministatement);
+        aadhaarPay=findViewById(R.id.aadhaar_pay);
+        rrnStatus = findViewById(R.id.rrnstatus);
+        logout=findViewById(R.id.logout);
+        backimg=findViewById(R.id.backimg);
+
+        //SHARED PREFERENCES
         preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         androidId=preferences.getString("AndroidId","No name defined");
         bankmitra_id =preferences.getString("AgentId","No name defined");
         agentname=preferences.getString("AgentName","No name defined");
         lastlogin_time=preferences.getString("LastLogin","No name defined");
-        menu_timestamp=findViewById(R.id.menu_timestamp);
-        menu_timestamp.setText(lastlogin_time);
-        textMessage = findViewById(R.id.textMessage);
-        agent_name = findViewById(R.id.agent_name);
-        agent_name.setText(agentname);
-        aepsBalance=findViewById(R.id.aeps_balenquiry);
-        aepsWithdraw=findViewById(R.id.aeps_withdraw);
-      // ministatement = findViewById(R.id.image_ministatement);
-        aepsDeposit = findViewById(R.id.deposit);
-      //  eodreport=findViewById(R.id.eod);
-        ministatement=findViewById(R.id.image_ministatement);
-        aadhaarPay=findViewById(R.id.aadhaar_pay);
-      //  loan=findViewById(R.id.loan);
-       // transName = findViewById(R.id.trans_name);
-        rrnStatus = findViewById(R.id.rrnstatus);
-        //billPayments = findViewById(R.id.billPayments);
-       // card = findViewById(R.id.card);
-        logout=findViewById(R.id.logout);
-        backimg=findViewById(R.id.backimg);
 
+
+        menu_timestamp.setText(lastlogin_time);
+        agent_name.setText(agentname);
         ministatement.setEnabled(true);
         aepsWithdraw.setEnabled(true);
         aepsBalance.setEnabled(true);
         aadhaarPay.setEnabled(true);
 
-        Log.d("TAG","Last Login Time is:"+lastlogin_time);
+        //ON CLICK HANDLERS
         backimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

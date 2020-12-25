@@ -1,19 +1,14 @@
 package gramtarang.instamoney.aeps;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -21,37 +16,36 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
-
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
-
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import gramtarang.instamoney.R;
 import gramtarang.instamoney.agent_login.activity_Login;
 import gramtarang.instamoney.utils.CaptureResponse;
 import gramtarang.instamoney.utils.CheckNetwork;
-
 import gramtarang.instamoney.utils.LogOutTimer;
-
 import gramtarang.instamoney.utils.Utils;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -62,21 +56,9 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-import org.json.JSONArray;
-
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.List;
-
-/*activity_Aeps_Ministatement activity contains every functionaries about the AEPS ministement transaction
- * like it will take the user inputted data then verify those data , feed to the bank api & collection the response
- * then send the collected data to the receipt screen*/
-
 public class activity_Aeps_Ministatement extends AppCompatActivity implements LogOutTimer.LogOutListener {
+
+    //LOGOUT TIMER
     @Override
     protected void onStart() {
         super.onStart();
@@ -114,53 +96,8 @@ public class activity_Aeps_Ministatement extends AppCompatActivity implements Lo
         Intent intent=new Intent(getApplicationContext(), activity_Login.class);
         startActivity(intent);
     }
-    Utils utils=new Utils();
-    SharedPreferences preferences;
-    public static final String mypreference = "mypref";
-    private static final String TAG = "MINI STATEMENT";
-    String username,password,transtype="MINI STATEMENT",agent_phone_number,agent_name,selected_bank_name,selected_bank_id,agentid,latitude,longitude,banks,selected_bank,en_aadhaar, en_name, en_phn,BankId,timeStamp2,avlBalance, responseString,androidId,mdate,mtxnType,mnarration,mamount,pidDataXML, message, status, status_code,custName,ipAddress,lati,longi,transaction_amount, pidOptions,data, timestamp,fpTransId,agentId;
 
-    int i;
-    //LoadingDialog loadingDialog = new LoadingDialog(activity_Aeps_Ministatement.this);
-    //bellow variable re for rd Service of fingerPrint device
-    public static String ci;
-    private static String dc;
-    public static String errInfo;
-    public static String fCount;
-    public static String fType;
-    public static String hmac;
-    public static String iCount;
-    public static String iType;
-    public static String mc;
-    public static String mi;
-    public static String nmPoints;
-    public static String qScore;
-    public static String rdsID;
-    public static String rdsVer;
-    public static String format;
-    public static String errcode;
-    public static String dpId;
-    public static String SessionKey;
-    public static String PidDatatype;
-    public static String Piddata;
-    public static String pCount;
-    public static String pType;
-    String bank_RRN,outletid,agentphn;
-    ///////////////////////////////////////////////////////
-    public static String pidData_json;
-    OkHttpClient client,httpClient;
-    ImageView backbtn;
-    EditText et_AdhaarNumber, et_NameOFTheCustomer;
-    Button btn_submit;
-    boolean isValidAadhar,isValidBankName,isValidName;
-    AutoCompleteTextView bank_autofill;
-String response_String;
-    ArrayList<String> arrList_BankName = new ArrayList<String>();
-    ArrayList<String> arrayList_bankIIN = new ArrayList<String>();
-
-    boolean doubleBackToExitPressedOnce = false;
-
-    //Double press BAckButton to exit(TO logout)
+    //BACK PRESSED HANDLING
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -182,39 +119,53 @@ String response_String;
         }, 2000);
     }
 
-    //This method working as auto scaling of ui by density
-    public void adjustFontScale(Configuration configuration) {
 
-        configuration.fontScale = (float) 1.0;
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
-        wm.getDefaultDisplay().getMetrics(metrics);
-        metrics.scaledDensity = configuration.fontScale * metrics.density;
-        getBaseContext().getResources().updateConfiguration(configuration, metrics);
-    }
-
+    //DECLARATIONS
+    Utils utils=new Utils();
+    SharedPreferences preferences;
+    public static final String mypreference = "mypref";
+    private static final String TAG = "MINI STATEMENT";
+    String response_String,bank_RRN,agentphn,username,password,transtype="MINI STATEMENT",agent_phone_number,agent_name,selected_bank_name,selected_bank_id,agentid,latitude,longitude,banks,selected_bank,en_aadhaar, en_name, en_phn,BankId,timeStamp2,avlBalance, responseString,androidId,mdate,mtxnType,mnarration,mamount,pidDataXML, message, status, status_code,custName,ipAddress,lati,longi,transaction_amount, pidOptions,data, timestamp,fpTransId,agentId;
+    OkHttpClient httpClient;
+    ImageView backbtn;
+    EditText et_AdhaarNumber, et_NameOFTheCustomer;
+    Button btn_submit;
+    boolean isValidAadhar,isValidName;
+    AutoCompleteTextView bank_autofill;
+    ArrayList<String> arrList_BankName = new ArrayList<String>();
+    ArrayList<String> arrayList_bankIIN = new ArrayList<String>();
+    boolean doubleBackToExitPressedOnce = false;
     List<HashMap<String,String>> list = new ArrayList<>();
+
+    //RD SERVICE FINGERPRINT DECLARATIONS
+    private String dc;
+    public String ci, errInfo, fCount, fType, hmac, iCount, iType, mc, mi, nmPoints, qScore, rdsID, rdsVer, format, errcode, dpId, SessionKey, PidDatatype, Piddata, pCount, pType, pidData_json,outletid;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adjustFontScale(getResources().getConfiguration());
         setContentView(R.layout.ministatement_layout);
+
+        //CURRENT DATE
         SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         timestamp = s.format(new Date());
-        client = new OkHttpClient();
-        //pidOptions is given by RD service of fingerPrint device which is used for Rd service API calling
+
+
+        //PID OPTIONS DATA GIVEN BY RD SERVICE FINGERPRINT
         pidOptions = "<?xml version=\"1.0\" encoding=\"UTF-8\"?> <PidOptions ver=\"1.0\"><Opts fCount=\"1\" fType=\"0\" format=\"0\" pidVer=\"2.0\" timeout=\"10000\"\n" +
                 "otp=\"\" wadh=\"\" posh=\"UNKNOWN\"></Opts><Demo></Demo><CustOpts><Param name=\"\" value=\'\'/></CustOpts></PidOptions>";
 
+
+        //LAYOUT ELEMENTS DECLARATION
         et_AdhaarNumber = findViewById(R.id.aadhaar_no);
         et_NameOFTheCustomer = findViewById(R.id.entered_name);
-
         btn_submit = findViewById(R.id.submitbtn);
         btn_submit.setEnabled(true);
         backbtn = findViewById(R.id.backimg);
-        //Getting the required data from sharedPreferences
+        bank_autofill = findViewById(R.id.bank_auto);
+
+        //SHARED PREFERENCES
         preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         latitude=preferences.getString("Latitude","No name defined");
         longitude=preferences.getString("Longitude","No name defined");
@@ -225,11 +176,9 @@ String response_String;
         outletid=preferences.getString("OutletId","No name defined");
         agentphn=preferences.getString("AgentPhone","No name defined");
 
-        bank_autofill = findViewById(R.id.bank_auto);
-        Utils utils=new Utils();
-        new apiCall_getBanks().execute();
+        new apiCall_getBanks().execute();//GET BANKS LIST
 
-        //back button
+        //BACK PRESSED HANDLING
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -237,37 +186,29 @@ String response_String;
                 startActivity(intent);
             }
         });
+
+
+        //SUBMIT BUTTON HANDLING
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (CheckNetwork.isInternetAvailable(activity_Aeps_Ministatement.this)) //returns true if internet available
                 {
                     btn_submit.setEnabled(false);
-                    //Collecting the user inputted data
                     en_aadhaar = et_AdhaarNumber.getText().toString().trim();
                     en_name = et_NameOFTheCustomer.getText().toString().trim();
-                  //  en_phn = et_PhoneNumber.getText().toString().trim();
-                    //validating the user inputted Data
                     isValidAadhar=utils.isValidAadhaar(en_aadhaar);
-                   // selected_bank_id= utils.AutoCompleteTV_BankId(activity_Aeps_Ministatement.this, bank_autofill, arrList_BankName, arrayList_bankIIN,TAG);
-                    //selected_bank_name=utils.AutoCompleteTV_BankName(activity_Aeps_Ministatement.this, bank_autofill, arrList_BankName, arrayList_bankIIN,TAG);
                     isValidName=utils.isValidName(en_name);
-                   // isValidPhone=utils.isValidPhone(en_phn);
-                    //isValidBankName= query.isValidBankName(selected_bank_name);
                     if (isValidAadhar  && isValidName) {
                         try {
-                            //Rd service api calling method called
-                            Log.d(TAG,"Selected try bank: "+selected_bank_name+" "+selected_bank_id);
                             Matra_capture(pidOptions);
-                            // fingerPrintDataConvertingJSON();
                         }
                         catch (Exception  e) {
                             Toast.makeText(activity_Aeps_Ministatement.this, "Fingerprint Device not connected.", Toast.LENGTH_LONG).show();
-                            Log.d(TAG, "Fingerprint Device not connected.");
                             btn_submit.setEnabled(true);
                         }
 
-//If validation got failed, setting the error messages
+
                     }
                     if(!isValidAadhar){
                         et_AdhaarNumber.setError("Enter Valid Aadhaar Number");
@@ -277,20 +218,9 @@ String response_String;
                         et_NameOFTheCustomer.setError("Enter Valid Name");
                         btn_submit.setEnabled(true);
                     }
-                    /*if(!isValidBankName){
-                        bank_autofill.setError("Enter Valid Bank Name");
-                        btn_submit.setEnabled(true);
-                    }*/
-                  /*  if(!isValidPhone){
-                        et_PhoneNumber.setError("Enter Valid Phone Number");
-                        btn_submit.setEnabled(true);
-                    }*/
-
 
                 } else {
                     Toast.makeText(activity_Aeps_Ministatement.this, "No Internet Connection", Toast.LENGTH_LONG).show();
-                    Log.d(TAG, "No Internet Connection");
-
                     btn_submit.setEnabled(true);
 
                 }
@@ -300,6 +230,7 @@ String response_String;
 
     }
 
+    //API CALL GET BANKS
     class apiCall_getBanks extends AsyncTask<Request, Void, String> {
         @Override
         protected String doInBackground(Request... requests) {
@@ -316,8 +247,8 @@ String response_String;
                 }
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
+                    //JSON PARSING
                     assert response.body() != null;
-                    //the response we are getting from api
                     response_String = response.body().string();
                     if (response_String != null) {
                         Log.d("TAG","Response is+"+response_String.toString());
@@ -329,13 +260,7 @@ String response_String;
                                 arrList_BankName.add(jresponse.getString("bankname"));
                                 arrayList_bankIIN.add(jresponse.getString("iinno"));
                             }
-
-                            Log.d("TAG","BANK NAMES"+arrList_BankName+arrayList_bankIIN);
                             setAutoCompleteTV();
-
-                            //   setText(tv_dateofrelease,dateofrelease,tv_version,latest_app_version);
-
-                            //Log.d("TAG","SAME CLASS"+latest_app_version+dateofrelease+androidId+latitude+longitude);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -350,12 +275,13 @@ String response_String;
         }
 
     }
+
+    //AUTO COMPLETE TEXTVIEW
     public void setAutoCompleteTV(){
         runOnUiThread(new Runnable() {
             public void run() {
                 Log.d(TAG, "setauto complete: " + arrList_BankName + arrayList_bankIIN);
-                //utils.AutoCompleteTV_BankId(activity_Aeps_BalanceEnquiry .this,bank_autofill,arryList_bankName,arrayList_bankNumber,TAG);
-                final ArrayAdapter<String> adapter = new ArrayAdapter<String>
+               final ArrayAdapter<String> adapter = new ArrayAdapter<String>
                         (activity_Aeps_Ministatement.this,android.R.layout.select_dialog_item, arrList_BankName);
                 bank_autofill.setThreshold(1);
                 bank_autofill.setAdapter(adapter);
@@ -373,9 +299,7 @@ String response_String;
                         Log.d(TAG, "array Selected bank: " + selected_bank_name);
                         Log.d(TAG, "array Selected bank index: " + selected_bank_index);
                         Log.d(TAG, "array Selected bank ID: " + selected_bank_id);
-                        /*al.add(banksID_arr.get(selected_bank_index));
-                        al.add(selected_bank);
-                        arr=al.toArray(arr);*/
+
                     }
                 });
             }
@@ -383,10 +307,7 @@ String response_String;
     }
 
 
-    //mantra_capture method leads to the RD service api calling
-    // it it taking the pid data after the user giving the fingerprint
-    /*@params pidOptions
-     * @return pidDataXML*/
+    //FINGERPRINT CAPTURE
     public String Matra_capture(String pidOptions) {
         Log.d(TAG, "capture: this is a log For capture :-" + pidOptions);
         Intent intentCapture = new Intent("in.gov.uidai.rdservice.fp.CAPTURE");
@@ -395,7 +316,7 @@ String response_String;
         return pidDataXML;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+   //ON ACTIVITY RESULT
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -420,8 +341,7 @@ String response_String;
         }
     }
 
-    //data we are getting from rd service api in XML fromat so in
-    //processParsing method i leads for parsing , we are trying to separate the whole xml data
+   //PROCESS PARSING
     public void processParsing(XmlPullParser parser) throws IOException, XmlPullParserException {
 
         int eventType = parser.getEventType();
@@ -503,9 +423,7 @@ String response_String;
         }
         fingerPrintDataConvertingJSON();
     }
-
-    //The data we are collecting after parsing the whole xml data which is coming from rd service api call(from fingerprint
-    // ), then we are putting into json format as per bankAPi requirement
+//FP DATA CONVERTING TO JSON
     private void fingerPrintDataConvertingJSON() {
         String msgStr = "";
         Log.d(TAG,"Inside CashWithdrawRequest");
@@ -557,17 +475,8 @@ String response_String;
             jsonObject.put("PidDatatype", "PidDatat1ype");
             jsonObject.put("Piddata", "Pidda1ta");
 */
-            Log.d(TAG, "cashWithdrawRequest: Json is :" + jsonObject);
 
             pidData_json = jsonObject.toString();
-
-            //tv.setText(is);
-
-            Log.d(TAG, "cashWithdrawRequest: The is :" + pidData_json);
-            // if(!is.equals(null)){
-            //  Toast.makeText(AepsBal.this,"Fingerprint Captured Successfully",Toast.LENGTH_SHORT);
-            // }
-            Log.d(TAG,"Calling Network Class");
             new Ministatement_apiCalling().execute();
 
         } catch (JSONException e) {
@@ -576,17 +485,14 @@ String response_String;
 
     }
 
-    /*Ministatement_apicalling class basically feeding the required data to the bank api
-     * it is running asyncnously in the background so that out main thread will not hampered
-     * @return responseString*/
 
 
+//API CALL TO SERVER
     class Ministatement_apiCalling extends AsyncTask<Request, Void, String> {
 
         @Override
         protected String doInBackground(Request... requests) {
-//            utils.getprogressDialog(activity_Aeps_Ministatement.this,"Transaction in process","Please Wait...");
-            httpClient = utils.createAuthenticatedClient(username, password);
+           httpClient = utils.createAuthenticatedClient(username, password);
             MediaType JSON = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(JSON, pidData_json);
             Request request = new Request.Builder()
@@ -604,24 +510,21 @@ String response_String;
             httpClient.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
-                    //loadingDialog.dismissDialog();
                     btn_submit.setEnabled(true);
                     Toast.makeText(activity_Aeps_Ministatement.this,"Your transaction Failed.Please Try Again", Toast.LENGTH_SHORT).show();
-
-                    // Log.d(TAG, "Your transaction Failed.Please Try Again");
 
                 }
 
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
+                    //JSON PARSING
                     assert response.body() != null;
                     responseString = response.body().string();
                     if(responseString !=null){
-                        //   loadingDialog.dismissDialog();
+
                         JSONObject jsonResponse = null;
                         try {
                             jsonResponse = new JSONObject(responseString);
-                            //   message = jsonResponse.getString("message");
                             status = jsonResponse.getString("status");
                             status_code = jsonResponse.getString("statuscode");
                             data = jsonResponse.getString("data");
@@ -633,7 +536,6 @@ String response_String;
                         try {
 
                             JSONObject jsonData = new JSONObject(data);
-                            // timeStamp2 = jsonData.getString("timestamp");
                             avlBalance = jsonData.getString("balance");
                             JSONArray ministatement_structure=jsonData.getJSONArray("mini_statement");
                             for(int i=0;i<ministatement_structure.length();i++)
@@ -651,7 +553,6 @@ String response_String;
                                 hashMap_transaction.put("narration",mnarration);
                                 list.add(hashMap_transaction);
                             }
-                            // insertlog();
 
                         } catch (JSONException  e) {
 
@@ -663,7 +564,9 @@ String response_String;
 
                             e.printStackTrace();
                         }
-                        new SendTransDetailsSMS().execute();
+                        new SendTransDetailsSMS().execute();//SEND SMS
+
+                        //SEND INTENT DATA
                         Intent intent = new Intent(activity_Aeps_Ministatement.this, activity_Aeps_Ministatement_Report.class);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("data", (Serializable) list);
@@ -676,9 +579,6 @@ String response_String;
 
                         startActivity(intent);
                     }else {
-                        //Toast.makeText(activity_Aeps_Ministatement.this,"You are not getting any Response From Bank !! ",Toast.LENGTH_SHORT).show();
-
-                        Log.d(TAG, "You are not getting any Response From Bank !! ");
 
                     }
                 }
@@ -686,6 +586,8 @@ String response_String;
             return responseString;
         }
     }
+
+    //GET CURRENT TIME GREETING
     public String gethour(){
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
@@ -703,6 +605,8 @@ String response_String;
         }
         return greeting;
     }
+
+    //SEND SMS
     public  class SendTransDetailsSMS extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {

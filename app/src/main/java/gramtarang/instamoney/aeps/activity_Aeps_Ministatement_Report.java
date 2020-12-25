@@ -27,10 +27,8 @@ import gramtarang.instamoney.adapters.Adapter_Ministatement;
 import gramtarang.instamoney.agent_login.activity_Login;
 import gramtarang.instamoney.utils.LogOutTimer;
 
-/*activity_Aeps_Ministatement activity contains the data we need to show to the user after
- * the transaction.
- * the require data coming from the previous activity at the time of api calling*/
 public class activity_Aeps_Ministatement_Report extends AppCompatActivity implements LogOutTimer.LogOutListener {
+   //LOGOUT TIMER
     @Override
     protected void onStart() {
         super.onStart();
@@ -64,7 +62,6 @@ public class activity_Aeps_Ministatement_Report extends AppCompatActivity implem
      */
     @Override
     public void doLogout() {
-        // Toast.makeText(getApplicationContext(),"Session Expired",Toast.LENGTH_SHORT).show();
         Intent intent=new Intent(getApplicationContext(), activity_Login.class);
         startActivity(intent);
     }
@@ -75,7 +72,12 @@ public class activity_Aeps_Ministatement_Report extends AppCompatActivity implem
     ListView listView ;
     TextView tv_aadhaar,tv_timestamp,tv_availablebalance,tv_custname,tv_bankname;
     Button btn_back;
+    String[] date;
+    String[] type;
+    String[] amount;
     boolean doubleBackToExitPressedOnce = false;
+
+    //BACK PRESSED HANDLING
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -96,43 +98,13 @@ public class activity_Aeps_Ministatement_Report extends AppCompatActivity implem
             }
         }, 2000);
     }
-    String[] date;
-    String[] type;
-    String[] amount;
 
-    //This method working as auto scaling of ui by density
-    public void adjustFontScale(Configuration configuration) {
 
-        configuration.fontScale = (float) 1.0;
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
-        wm.getDefaultDisplay().getMetrics(metrics);
-        metrics.scaledDensity = configuration.fontScale * metrics.density;
-        getBaseContext().getResources().updateConfiguration(configuration, metrics);
-    }
-    //This method working as auto scaling of ui by density
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        newConfig.densityDpi= (int) (metrics.density * 160f);
-        WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
-        wm.getDefaultDisplay().getMetrics(metrics);
-        metrics.scaledDensity = newConfig.densityDpi * metrics.density;
-        getBaseContext().getResources().updateConfiguration(newConfig, metrics);
-
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        //LAYOUT ELEMENTS DECLARATION
         super.onCreate(savedInstanceState);
-        adjustFontScale(getResources().getConfiguration());
-        onConfigurationChanged(getResources().getConfiguration());
         setContentView(R.layout.ministatement_report);
-
         listView = findViewById(R.id.listview);
         tv_aadhaar=findViewById(R.id.text_aadhaar);
         tv_availablebalance=findViewById(R.id.text_balance);
@@ -140,6 +112,8 @@ public class activity_Aeps_Ministatement_Report extends AppCompatActivity implem
         tv_custname = findViewById(R.id.text_custname);
         tv_bankname = findViewById(R.id.text_bankname);
         btn_back = findViewById(R.id.back);
+
+        //BACK BUTTON HANDLING
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -148,7 +122,7 @@ public class activity_Aeps_Ministatement_Report extends AppCompatActivity implem
             }
         });
 
-//Data getting from previous screen
+        //INTENT DATA
         timeStamp = getIntent().getStringExtra("timeStamp");
         avlBalance = getIntent().getStringExtra("avlBalance");
         adhaar = getIntent().getStringExtra("Adaar");

@@ -25,6 +25,7 @@ import gramtarang.instamoney.aeps.activity_Aeps_HomeScreen;
 import gramtarang.instamoney.loans.LoanActivity_MainScreen;
 import gramtarang.instamoney.pan.PanCard;
 import gramtarang.instamoney.utils.DialogActivity;
+import gramtarang.instamoney.utils.LogOutTimer;
 import gramtarang.instamoney.utils.Utils;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -34,7 +35,48 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class Dashboard extends AppCompatActivity {
+public class Dashboard extends AppCompatActivity implements LogOutTimer.LogOutListener{
+    //LOGOUT TIMER
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LogOutTimer.startLogoutTimer(this, this);
+        Log.e(TAG, "OnStart () &&& Starting timer");
+    }
+
+    @Override
+    public void onUserInteraction() {
+        super.onUserInteraction();
+        LogOutTimer.startLogoutTimer(this, this);
+        Log.e(TAG, "User interacting with screen");
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause()");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.e(TAG, "onResume()");
+    }
+
+    /**
+     * Performing idle time logout
+     */
+    @Override
+    public void doLogout() {
+        // Toast.makeText(getApplicationContext(),"Session Expired",Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(Dashboard.this,activity_WelcomeScreen.class);
+        startActivity(intent);
+    }
+
+//DECLARATIONS
+    private final String TAG = "Dashboard";
     SharedPreferences preferences;
     public static final String mypreference = "mypref";
     String agentname,androidId,jsonString,response_String,lastlogin_time,username,password;
@@ -44,6 +86,10 @@ public class Dashboard extends AppCompatActivity {
     OkHttpClient client,httpClient;
     TextView tv_timestamp,tv_agentname,tv_textMessage;
     boolean doubleBackToExitPressedOnce = false;
+    Utils utils=new Utils();
+
+
+    //BACK PRESSED HANDLING
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -64,9 +110,30 @@ public class Dashboard extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+//LAYOUT DECLARATIONS
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        imaeps=findViewById(R.id.aeps);
+        impan=findViewById(R.id.pan);
+        imloan=findViewById(R.id.loan);
+        imcard=findViewById(R.id.card);
+        imbbps=findViewById(R.id.bbps);
+        logout=findViewById(R.id.logout);
+        improfile = findViewById(R.id.agentprofile);
+        tv_timestamp=findViewById(R.id.menu_timestamp);
+        tv_agentname=findViewById(R.id.agent_name);
+        tv_agentname.setText(agentname);
+        tv_textMessage = findViewById(R.id.textMessage);
+        llaeps=findViewById(R.id.ll_aeps);
+        llbbps=findViewById(R.id.ll_bbps);
+        llpan=findViewById(R.id.ll_pan);
+        llcard=findViewById(R.id.ll_card);
+        llloan=findViewById(R.id.ll_loan);
+
+
+
+
+        //SHARED PREFERENCES
         preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         androidId=preferences.getString("AndroidId","No name defined");
         agentname=preferences.getString("AgentName","No name defined");
@@ -77,27 +144,14 @@ public class Dashboard extends AppCompatActivity {
         bbps=preferences.getInt("bbps",0);
         loan=preferences.getInt("loan",0);
         card=preferences.getInt("card",0);
-        client=new OkHttpClient();
-        //   Log.d("TAG","Permissions:"+aeps+pan+loan+bbps+card);
-        imaeps=findViewById(R.id.aeps);
-        impan=findViewById(R.id.pan);
-        imloan=findViewById(R.id.loan);
-        imcard=findViewById(R.id.card);
-        imbbps=findViewById(R.id.bbps);
-        logout=findViewById(R.id.logout);
-        improfile = findViewById(R.id.agentprofile);
-tv_timestamp=findViewById(R.id.menu_timestamp);
-tv_agentname=findViewById(R.id.agent_name);
-tv_agentname.setText(agentname);
-        tv_textMessage = findViewById(R.id.textMessage);
-        llaeps=findViewById(R.id.ll_aeps);
-        llbbps=findViewById(R.id.ll_bbps);
-        llpan=findViewById(R.id.ll_pan);
-        llcard=findViewById(R.id.ll_card);
-        llloan=findViewById(R.id.ll_loan);
-        Utils gethour=new Utils();
-        String hour = gethour.gethour();
+        String hour = utils.gethour();
         tv_textMessage.setText(hour+"!");
+        new apiCall_getlastlogin().execute();//GET LAST LOGIN API
+
+
+
+
+        //BUTTON ONCLICK
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +159,7 @@ tv_agentname.setText(agentname);
                 startActivity(intent);
             }
         });
-        new apiCall_getlastlogin().execute();
+
 
         imaeps.setOnClickListener(new View.OnClickListener() {
                                       @Override
@@ -202,9 +256,9 @@ tv_agentname.setText(agentname);
             }
         });
     }
-    Utils utils=new Utils();
 
 
+//GET LAST LOGIN TIME OF AGENT API
     class apiCall_getlastlogin extends AsyncTask<Request, Void, String> {
         @Override
         protected String doInBackground(Request... requests) {
@@ -249,6 +303,7 @@ tv_agentname.setText(agentname);
                 //the response as well
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
+                    //JSON PARSING
                     assert response.body() != null;
                     response_String = response.body().string();
                     if (response_String != null) {
@@ -256,7 +311,6 @@ tv_agentname.setText(agentname);
                         try {
                             jsonResponse = new JSONObject(response_String);
                             lastlogin_time = jsonResponse.getString("timestamp");
-                            Log.d("TAG","Last Login is:"+lastlogin_time);
                             Dashboard.this.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -265,10 +319,10 @@ tv_agentname.setText(agentname);
                                 }
                             });
 
+                            //EDIT SHARE PREFERENCES
                             preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putString("LastLogin",lastlogin_time.substring(8,10)+"-"+lastlogin_time.substring(5,7)+"-"+lastlogin_time.substring(0,4)+" "+lastlogin_time.substring(11,16));
-                          //  editor.putString("Longitude",longitude);
                             editor.commit();
 
                         } catch (Exception e) {

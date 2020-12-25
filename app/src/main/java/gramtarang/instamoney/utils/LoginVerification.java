@@ -44,8 +44,49 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class LoginVerification extends AppCompatActivity {
-    OkHttpClient client,httpClient;
+public class LoginVerification extends AppCompatActivity implements LogOutTimer.LogOutListener{
+    //LOG OUT TIMER
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LogOutTimer.startLogoutTimer(this, this);
+        Log.e(TAG, "OnStart () &&& Starting timer");
+    }
+
+    @Override
+    public void onUserInteraction() {
+        super.onUserInteraction();
+        LogOutTimer.startLogoutTimer(this, this);
+        Log.e(TAG, "User interacting with screen");
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause()");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.e(TAG, "onResume()");
+    }
+
+    /**
+     * Performing idle time logout
+     */
+    @Override
+    public void doLogout() {
+        // Toast.makeText(getApplicationContext(),"Session Expired",Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(getApplicationContext(), activity_Login.class);
+        startActivity(intent);
+    }
+
+
+    //DECLARATIONS
+    OkHttpClient httpClient;
     EditText edit_otp;
     TextView timer,otp_type;
     Button submit,resend_btn;
@@ -53,10 +94,12 @@ public class LoginVerification extends AppCompatActivity {
     SharedPreferences preferences;boolean isValidOtp;String verification_type;
     public static final String mypreference = "mypref";
     String TAG = "LoginVerification";
-    int i;
     Utils utils=new Utils();
     int counter = 0;
     boolean doubleBackToExitPressedOnce = false;
+
+
+    //ON BACK PRESSED
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -82,14 +125,17 @@ public class LoginVerification extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //LAYOUT ELEMENTS
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_verification);
-        client = new OkHttpClient();
         edit_otp=findViewById(R.id.user_entered_otp);
         submit=findViewById(R.id.verify);
         timer = findViewById(R.id.timer);
         resend_btn = findViewById(R.id.resend_btn);
         otp_type = findViewById(R.id.type);
+
+
+        //SHARED PREFERENCES
         preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         androidId= Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         latitude=preferences.getString("Latitude","No name defined");
@@ -100,20 +146,16 @@ public class LoginVerification extends AppCompatActivity {
         agentphn=preferences.getString("AgentPhone","No name defined");;
         agentemail=preferences.getString("AgentEmail","No name defined");
         agentname=preferences.getString("AgentName","No name defined");
-     //   verification_type=preferences.getString("VerificationMethod","No name defined");
         generated_pin=preferences.getString("LoginOTP","No name defined");
-Log.d("TAG","WQQQ"+verification_type+generated_pin+agentphn+agentemail);
-Log.d("TAG","Authentication Testing:"+username+password);
         otp_type.setText(agentphn);
 
+
+        //GET CURREMT DATE
         SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         timestamp = s.format(new Date());
-
         timer();
-        new OTPReceiver().setEditText_otp(edit_otp);
         edit_otp.addTextChangedListener(otpTextWatcher);
         resend_btn.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
                 counter++;
@@ -121,13 +163,6 @@ Log.d("TAG","Authentication Testing:"+username+password);
                     resend_btn.setEnabled(false);
                     resend_btn.setBackground(getDrawable(R.color.silver_colour));
                     generated_pin=utils.getOTPString();
-                   // SQLQueries update_otp=new SQLQueries();
-                   // update_otp.updateOTP(generated_pin,androidId);
-                  //  Log.d(TAG,"Agent email is:"+agentemail);
-                   /* MobileSMSAPI sms=new MobileSMSAPI();
-                    Log.d(TAG,"Agent Phn is:"+agentphn);
-                    sms.sendOTP(generated_pin,agentphn,agentname);*/
-                    Log.d(TAG,"CALLING API");
                     new SendOTP().execute();
                     timer();
                 }
@@ -222,7 +257,7 @@ else{
     }
 
 
-
+//INSERT LOGIN LOG
     class apiCall_insertloginlog extends AsyncTask<Request, Void, String> {
         @SuppressLint("HardwareIds")
         @Override
@@ -272,6 +307,8 @@ else{
         }
 
     }
+
+    //GET CURRENT TIME GREETING
     public String gethour(){
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
@@ -289,6 +326,8 @@ else{
         }
         return greeting;
     }
+
+    //SEND OTP
     public  class SendOTP extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {

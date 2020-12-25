@@ -51,9 +51,13 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-/*activity_Login activity
- * enable the merchant to Login into MINT App*/
+
 public class activity_Login extends AppCompatActivity implements LogOutTimer.LogOutListener {
+
+
+
+
+    //LOGOUT TIMER
     @Override
     protected void onStart() {
         super.onStart();
@@ -91,84 +95,61 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
         Intent intent=new Intent(activity_Login.this,activity_WelcomeScreen.class);
         startActivity(intent);
     }
+
+
+
+
+    //DECLARATIONS
     Utils utils = new Utils();
-    private Timer timer;
     public final String mypreference = "mypref";
     private final String TAG = "Login_Activity";
-
+    int role,aeps,loan,bbps,pan,card;
     SharedPreferences preferences;
-    String verification_type,latest_app_version;
-    int role;
-    CoordinatorLayout coordinatorLayout;
-
-    String agentname,bankmitraid,agentPassword;
-    String generated_pin;
-    String agentphn;
-    String agentemail;
-    String latitude;
-    String longitude;
-
-    String username,outletid;
-
-    String androidId;
-    String appversion;
-    String dateofrelease;
-    String selected_method;
-    String response_String, agentAadhaar;
-    String jsonString;
-    String timestamp,areamanager_id,areamanager_name;
-    EditText et_userName, et_loginOptions,et_pass;
-
-    int selected_option = 1, i;
+    String verification_type, agentname,bankmitraid,agentPassword, generated_pin, agentphn, agentemail, latitude, longitude, username,outletid, androidId, appversion, dateofrelease, response_String, agentAadhaar, jsonString, timestamp,areamanager_id,areamanager_name;
+    EditText et_userName,et_pass;
     boolean isValidUsername,isphnregistered,isemailregistered;
     TextView tv_version, tv_dateofrelease;
     Button btn_login;
-    int aeps,loan,bbps,pan,card;
-    ImageView btn_loginOptions;
     OkHttpClient client,httpClient;
     boolean doubleBackToExitPressedOnce = false;
-    MobileSMSAPI sms = new MobileSMSAPI();
+    Utils util = new Utils();
 
-
-    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        onConfigurationChanged(getResources().getConfiguration());
-        //adjustFontScale(getResources().getConfiguration());
-        setContentView(R.layout.activity_login);
-        preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
-        androidId= Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
-        Log.d("TAG", "Android Id is:"  + androidId );
-        latitude = preferences.getString("Latitude", "No name defined");
-        longitude = preferences.getString("Longitude", "No name defined");
-        //androidId = preferences.getString("AndroidId", "No name defined");
-        appversion = preferences.getString("AppVersion", "No name defined");
-        dateofrelease = preferences.getString("DateofRelease", "No name defined");
-        Log.d("TAG", "Login:" + latitude + longitude + androidId + appversion + dateofrelease);
-        // Initialization of all the UI component
+
+        //LAYOUT ELEMENTS
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        androidId= Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         et_userName = findViewById(R.id.username);
         et_pass = findViewById(R.id.password);
-        //  btn_loginOptions = findViewById(R.id.right_arrow);
         btn_login = findViewById(R.id.login_button);
         btn_login.setEnabled(true);
         tv_version = findViewById(R.id.version);
         tv_dateofrelease = findViewById(R.id.dateofr);
-        //tv_androidId = findViewById(R.id.andid);
-        //  et_loginOptions = findViewById(R.id.select);
         tv_version.setText(R.string.app_version);
         tv_dateofrelease.setText(R.string.dateofrelease);
-        client = new OkHttpClient();
 
-        Utils util = new Utils();
+        //SHARED PREFERENCES
+        preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
+        latitude = preferences.getString("Latitude", "No name defined");
+        longitude = preferences.getString("Longitude", "No name defined");
+        appversion = preferences.getString("AppVersion", "No name defined");
+        dateofrelease = preferences.getString("DateofRelease", "No name defined");
 
 
-        //tv_androidId.setText(androidId);
+
+
+
+
+
+        //CURRENT DATE
         SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         timestamp = s.format(new Date());
 
-        //Login Button clicked
+        //LOGIN BUTTON HANDLING
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -188,7 +169,7 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
                     et_userName.setError("Enter Valid Username");
                 }
                 else{
-                    new apiCall_getagentdetails().execute();
+                    new apiCall_getagentdetails().execute();//GET AGENT DETAILS API
                 }
 
 
@@ -200,7 +181,7 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
 
 
 
-    //On back button it will automatically logout or brings to user into login screen
+    //BACK PRESSED HANDLING
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -218,6 +199,8 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
         }, 2000);
     }
 
+
+    //API CALL FOR AGENT DETAILS
     class apiCall_getagentdetails extends AsyncTask<Request, Void, String> {
 
         @Override
@@ -226,7 +209,6 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
             //  Log.d("TAG","EN_FLAG"+en_flag);
             try {
                 httpClient = utils.createAuthenticatedClient(username,agentPassword);
-                System.out.println("USERNAME "+username+"PASSWORD "+agentPassword);
                 jsonObject.put("id",username);
                 jsonObject.put("password",agentPassword);
                 jsonString = jsonObject.toString();
@@ -246,36 +228,19 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
                 @Override
                 //of the api calling got failed then it will go for onFailure,inside this we have added one alertDialog
                 public void onFailure(Call call, IOException e) {
-                    Log.d("TAG", "response onfailure"+e);
-                    activity_Login.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            DialogActivity.DialogCaller.showDialog(activity_Login.this,"Alert","Invalid Credentials.\nPlease Contact Administrator",new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                        }
-                    });
-
-
                 }
 
-                //if API call got success then it will go for this onResponse also where we are collection
-                //the response as well
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
+                    //JSON PARSING
                     assert response.body() != null;
                     response_String = response.body().string();
-                    System.out.println("RESPONSE IS"+response_String);
                     if (response_String != null) {
                         JSONObject jsonResponse = null;
                         JSONObject jsonResponse1=null;
                   try {
                             jsonResponse = new JSONObject(response_String);
                             jsonResponse1=jsonResponse.getJSONObject("llist1");
-                            //JSONArray llist1 = jsonResponse.getJSONArray("llist1");
                             agentemail = jsonResponse1.getString("email");
                             agentphn = jsonResponse1.getString("contact_no");
                             agentname = jsonResponse1.getString("name");
@@ -283,7 +248,6 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
                             areamanager_id=jsonResponse1.getString("area_manager_id");
                             areamanager_name=jsonResponse1.getString("area_manager");
                             agentAadhaar =jsonResponse1.getString("aadhaar_number");
-
                             role=jsonResponse1.getInt("role");
                             outletid=jsonResponse1.getString("aepsim");
                             aeps=jsonResponse1.getInt("aeps");
@@ -295,9 +259,7 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
                                 @Override
                                 public void run() {
 
-                                    //Snackbar.make(coordinatorLayout, "success", Snackbar.LENGTH_LONG).setAction("action",null).show();
-
-                                    method(outletid,agentAadhaar,areamanager_name,agentemail,agentname,agentphn,bankmitraid,areamanager_id,aeps,pan,bbps,loan,card,isphnregistered,isemailregistered);
+                                    senddata(outletid,agentAadhaar,areamanager_name,agentemail,agentname,agentphn,bankmitraid,areamanager_id,aeps,pan,bbps,loan,card,isphnregistered,isemailregistered);
                                 }
                             });
 
@@ -318,7 +280,7 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
 
                         }
 
-                        Log.d("TAG", "Response Email:" + agentemail );
+
                     }
 
                 }
@@ -330,14 +292,10 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
         }
 
     }
-    public void method(String outletid1,String aadhaar,String areamanager_name,String email,String name,String phn,String bankmitraid,String areamanagerid,int aeps,int pan,int bbps,int loan,int card,boolean isphnregistered,boolean isemailregistered){
-        // utils.getprogressDialog(activity_Login.this, "Logging in", "Please Wait");
+    public void senddata(String outletid1, String aadhaar, String areamanager_name, String email, String name, String phn, String bankmitraid, String areamanagerid, int aeps, int pan, int bbps, int loan, int card, boolean isphnregistered, boolean isemailregistered){
         verification_type = "OTP";
-//            btn_login.setEnabled(false);
         generated_pin = utils.getOTPString();
-        Log.d("TAG","pin: "+generated_pin);
-       // sms.sendOTP(generated_pin, phn, name);
-        new SendOTP().execute();
+        new SendOTP().execute();//SEND OTP FOR VERIFICATION
         try {
             username = et_userName.getText().toString();
             Log.d("TAG","Entered"+username);
@@ -345,8 +303,9 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
             et_userName.setError("Enter Username");
 
         }
+
+        //SEND DATA VIA PREFERENCES
         androidId= Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-        Log.d("TAG","Sample"+agentphn);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("AndroidId",androidId);
         editor.putString("Username",username);
@@ -369,10 +328,13 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
         editor.putInt("card",card);
         editor.commit();
 
+        //START INTENT
         Intent i = new Intent(activity_Login.this, LoginVerification.class);
         startActivity(i);
 
     }
+
+    //GET CURRENT TIME GREETING
     public String gethour(){
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
@@ -390,6 +352,8 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
         }
         return greeting;
     }
+
+    //SEND OTP
     public  class SendOTP extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {

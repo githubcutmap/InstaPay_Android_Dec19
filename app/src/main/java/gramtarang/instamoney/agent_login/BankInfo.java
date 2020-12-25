@@ -34,27 +34,11 @@ import okhttp3.Response;
 public class BankInfo extends Fragment {
 
 
-    String jsonString,response_String,username,password;
-    String agentId;
-    String ipAccountNo ;
-    String bankName ;
-    String bankAccountNo;
-    String ifsccode;
-    String branch;
-    String status;
-    String updatedon;
+    String jsonString,response_String,username,password,agentId,ipAccountNo,bankName,bankAccountNo,ifsccode,branch,status,updatedon;
     SharedPreferences preferences;
     public final String mypreference = "mypref";
     private Handler mHandler = new Handler(Looper.getMainLooper());
-
-    TextView tv_agentId;
-    TextView tv_ipAccountNo ;
-    TextView tv_bankName ;
-    TextView tv_bankAccountNo;
-    TextView tv_ifsccode;
-    TextView tv_branch;
-    TextView tv_status;
-    TextView tv_updatedon;
+    TextView tv_agentId, tv_ipAccountNo, tv_bankName, tv_bankAccountNo, tv_ifsccode, tv_branch, tv_status, tv_updatedon;
 
 
 

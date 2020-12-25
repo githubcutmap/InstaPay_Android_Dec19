@@ -8,8 +8,8 @@ android {
         applicationId "gramtarang.instamoney"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 2
-        versionName "1.1"
+        versionCode 1
+        versionName "0.1"
         multiDexEnabled true
         resConfigs "en"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
