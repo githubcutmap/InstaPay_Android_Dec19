@@ -3,9 +3,6 @@ package gramtarang.instamoney.agent_login;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -18,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -40,26 +39,26 @@ import okhttp3.Response;
 
 public class Payout extends Fragment {
 
-     private String jsonString,response_String,username,password;
-     private String agentId;
-     private String ipAccountNo ;
-     private String bankName ;
-     private String bankAccountNo;
-     private String ifsccode;
-     private String branch;
-     private String status;
-     private String updatedon;
-     private String method,spkey;
-     private String bank;
-     private String amount;
-     private String remarks;
+    private String jsonString, response_String, username, password;
+    private String agentId;
+    private String ipAccountNo;
+    private String bankName;
+    private String bankAccountNo;
+    private String ifsccode;
+    private String branch;
+    private String status;
+    private String updatedon;
+    private String method, spkey;
+    private String bank;
+    private String amount;
+    private String remarks;
 
     SharedPreferences preferences;
     public final String mypreference = "mypref";
     private Handler mHandler = new Handler(Looper.getMainLooper());
-    private Spinner sp_key,sp_bank;
+    private Spinner sp_key, sp_bank;
     private AutoCompleteTextView actv_bank;
-    private EditText et_amount,et_remarks;
+    private EditText et_amount, et_remarks;
     private ArrayList<String> banks_arr = new ArrayList<String>();
     private Button b_submit;
 
@@ -84,7 +83,8 @@ public class Payout extends Fragment {
         return v;
 
     }
-    private void init(View view){
+
+    private void init(View view) {
 
         sp_key = view.findViewById(R.id.id_sp_spkey);
         sp_bank = view.findViewById(R.id.id_sp_bank);
@@ -95,21 +95,21 @@ public class Payout extends Fragment {
 
     }
 
-    private String checkmethod(String m){
+    private String checkmethod(String m) {
         /*DPN- For IMPS
           BPN- For NEFT
           CPN- For RTGS*/
-        String t = "Select Type";
-        if(m.matches("IMPS")){
-            t ="DPN";
+        String tempType = "Select Type";
+        if (m.matches("IMPS")) {
+            tempType = "DPN";
         }
-        if(m.matches("NEFT")){
-            t ="BPN";
+        if (m.matches("NEFT")) {
+            tempType = "BPN";
         }
-        if(m.matches("RTGS")){
-            t ="CPN";
+        if (m.matches("RTGS")) {
+            tempType = "CPN";
         }
-        return t;
+        return tempType;
     }
 
     private void onClickActivities(View v) {
@@ -120,39 +120,39 @@ public class Payout extends Fragment {
             amount = et_amount.getText().toString().trim();
             remarks = et_remarks.getText().toString().trim();
 
-            Log.d("onclick",method+" " +bank+" "+ spkey+" "+amount+" "+remarks);
+            Log.d("onclick", method + " " + bank + " " + spkey + " " + amount + " " + remarks);
 
-            if(!spkey.matches("Select Type") && !bank.matches("Select Bank") && !amount.isEmpty() && !remarks.isEmpty()){
-                api_payoutdirect(v,spkey,amount,remarks);
+            if (!spkey.matches("Select Type") && !bank.matches("Select Bank") && !amount.isEmpty() && !remarks.isEmpty()) {
+                api_payoutdirect(v, spkey, amount, remarks);
             }
-            if (spkey.matches("Select Type")){
-                ((TextView)sp_key.getSelectedView()).setError("Select Type");
+            if (spkey.matches("Select Type")) {
+                ((TextView) sp_key.getSelectedView()).setError("Select Type");
             }
-            if (bank.matches("Select Bank") || bank.matches("--No Bank--")){
-                ((TextView)sp_bank.getSelectedView()).setError("Select Bank");
+            if (bank.matches("Select Bank") || bank.matches("--No Bank--")) {
+                ((TextView) sp_bank.getSelectedView()).setError("Select Bank");
             }
-            if (amount.isEmpty()){
+            if (amount.isEmpty()) {
                 et_amount.setError("Enter Amount");
             }
-            if (remarks.isEmpty()){
+            if (remarks.isEmpty()) {
                 et_remarks.setError("Enter Amount");
             }
         });
 
     }
 
-    private void api_payoutdirect(View v,String type,String am,String rm){
+    private void api_payoutdirect(View v, String type, String am, String rm) {
 
-        /*"sp_key":"DPN",X
-                "external_ref":"82923",X
+        /*"sp_key":"DPN",
+                "external_ref":"82923",
                 "credit_account":"055801605365",
-                "credit_rmn":"",X
-                "ifs_code":"ICIC0000558",X
-                "bene_name":"SUNITA",X
-                "credit_amount":"11",X
-                "upi_mode" : "",X
-                "vpa" : "",X
-                "latitude":"14.86767",X
+                "credit_rmn":"",
+                "ifs_code":"ICIC0000558",
+                "bene_name":"SUNITA",
+                "credit_amount":"11",
+                "upi_mode" : "",
+                "vpa" : "",
+                "latitude":"14.86767",
                 "longitude":"95.3577",
                 "endpoint_ip":"192.168.0.6",
                 "remarks":"prodfirst",
@@ -160,17 +160,17 @@ public class Payout extends Fragment {
                 "otp":""*/
 
         preferences = getActivity().getSharedPreferences(mypreference, Context.MODE_PRIVATE);
-        username=preferences.getString("Username","No name defined");
-        password=preferences.getString("Password","No name defined");
-        String outletId=preferences.getString("OutletId","No name defined");
-        String agentName=preferences.getString("AgentName","No name defined");
+        username = preferences.getString("Username", "No name defined");
+        password = preferences.getString("Password", "No name defined");
+        String outletId = preferences.getString("OutletId", "No name defined");
+        String agentName = preferences.getString("AgentName", "No name defined");
         String latitude = preferences.getString("Latitude", "No name defined");
         String longitude = preferences.getString("Longitude", "No name defined");
 
         Utils utils = new Utils();
         String ipaddress = utils.getMobileIPAddress();
         OkHttpClient httpClient = utils.createAuthenticatedClient(username, password);
-        Log.d("username","usr getagent pending"+username+password);
+        Log.d("username", "usr getagent pending" + username + password);
 
         preferences = getActivity().getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         JSONObject jsonObject = new JSONObject();
@@ -178,7 +178,7 @@ public class Payout extends Fragment {
             jsonObject.put("sp_key", type);
             //jsonObject.put("agentid", username);
             jsonObject.put("external_ref", outletId);
-            jsonObject.put("credit_account", bankAccountNo); // verify
+            jsonObject.put("credit_account", bankAccountNo);
             jsonObject.put("credit_rmn", "");
             jsonObject.put("ifs_code", ifsccode);
             jsonObject.put("bene_name", agentName);
@@ -186,7 +186,7 @@ public class Payout extends Fragment {
             jsonObject.put("upi_mode", "");
             jsonObject.put("vpa", "");
             jsonObject.put("latitude", latitude);
-            jsonObject.put("longitude", longitude.replace("-",""));
+            jsonObject.put("longitude", longitude.replace("-", ""));
             jsonObject.put("endpoint_ip", ipaddress); //ip
             jsonObject.put("remarks", rm);
             jsonObject.put("otp_auth", "0");
@@ -197,7 +197,7 @@ public class Payout extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("JSON STRING IS"+jsonString);
+        System.out.println("JSON STRING IS" + jsonString);
         MediaType JSON = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(JSON, jsonString);
         okhttp3.Request request = new Request.Builder()
@@ -225,26 +225,26 @@ public class Payout extends Fragment {
                 response_String = response.body().string();
 
                 if (response_String != null) {
-                    Log.d("TAG","Response is+"+response_String.toString());
-                    if(response_String.equals("Insufficient Funds to transfer pls contact customer support")){
+                    Log.d("TAG", "Response is+" + response_String.toString());
+                    if (response_String.equals("Insufficient Funds to transfer pls contact customer support")) {
                         Snackbar.make(v, "Insufficient Funds to transfer pls contact customer support", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
                     JSONObject jsonResponse = null;
 
-                        try {
-                            jsonResponse = new JSONObject(response_String);
+                    try {
+                        jsonResponse = new JSONObject(response_String);
 
-                            String payoutstatus = jsonResponse.getString("status");
-                            String ipay_uuid = jsonResponse.getString("ipay_uuid");
-                            String orderid = jsonResponse.getString("orderid");
-                            Snackbar.make(v, payoutstatus+"  "+ipay_uuid+"  "+orderid, Snackbar.LENGTH_LONG)
-                                    .setAction("Action", null).show();
+                        String payoutstatus = jsonResponse.getString("status");
+                        String ipay_uuid = jsonResponse.getString("ipay_uuid");
+                        String orderid = jsonResponse.getString("orderid");
+                        Snackbar.make(v, payoutstatus + "  " + ipay_uuid + "  " + orderid, Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
 
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                 } else {
                     Snackbar.make(v, "You are not getting any Response From Server !! ", Snackbar.LENGTH_LONG)
@@ -254,15 +254,15 @@ public class Payout extends Fragment {
         });
     }
 
-    private void api_getBankInfo(View v){
+    private void api_getBankInfo(View v) {
 
         preferences = getActivity().getSharedPreferences(mypreference, Context.MODE_PRIVATE);
-        username=preferences.getString("Username","No name defined");
-        password=preferences.getString("Password","No name defined");
+        username = preferences.getString("Username", "No name defined");
+        password = preferences.getString("Password", "No name defined");
 
         Utils utils = new Utils();
         OkHttpClient httpClient = utils.createAuthenticatedClient(username, password);
-        Log.d("username","usr getagent pending"+username+password);
+        Log.d("username", "usr getagent pending" + username + password);
 
         preferences = getActivity().getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         JSONObject jsonObject = new JSONObject();
@@ -301,7 +301,7 @@ public class Payout extends Fragment {
                 response_String = response.body().string();
 
                 if (response_String != null) {
-                    Log.d("TAG","Response is+"+response_String.toString());
+                    Log.d("TAG", "Response is+" + response_String.toString());
                     JSONObject jsonResponse = null;
                     try {
                         jsonResponse = new JSONObject(response_String);
@@ -315,15 +315,15 @@ public class Payout extends Fragment {
                         status = jsonResponse.getString("status");
                         updatedon = jsonResponse.getString("updatedon");
 
-                    }catch (JSONException e) {
+                    } catch (JSONException e) {
                         e.printStackTrace();
-                        bankName="--No Bank--";
+                        bankName = "--No Bank--";
                         Snackbar.make(v, "Banks Unavailable", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }
                     mHandler.post(new Runnable() {
                         public void run() {
-                            setbanks(v,bankName);
+                            setbanks(v, bankName);
                         }
                     });
 
@@ -342,10 +342,9 @@ public class Payout extends Fragment {
             //set spinner text view banks
             banks_arr.add(bankName);
             final ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (getActivity(),android.R.layout.select_dialog_item, banks_arr);
+                    (getActivity(), android.R.layout.select_dialog_item, banks_arr);
             sp_bank.setAdapter(adapter);
-        }
-        catch (Exception exception){
+        } catch (Exception exception) {
             exception.printStackTrace();
             Snackbar.make(v, "You are not getting any Response From Server !! ", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();

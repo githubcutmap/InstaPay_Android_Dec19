@@ -21,7 +21,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,9 +40,7 @@ import java.util.ArrayList;
 
 import gramtarang.instamoney.R;
 import gramtarang.instamoney.agent_login.activity_Login;
-import gramtarang.instamoney.utils.LocationTrack;
 import gramtarang.instamoney.utils.LogOutTimer;
-
 import gramtarang.instamoney.utils.Utils;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -55,6 +52,26 @@ import okhttp3.Response;
 
 
 public class LoanActivity_SearchViewApplication extends AppCompatActivity implements LogOutTimer.LogOutListener {
+
+    private EditText etUserEnteredSearchID;
+    private Button search;
+    boolean doubleBackToExitPressedOnce = false;
+    private String jsonString, response_String, username, password;
+    private ImageView backbtn, aadhaarProof, bpProof, pdProof;
+    private TextView bId, bmId, bmName, bmphone, bName, bphone, bBank, bOccupation, bfh, bdob, bAadhaar, bAddress,
+            bbusinessname, bbusinessaddress, bproname, bbusinessexistence, beducation, bcategory, bfamily, bsustenance,
+            bLoanPurpose, bLoanAmount, bTenure, bExistanceLoanapgvb, bExistanceLoanOthers, bOwnProperty, appStatus, bEmail,
+            bGender, bLoanType, bRepaymentPeriod;
+    private String userSearchID,
+            applicationArr[], TAG = "View Application";
+    TableLayout tableView;
+    private int shortAnimationDuration;
+    private Animator currentAnimator;
+    Bitmap aadhaarBmp, bpBmp, pdBmp;
+    SharedPreferences preferences;
+    public static final String mypreference = "Loanpreferences";
+    public static final String userpreference = "mypref";
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -89,59 +106,9 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
     @Override
     public void doLogout() {
         // Toast.makeText(getApplicationContext(),"Session Expired",Toast.LENGTH_SHORT).show();
-        Intent intent=new Intent(getApplicationContext(), activity_Login.class);
+        Intent intent = new Intent(getApplicationContext(), activity_Login.class);
         startActivity(intent);
     }
-
-    EditText etUserEnteredSearchID;
-    Button search;
-    boolean doubleBackToExitPressedOnce = false;
-    TextView test;
-    String jsonString,response_String,username,password;
-    OkHttpClient client;
-    LinearLayout ll_buttons;
-    ImageView backbtn,proof1,proof2,proof3;
-    TextView bId,
-            bmId,
-            bmName,
-            bmphone,
-            bName,
-            bphone,
-            bBank,
-            bOccupation,
-            bfh,
-            bdob,
-            bAadhaar,
-            bAddress,
-            bbusinessname,
-            bbusinessaddress,
-            bproname,
-            bbusinessexistence,
-            beducation,
-            bcategory,
-            bfamily,
-            bsustenance,
-            bLoanPurpose,
-            bLoanAmount,
-            bTenure,
-            bExistanceLoanapgvb,
-            bExistanceLoanOthers,
-            bOwnProperty,
-            appStatus,
-            bEmail,
-            bGender,
-            bLoanType,
-            bRepaymentPeriod;
-    String userSearchID,
-            applicationArr[],TAG="View Application";
-    TableLayout tableView;
-    LocationTrack locationTrack;
-    private int shortAnimationDuration;
-    private Animator currentAnimator;
-    Bitmap bmp,bmp2,bmp3;
-    SharedPreferences preferences;
-    public static final String mypreference = "Loanpreferences";
-    public static final String userpreference = "mypref";
 
     @Override
     public void onBackPressed() {
@@ -168,6 +135,17 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loan__searchview_application);
+
+        init();
+        onClickActivities();
+
+        etUserEnteredSearchID.addTextChangedListener(LoanViewApplicationTextWatcher);
+        search.addTextChangedListener(LoanViewApplicationTextWatcher);
+
+
+    }
+
+    private void init() {
         backbtn = findViewById(R.id.backimg);
         etUserEnteredSearchID = findViewById(R.id.search_id);
         search = findViewById(R.id.search_btn);
@@ -185,36 +163,33 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
         bdob = findViewById(R.id.beneficiary_dob);
         bAadhaar = findViewById(R.id.beneficiary_aadhaar);
         bAddress = findViewById(R.id.beneficiary_address);
-        bbusinessname =findViewById(R.id.beneficiary_bname);
-        bbusinessaddress=findViewById(R.id.beneficiary_badd);
-        bproname=findViewById(R.id.beneficiary_bpro);
-        bbusinessexistence=findViewById(R.id.beneficiary_bep);
-        beducation=findViewById(R.id.beneficiary_edu);
-        bcategory=findViewById(R.id.beneficiary_cat);
-        bfamily=findViewById(R.id.beneficiary_fca);
-        bsustenance=findViewById(R.id.beneficiary_sus);
+        bbusinessname = findViewById(R.id.beneficiary_bname);
+        bbusinessaddress = findViewById(R.id.beneficiary_badd);
+        bproname = findViewById(R.id.beneficiary_bpro);
+        bbusinessexistence = findViewById(R.id.beneficiary_bep);
+        beducation = findViewById(R.id.beneficiary_edu);
+        bcategory = findViewById(R.id.beneficiary_cat);
+        bfamily = findViewById(R.id.beneficiary_fca);
+        bsustenance = findViewById(R.id.beneficiary_sus);
         bLoanPurpose = findViewById(R.id.beneficiary_loan_purpose);
         bLoanAmount = findViewById(R.id.beneficiary_loan_amount);
         bTenure = findViewById(R.id.beneficiary_tenure);
         bExistanceLoanapgvb = findViewById(R.id.beneficiary_ela);
-        bExistanceLoanOthers= findViewById(R.id.beneficiary_elo);
-        bOwnProperty= findViewById(R.id.beneficiary_op);
-        appStatus= findViewById(R.id.beneficiary_status);
+        bExistanceLoanOthers = findViewById(R.id.beneficiary_elo);
+        bOwnProperty = findViewById(R.id.beneficiary_op);
+        appStatus = findViewById(R.id.beneficiary_status);
         bRepaymentPeriod = findViewById(R.id.beneficiary_repayment_period);
         bLoanType = findViewById(R.id.beneficiary_loan_type);
         bEmail = findViewById(R.id.beneficiary_email);
         bGender = findViewById(R.id.beneficiary_gender);
         tableView = findViewById(R.id.content_tl);
-        proof1 = findViewById(R.id.thumb__1);
-        proof2 = findViewById(R.id.thumb__2);
-        proof3 = findViewById(R.id.thumb__3);
+        aadhaarProof = findViewById(R.id.thumb__1);
+        bpProof = findViewById(R.id.thumb__2);
+        pdProof = findViewById(R.id.thumb__3);
+    }
 
-
-
-        etUserEnteredSearchID.addTextChangedListener(LoanViewApplicationTextWatcher);
-        search.addTextChangedListener(LoanViewApplicationTextWatcher);
-
-//back button
+    private void onClickActivities() {
+        //back button
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -224,27 +199,19 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
         });
 
 
-
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                userSearchID =  etUserEnteredSearchID.getText().toString().trim();
-                Log.d(TAG,"application ID: "+userSearchID);
+                userSearchID = etUserEnteredSearchID.getText().toString().trim();
+                Log.d(TAG, "application ID: " + userSearchID);
 
-                if(userSearchID.length() == 17){
-                    //SQLQueries applicationDetails = new SQLQueries();
-                    //applicationArr = applicationDetails.getLoanApplicarionDetails(userSearchID);
-                    client=new OkHttpClient();
+                if (userSearchID.length() == 17) {
                     api_getAppdetails(userSearchID);
-
-
-                }
-                else{
+                } else {
                     etUserEnteredSearchID.setError("Invalid Application ID");
                 }
             }
         });
-
     }
 
     private void zoomImageFromThumb(final View thumbView, Bitmap asd) {
@@ -261,7 +228,7 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
         // expandedImageView.setImageBitmap(imageResId);
         //expandedImageView.setImageBitmap(imgurl);
 
-        try  {
+        try {
             expandedImageView.setImageBitmap(asd);
         } catch (Exception e) {
             e.printStackTrace();
@@ -364,7 +331,7 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
                         .ofFloat(expandedImageView, View.X, startBounds.left))
                         .with(ObjectAnimator
                                 .ofFloat(expandedImageView,
-                                        View.Y,startBounds.top))
+                                        View.Y, startBounds.top))
                         .with(ObjectAnimator
                                 .ofFloat(expandedImageView,
                                         View.SCALE_X, startScaleFinal))
@@ -395,13 +362,12 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
     }
 
 
-
-    private void api_getAppdetails(String id){
+    private void api_getAppdetails(String id) {
         Utils utils = new Utils();
         preferences = getSharedPreferences(userpreference, Context.MODE_PRIVATE);
-        username=preferences.getString("Username","No name defined");
-        password=preferences.getString("Password","No name defined");
-        Log.d("User + Pass: ",username+password);
+        username = preferences.getString("Username", "No name defined");
+        password = preferences.getString("Password", "No name defined");
+        Log.d("User + Pass: ", username + password);
         OkHttpClient httpClient = utils.createAuthenticatedClient(username, password);
         ArrayList<String> appdetails = new ArrayList<String>();
         JSONObject jsonObject = new JSONObject();
@@ -423,6 +389,7 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
             @Override
             public void onFailure(Call call, IOException e) {
             }
+
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 assert response.body() != null;
@@ -430,12 +397,12 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
                 response_String = response.body().string();
 
                 if (response_String != null) {
-                    Log.d("TAG","Response is+"+response_String.toString());
+                    Log.d("TAG", "Response is+" + response_String.toString());
                     JSONObject jsonResponse = null;
                     try {
                         jsonResponse = new JSONObject(response_String);
                         JSONArray llist1 = jsonResponse.getJSONArray("llist2");
-                        for(int i = 0; i < llist1.length(); i++){
+                        for (int i = 0; i < llist1.length(); i++) {
 
                             String bankmitra_name = llist1.getJSONObject(i).getString("bankmitra_name");
                             String bankmitra_id = llist1.getJSONObject(i).getString("bankmitra_id");
@@ -457,7 +424,7 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
                             String beneficiary_businessexistence = llist1.getJSONObject(i).getString("beneficiary_businessexistence");
                             String beneficiary_education = llist1.getJSONObject(i).getString("beneficiary_education");
                             String beneficiary_category = llist1.getJSONObject(i).getString("beneficiary_category");
-                            String beneficiary_family= llist1.getJSONObject(i).getString("beneficiary_family_adult")+" Adult "+llist1.getJSONObject(i).getString("beneficiary_family_child")+" Children";
+                            String beneficiary_family = llist1.getJSONObject(i).getString("beneficiary_family_adult") + " Adult " + llist1.getJSONObject(i).getString("beneficiary_family_child") + " Children";
                             String beneficiary_sustenance = llist1.getJSONObject(i).getString("beneficiary_sustenance");
                             String beneficiary_purpose = llist1.getJSONObject(i).getString("beneficiary_purpose");
                             String beneficiary_termloan = llist1.getJSONObject(i).getString("beneficiary_termloan");
@@ -506,8 +473,6 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
                             appdetails.add(beneficiary_longitude);
 
 
-
-
                         }
                         runOnUiThread(new Runnable() {
                             public void run() {
@@ -515,11 +480,10 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
                             }
                         });
 
-                        Log.d("TAG","SAME CLAdddSS"+appdetails);
+                        Log.d("TAG", "SAME CLAdddSS" + appdetails);
                     } catch (JSONException e) {
                         e.printStackTrace();
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                     }
                 } else {
                 }
@@ -530,7 +494,7 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
     private void fillDetails(ArrayList<String> appdetails) {
         tableView.setVisibility(View.VISIBLE);
         applicationArr = appdetails.toArray(new String[0]);
-        Log.d(TAG,"application Arr: "+appdetails);
+        Log.d(TAG, "application Arr: " + appdetails);
         //bId.setText(applicationArr[0]);
         //bName.setText(applicationArr[1]);
         //bphone.setText(applicationArr[2]);
@@ -572,30 +536,32 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
         bExistanceLoanapgvb.setText(applicationArr[24]);
         bExistanceLoanOthers.setText(applicationArr[25]);
         bOwnProperty.setText(applicationArr[26]);
-        if(applicationArr[29].matches("0")) {
+        if (applicationArr[29].matches("0")) {
             appStatus.setText("Pending");
-        }if(applicationArr[29].matches("2")) {
+        }
+        if (applicationArr[29].matches("2")) {
             appStatus.setText("Rejected By Area Manager");
-        }if(applicationArr[29].matches("1")) {
+        }
+        if (applicationArr[29].matches("1")) {
             appStatus.setText("Accepted By Area Manager");
         }
-        setproof(applicationArr[28],applicationArr[0]);
+        setproof(applicationArr[28], applicationArr[0]);
 
     }
 
-    private void setproof(String bankname,String id){
+    private void setproof(String bankname, String id) {
 
         preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
-        username=preferences.getString("Username","No name defined");
-        password=preferences.getString("Password","No name defined");
+        username = preferences.getString("Username", "No name defined");
+        password = preferences.getString("Password", "No name defined");
 
-        Log.d("Setproof",bankname+"  if"+id);
+        Log.d("Setproof", bankname + "  if" + id);
         //https://bankmgr.gramtarang.org/webapp/uploads/ADH/ADH_apgvb_mudra_akku_582494.jpg
         //https://bankmgr.gramtarang.org/webapp/uploads/ADH/ADH_apgvb_mudra_tekk_787825.jpg
-        String code = bankname.toLowerCase().substring(0,4)+"_"+id.substring(11,17);
-        Log.d("Setproof code",code);
+        String code = bankname.toLowerCase().substring(0, 4) + "_" + id.substring(11, 17);
+        Log.d("Setproof code", code);
 
-        Authenticator.setDefault (new Authenticator() {
+        Authenticator.setDefault(new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password.toCharArray());
             }
@@ -605,11 +571,11 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
 
             @Override
             public void run() {
-                try  {
-                    URL url = new URL("http://bankmgr.gramtarang.org:8081/mint/doc/downloadadh?fname=ADH_apgvb_mudra_"+code+".jpg");
-                    Log.d("Setproof url","http://bankmgr.gramtarang.org:8081/mint/doc/downloadadh?fname=ADH_apgvb_mudra_"+code+".jpg");
-                    bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                    proof1.setImageBitmap(bmp);
+                try {
+                    URL url = new URL("http://bankmgr.gramtarang.org:8081/mint/doc/downloadadh?fname=ADH_apgvb_mudra_" + code + ".jpg");
+                    Log.d("Setproof url", "http://bankmgr.gramtarang.org:8081/mint/doc/downloadadh?fname=ADH_apgvb_mudra_" + code + ".jpg");
+                    aadhaarBmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                    aadhaarProof.setImageBitmap(aadhaarBmp);
 
 
                 } catch (Exception e) {
@@ -624,13 +590,12 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
 
             @Override
             public void run() {
-                try  {
+                try {
 
-                    URL url2 = new URL("http://bankmgr.gramtarang.org:8081/mint/doc/downloadbp?fname=BP_apgvb_mudra_"+code+".jpg");
-                    Log.d("Setproof bp url","http://bankmgr.gramtarang.org:8081/mint/doc/downloadbp?fname=BP_apgvb_mudra_"+code+".jpg");
-                    bmp2 = BitmapFactory.decodeStream(url2.openConnection().getInputStream());
-                    proof2.setImageBitmap(bmp2);
-
+                    URL url2 = new URL("http://bankmgr.gramtarang.org:8081/mint/doc/downloadbp?fname=BP_apgvb_mudra_" + code + ".jpg");
+                    Log.d("Setproof bp url", "http://bankmgr.gramtarang.org:8081/mint/doc/downloadbp?fname=BP_apgvb_mudra_" + code + ".jpg");
+                    bpBmp = BitmapFactory.decodeStream(url2.openConnection().getInputStream());
+                    bpProof.setImageBitmap(bpBmp);
 
 
                 } catch (Exception e) {
@@ -645,11 +610,11 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
 
             @Override
             public void run() {
-                try  {
-                    URL url3 = new URL("http://bankmgr.gramtarang.org:8081/mint/doc/downloadpd?fname=PD_apgvb_mudra_"+code+".jpg");
-                    Log.d("Setproof bp url","http://bankmgr.gramtarang.org:8081/mint/doc/downloadpd?fname=PD_apgvb_mudra_"+code+".jpg");
-                    bmp3 = BitmapFactory.decodeStream(url3.openConnection().getInputStream());
-                    proof3.setImageBitmap(bmp3);
+                try {
+                    URL url3 = new URL("http://bankmgr.gramtarang.org:8081/mint/doc/downloadpd?fname=PD_apgvb_mudra_" + code + ".jpg");
+                    Log.d("Setproof bp url", "http://bankmgr.gramtarang.org:8081/mint/doc/downloadpd?fname=PD_apgvb_mudra_" + code + ".jpg");
+                    pdBmp = BitmapFactory.decodeStream(url3.openConnection().getInputStream());
+                    pdProof.setImageBitmap(pdBmp);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -659,22 +624,22 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
 
         thread3.start();
 
-        proof1.setOnClickListener(new View.OnClickListener() {
+        aadhaarProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                zoomImageFromThumb(proof1,bmp);
+                zoomImageFromThumb(aadhaarProof, aadhaarBmp);
             }
         });
-        proof2.setOnClickListener(new View.OnClickListener() {
+        bpProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                zoomImageFromThumb(proof2,bmp2);
+                zoomImageFromThumb(bpProof, bpBmp);
             }
         });
-        proof3.setOnClickListener(new View.OnClickListener() {
+        pdProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                zoomImageFromThumb(proof3,bmp3);
+                zoomImageFromThumb(pdProof, pdBmp);
             }
         });
     }
@@ -687,12 +652,10 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            userSearchID =  etUserEnteredSearchID.getText().toString().trim();
-            if(userSearchID.length() == 17){
+            userSearchID = etUserEnteredSearchID.getText().toString().trim();
+            if (userSearchID.length() == 17) {
                 search.setEnabled(true);
             }
-
-
 
 
         }

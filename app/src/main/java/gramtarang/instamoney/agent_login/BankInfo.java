@@ -3,9 +3,6 @@ package gramtarang.instamoney.agent_login;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -13,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -34,12 +33,11 @@ import okhttp3.Response;
 public class BankInfo extends Fragment {
 
 
-    String jsonString,response_String,username,password,agentId,ipAccountNo,bankName,bankAccountNo,ifsccode,branch,status,updatedon;
+    private String jsonString, response_String, username, password, agentId, ipAccountNo, bankName, bankAccountNo, ifsccode, branch, status, updatedon;
     SharedPreferences preferences;
     public final String mypreference = "mypref";
     private Handler mHandler = new Handler(Looper.getMainLooper());
-    TextView tv_agentId, tv_ipAccountNo, tv_bankName, tv_bankAccountNo, tv_ifsccode, tv_branch, tv_status, tv_updatedon;
-
+    private TextView tv_agentId, tv_ipAccountNo, tv_bankName, tv_bankAccountNo, tv_ifsccode, tv_branch, tv_status, tv_updatedon;
 
 
     public BankInfo() {
@@ -52,31 +50,33 @@ public class BankInfo extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_bank_info, container, false);
 
-
+        init(v);
         api_getBankInfo(v);
 
+        return v;
+    }
+
+    private void init(View v) {
         tv_agentId = v.findViewById(R.id.agent_id);
-        tv_ipAccountNo  = v.findViewById(R.id.agent_phone);
-        tv_bankName  = v.findViewById(R.id.agent_bankname);
+        tv_ipAccountNo = v.findViewById(R.id.agent_phone);
+        tv_bankName = v.findViewById(R.id.agent_bankname);
         tv_bankAccountNo = v.findViewById(R.id.agent_bankaccountno);
         tv_ifsccode = v.findViewById(R.id.agent_ifsccode);
         tv_branch = v.findViewById(R.id.agent_branch);
         tv_status = v.findViewById(R.id.agent_status);
         tv_updatedon = v.findViewById(R.id.agent_updatedon);
-
-        return v;
     }
 
-    private void api_getBankInfo(View v){
+    //get details from api
+    private void api_getBankInfo(View v) {
 
         preferences = getActivity().getSharedPreferences(mypreference, Context.MODE_PRIVATE);
-        username=preferences.getString("Username","No name defined");
-        password=preferences.getString("Password","No name defined");
+        username = preferences.getString("Username", "No name defined");
+        password = preferences.getString("Password", "No name defined");
 
         Utils utils = new Utils();
         OkHttpClient httpClient = utils.createAuthenticatedClient(username, password);
-        Log.d("username","usr getagent pending"+username+password);
-
+        Log.d("username", "usr getagent pending" + username + password);
 
 
         preferences = getActivity().getSharedPreferences(mypreference, Context.MODE_PRIVATE);
@@ -101,14 +101,14 @@ public class BankInfo extends Fragment {
             public void onFailure(Call call, IOException e) {
             }
 
-           /* "agentid": "1011",
-                    "ipaccountno": "9160884610",
-                    "bankaccountno": "1234561235",
-                    "bankname": "SBI",
-                    "ifsccode": "IDCF1234B",
-                    "branch": "VSKP",
-                    "status": "1",
-                    "updatedon": "2020-12-03 11:00:00"*/
+            /* "agentid": "1011",
+                     "ipaccountno": "9160884610",
+                     "bankaccountno": "1234561235",
+                     "bankname": "SBI",
+                     "ifsccode": "IDCF1234B",
+                     "branch": "VSKP",
+                     "status": "1",
+                     "updatedon": "2020-12-03 11:00:00"*/
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 assert response.body() != null;
@@ -116,36 +116,36 @@ public class BankInfo extends Fragment {
                 response_String = response.body().string();
 
                 if (response_String != null) {
-                    Log.d("TAG","Response is+"+response_String.toString());
+                    Log.d("TAG", "Response is+" + response_String.toString());
                     JSONObject jsonResponse = null;
                     try {
                         jsonResponse = new JSONObject(response_String);
 
-                            agentId = jsonResponse.getString("agentid");
-                            ipAccountNo = jsonResponse.getString("ipaccountno");
-                            bankName = jsonResponse.getString("bankname");
-                            bankAccountNo = jsonResponse.getString("ipaccountno");
-                            ifsccode = jsonResponse.getString("ifsccode");
-                            branch = jsonResponse.getString("branch");
-                            status = jsonResponse.getString("status");
-                            updatedon = jsonResponse.getString("updatedon");
+                        agentId = jsonResponse.getString("agentid");
+                        ipAccountNo = jsonResponse.getString("ipaccountno");
+                        bankName = jsonResponse.getString("bankname");
+                        bankAccountNo = jsonResponse.getString("ipaccountno");
+                        ifsccode = jsonResponse.getString("ifsccode");
+                        branch = jsonResponse.getString("branch");
+                        status = jsonResponse.getString("status");
+                        updatedon = jsonResponse.getString("updatedon");
 
-                        }catch (JSONException e) {
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                        mHandler.post(new Runnable() {
-                            public void run() {
+                    mHandler.post(new Runnable() {
+                        public void run() {
 
-                                setvalues(agentId,
-                                ipAccountNo ,
-                                bankName ,
-                                bankAccountNo,
-                                ifsccode,
-                                branch,
-                                status,
-                                updatedon);
-                            }
-                        });
+                            setvalues(agentId,
+                                    ipAccountNo,
+                                    bankName,
+                                    bankAccountNo,
+                                    ifsccode,
+                                    branch,
+                                    status,
+                                    updatedon);
+                        }
+                    });
 
 
                 } else {
@@ -156,24 +156,25 @@ public class BankInfo extends Fragment {
         });
     }
 
-    private void setvalues(String aId,String aPhoneNo, String aBankName,
+    private void setvalues(String aId, String aPhoneNo, String aBankName,
                            String aBankAccountNo, String aIfscCode,
                            String aBranch, String aStatus, String aUpdatedon) {
-       try{
-        tv_agentId.setText(aId);
-        tv_ipAccountNo.setText(aPhoneNo);
-        tv_bankName.setText(aBankName);
-        tv_bankAccountNo.setText(aBankAccountNo);
-        tv_ifsccode.setText(aIfscCode);
-        tv_branch.setText(aBranch);
-        if(aStatus.equals("1")){
-            tv_status.setText("ACTIVE");
+        try {
+            tv_agentId.setText(aId);
+            tv_ipAccountNo.setText(aPhoneNo);
+            tv_bankName.setText(aBankName);
+            tv_bankAccountNo.setText(aBankAccountNo);
+            tv_ifsccode.setText(aIfscCode);
+            tv_branch.setText(aBranch);
+            if (aStatus.equals("1")) {
+                tv_status.setText("ACTIVE");
+            } else {
+                tv_status.setText("INACTIVE");
+            }
+            tv_updatedon.setText(aUpdatedon);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        else{
-            tv_status.setText("INACTIVE");
-        }
-
-        tv_updatedon.setText(aUpdatedon);}catch (Exception e){e.printStackTrace();}
     }
 
 }

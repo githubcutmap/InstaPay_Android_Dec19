@@ -3,10 +3,13 @@ package gramtarang.instamoney.loans;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
+
 import gramtarang.instamoney.R;
 import gramtarang.instamoney.adapters.Adapter_loansAgent;
 import gramtarang.instamoney.agent_login.activity_Login;
@@ -14,7 +17,8 @@ import gramtarang.instamoney.utils.LogOutTimer;
 
 
 public class LoanActivity_viewAppId extends AppCompatActivity implements LogOutTimer.LogOutListener {
-    private  String TAG="LOAN_appid";
+    private String TAG = "LOAN_appid";
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -49,14 +53,14 @@ public class LoanActivity_viewAppId extends AppCompatActivity implements LogOutT
     @Override
     public void doLogout() {
         // Toast.makeText(getApplicationContext(),"Session Expired",Toast.LENGTH_SHORT).show();
-        Intent intent=new Intent(getApplicationContext(), activity_Login.class);
+        Intent intent = new Intent(getApplicationContext(), activity_Login.class);
         startActivity(intent);
     }
 
     private RecyclerView rv_agentApplicationId;
     private LinearLayoutManager layoutManager;
     private Adapter_loansAgent adapter_loansAgent;
-    private ArrayList<String> LoansListArr,LoansDetailsArr;
+    private ArrayList<String> LoansListArr, LoansDetailsArr;
     private String agentId;
 
     @Override
@@ -68,21 +72,16 @@ public class LoanActivity_viewAppId extends AppCompatActivity implements LogOutT
         layoutManager = new LinearLayoutManager(this);
         rv_agentApplicationId.setLayoutManager(layoutManager);
 
-
-
-        Log.d("viewApplicationAppid"," ids agent id: "+agentId);
+        Log.d("viewApplicationAppid", " ids agent id: " + agentId);
         loansList(agentId);
 
 
-
     }
-    private void loansList(String selectedAgentId) {
-   /*     SQLQueries loanslist = new SQLQueries();
-        LoansListArr = loanslist.getLoanList(selectedAgentId);*/
-        Log.d("ViewApplication"," ids of agents under manager loanslist: "+LoansListArr);
-        adapter_loansAgent = new Adapter_loansAgent(LoansListArr,this);
-        rv_agentApplicationId.setAdapter(adapter_loansAgent);
 
+    private void loansList(String selectedAgentId) {
+        Log.d("ViewApplication", " ids of agents under manager loanslist: " + LoansListArr);
+        adapter_loansAgent = new Adapter_loansAgent(LoansListArr, this);
+        rv_agentApplicationId.setAdapter(adapter_loansAgent);
 
 
     }

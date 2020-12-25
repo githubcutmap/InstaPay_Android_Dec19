@@ -24,7 +24,18 @@ import gramtarang.instamoney.utils.Utils;
 
 
 public class LoanActivity_MainScreen extends AppCompatActivity implements LogOutTimer.LogOutListener {
-    private String TAG="LOAN_mainscreen";
+
+    private final String TAG = "LOAN_mainscreen";
+    private Button applyLoan, viewRegistration;
+    private String title, message;
+    private ImageView backbtn;
+    boolean doubleBackToExitPressedOnce = false;
+    Utils utils = new Utils();
+    SharedPreferences preferences, preferences2;
+    public final String mypreference = "mypref";
+    public final String loanpreference = "Loanpreferences";
+    private TextView bankName;
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -59,19 +70,10 @@ public class LoanActivity_MainScreen extends AppCompatActivity implements LogOut
     @Override
     public void doLogout() {
         // Toast.makeText(getApplicationContext(),"Session Expired",Toast.LENGTH_SHORT).show();
-        Intent intent=new Intent(getApplicationContext(), activity_Login.class);
+        Intent intent = new Intent(getApplicationContext(), activity_Login.class);
         startActivity(intent);
     }
 
-    Button applyLoan,viewRegistration;
-    String title,message;
-    ImageView backbtn;
-    boolean doubleBackToExitPressedOnce = false;
-    Utils utils = new Utils();
-    SharedPreferences preferences,preferences2;
-    public final String mypreference = "mypref";
-    public final String loanpreference = "Loanpreferences";
-    TextView bankName;
 
     @Override
     public void onBackPressed() {
@@ -97,15 +99,12 @@ public class LoanActivity_MainScreen extends AppCompatActivity implements LogOut
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_loan__main);
-        backbtn = findViewById(R.id.backimg);
-        applyLoan = findViewById(R.id.applyloan);
-        viewRegistration = findViewById(R.id.view_reg);
-        bankName = findViewById(R.id.tv_bankname);
+        init();
 
         preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
-        int role =preferences.getInt("Role",0);
+        int role = preferences.getInt("Role", 0);
+
         //back button
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,16 +117,17 @@ public class LoanActivity_MainScreen extends AppCompatActivity implements LogOut
         applyLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//  || role==1
-                if(role==0){
-                    Intent intent = new Intent(LoanActivity_MainScreen.this,LoanActivity_Category.class);
-                    startActivity(intent);
-                }
-                else{
 
+                // role = 0 => agentlogin
+                // role = 1 => areamanager
+
+                if (role == 0) {
+                    Intent intent = new Intent(LoanActivity_MainScreen.this, LoanActivity_Category.class);
+                    startActivity(intent);
+                } else {
                     title = "Apply Loan Application";
-                    message = "  This function is not available in your login please try after some time or contact your admin";
-                    utils.dialog(LoanActivity_MainScreen.this,title,message);
+                    message = "This function is not available in your login please try after some time or contact your admin";
+                    utils.dialog(LoanActivity_MainScreen.this, title, message);
                 }
 
             }
@@ -136,22 +136,22 @@ public class LoanActivity_MainScreen extends AppCompatActivity implements LogOut
         viewRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if(role==1){
+                if (role == 1) {
                     Intent intent = new Intent(LoanActivity_MainScreen.this, MainActivity.class);
                     startActivity(intent);
-                }
-                else{
-
+                } else {
                     Intent intent = new Intent(LoanActivity_MainScreen.this, LoanActivity_SearchViewApplication.class);
                     startActivity(intent);
                 }
-
-
-
-
             }
         });
 
+    }
+
+    private void init() {
+        backbtn = findViewById(R.id.backimg);
+        applyLoan = findViewById(R.id.applyloan);
+        viewRegistration = findViewById(R.id.view_reg);
+        bankName = findViewById(R.id.tv_bankname);
     }
 }

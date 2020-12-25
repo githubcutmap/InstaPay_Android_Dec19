@@ -77,19 +77,19 @@ public class LoanActuivity_ViewApplication extends AppCompatActivity implements 
     }
 
 
-    ArrayList<String> LoansListArr = new ArrayList<String>();
-    ArrayList<String> LoansDetailsArr = new ArrayList<String>();
-    String SelectedAgentId,SelectedLoanId,managerId;
-    ListView lv_agents,lv_loans,lv_loansdetails;
-    Button confirm,reject,get;
+    private ArrayList<String> LoansListArr = new ArrayList<String>();
+    private ArrayList<String> LoansDetailsArr = new ArrayList<String>();
+    private String SelectedAgentId,SelectedLoanId,managerId;
+    private ListView lv_agents,lv_loans,lv_loansdetails;
+    private Button confirm,reject,get;
     private RecyclerView rv_agents;
     private LinearLayoutManager layoutManager;
     private Adapter_loansAgent adapter_loansAgent;
     private ArrayList<String> agents;
-    LinearLayout ll_buttons;
-    Spinner sp_loanStatus;
+    private LinearLayout ll_buttons;
+    private Spinner sp_loanStatus;
     OkHttpClient client;
-    String jsonString,response_String,catagory;
+    private String jsonString,response_String,catagory;
     SharedPreferences preferences;
     public final String mypreference = "mypref";
     //String[] AgentArray;
@@ -100,24 +100,15 @@ public class LoanActuivity_ViewApplication extends AppCompatActivity implements 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loan_view_application);
 
-        sp_loanStatus = findViewById(R.id.id_sp_loanStatus);
-
-        lv_agents = findViewById(R.id.listview_agents);
-       // lv_loans = findViewById(R.id.listview_loan);
-        //lv_loansdetails = findViewById(R.id.listview_loandetails);
-        ll_buttons = findViewById(R.id.ll_buttons);
-        confirm = findViewById(R.id.confirm);
-        reject = findViewById(R.id.reject);
-        get = findViewById(R.id.b_get);
+        init();
 
         client=new OkHttpClient();
-        rv_agents = findViewById(R.id.id_rv_agents);
         layoutManager = new LinearLayoutManager(this);
         //rv_agents.setLayoutManager(layoutManager);
         agents = new ArrayList<String>();
         preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         managerId=preferences.getString("AreaManagerId","Null");
-        managerId = "9999";
+
 
 
         //sp_loanStatus.setOnItemSelectedListener(this);
@@ -148,6 +139,16 @@ public class LoanActuivity_ViewApplication extends AppCompatActivity implements 
 
     }
 
+    private void init() {
+        sp_loanStatus = findViewById(R.id.id_sp_loanStatus);
+
+        lv_agents = findViewById(R.id.listview_agents);
+        ll_buttons = findViewById(R.id.ll_buttons);
+        confirm = findViewById(R.id.confirm);
+        reject = findViewById(R.id.reject);
+        get = findViewById(R.id.b_get);
+        rv_agents = findViewById(R.id.id_rv_agents);
+    }
 
 
     private void agentslist(String cat){

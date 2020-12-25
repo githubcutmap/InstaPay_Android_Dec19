@@ -47,51 +47,25 @@ import okhttp3.Response;
 
 public class loan_viewapp extends AppCompatActivity {
 
-    TextView test;
-    String jsonString,response_String,username,password;
+    private TextView test;
+    private String jsonString,response_String,username,password;
     OkHttpClient client;
     LinearLayout ll_buttons;
-    Button accept,reject,getLocation,doc;
-    ImageView backbtn,proof1,proof2,proof3;
-    TextView bId,
-            bmId,
-            bmName,
-            bmphone,
-            bName,
-            bphone,
-            bBank,
-            bOccupation,
-            bfh,
-            bdob,
-            bAadhaar,
-            bAddress,
-            bbusinessname,
-            bbusinessaddress,
-            bproname,
-            bbusinessexistence,
-            beducation,
-            bcategory,
-            bfamily,
-            bsustenance,
-            bLoanPurpose,
-            bLoanAmount,
-            bTenure,
-            bExistanceLoanapgvb,
-            bExistanceLoanOthers,
-            bOwnProperty,
-            appStatus,
-            bEmail,
-            bGender,
-            bLoanType,
-            bRepaymentPeriod,am_loc;
-    String userSearchID,
+    private Button accept,reject,getLocation,doc;
+    ImageView backbtn, aadhaarProof, bpProof, pdProof;
+    private TextView bId, bmId, bmName, bmphone, bName, bphone, bBank, bOccupation,
+            bfh, bdob, bAadhaar, bAddress, bbusinessname, bbusinessaddress, bproname,
+            bbusinessexistence, beducation, bcategory, bfamily, bsustenance, bLoanPurpose,
+            bLoanAmount, bTenure, bExistanceLoanapgvb, bExistanceLoanOthers, bOwnProperty,
+            appStatus, bEmail, bGender, bLoanType, bRepaymentPeriod,am_loc;
+    private String userSearchID,
             applicationArr[],TAG="View Application";
     TableLayout tableView;
     LocationTrack locationTrack;
     double am_latitude,am_longitude;
     private int shortAnimationDuration;
     private Animator currentAnimator;
-    Bitmap bmp,bmp2,bmp3;
+    private Bitmap aadhaarBmp, bpBmp, pdBmp;
     SharedPreferences preferences;
     public static final String mypreference = "mypref";
 
@@ -103,9 +77,27 @@ public class loan_viewapp extends AppCompatActivity {
         setContentView(R.layout.activity_loan_areamgr_viewapp);
         Intent intent = getIntent();
         String uniqueId = intent.getStringExtra("applicationId");
+        init();
         test = findViewById(R.id.textView18);
         test.setText(uniqueId);
 
+
+        Log.d("TAG","Latitude and Longitude:"+am_latitude+am_longitude);
+
+        api_getAppdetails(uniqueId);
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+    }
+
+    private void init() {
         bId = findViewById(R.id.beneficiary_id);
         bmId = findViewById(R.id.bankmitra_id);
         bmName = findViewById(R.id.bankmitra_name);
@@ -148,25 +140,11 @@ public class loan_viewapp extends AppCompatActivity {
         getLocation = findViewById(R.id.btn_getloc);
         am_loc = findViewById(R.id.tv_amlocation);
         backbtn = findViewById(R.id.backimg);
-        proof1 = findViewById(R.id.thumb__1);
-        proof2 = findViewById(R.id.thumb__2);
-        proof3 = findViewById(R.id.thumb__3);
-
-
-        Log.d("TAG","Latitude and Longitude:"+am_latitude+am_longitude);
-        client=new OkHttpClient();
-        api_getAppdetails(uniqueId);
-
-        backbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
+        aadhaarProof = findViewById(R.id.thumb__1);
+        bpProof = findViewById(R.id.thumb__2);
+        pdProof = findViewById(R.id.thumb__3);
     }
+
     private void zoomImageFromThumb(final View thumbView,Bitmap asd) {
         // If there's an animation in progress, cancel it
         // immediately and proceed with this one.
@@ -313,10 +291,6 @@ public class loan_viewapp extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 
     private void api_getAppdetails(String uniqueid){
         Utils utils = new Utils();
@@ -498,20 +472,7 @@ public class loan_viewapp extends AppCompatActivity {
         tableView.setVisibility(View.VISIBLE);
         applicationArr = appdetails.toArray(new String[0]);
         Log.d(TAG,"application Arr: "+appdetails);
-        //bId.setText(applicationArr[0]);
-        //bName.setText(applicationArr[1]);
-        //bphone.setText(applicationArr[2]);
-        /*bEmail.setText(applicationArr[3]);
-        bAadhaar.setText(applicationArr[4]);
-        bBank.setText(applicationArr[5]);
-        bGender.setText(applicationArr[6]);
-        bLoanType.setText(applicationArr[7]);
-        bAddress.setText(applicationArr[8]+" "+applicationArr[9]+" "+applicationArr[10]+" -"+applicationArr[11]);
-        bLoanAmount.setText(applicationArr[12]);
-        bOccupation.setText(applicationArr[13]);
-        bLoanPurpose.setText(applicationArr[14]);
-        bTenure.setText(applicationArr[15]);
-        bRepaymentPeriod.setText(applicationArr[16]);*/
+
 
         bId.setText(applicationArr[0]);
         bmId.setText(applicationArr[2]);
@@ -577,8 +538,8 @@ public class loan_viewapp extends AppCompatActivity {
 
                     URL url = new URL("http://bankmgr.gramtarang.org:8081/mint/doc/downloadadh?fname=ADH_apgvb_mudra_"+code+".jpg");
                     Log.d("Setproof url","http://bankmgr.gramtarang.org:8081/mint/doc/downloadadh?fname=ADH_apgvb_mudra_"+code+".jpg");
-                    bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                    proof1.setImageBitmap(bmp);
+                    aadhaarBmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                    aadhaarProof.setImageBitmap(aadhaarBmp);
 
                     
                 } catch (Exception e) {
@@ -597,8 +558,8 @@ public class loan_viewapp extends AppCompatActivity {
 
                     URL url2 = new URL("http://bankmgr.gramtarang.org:8081/mint/doc/downloadbp?fname=BP_apgvb_mudra_"+code+".jpg");
                     Log.d("Setproof bp url","http://bankmgr.gramtarang.org:8081/mint/doc/downloadbp?fname=BP_apgvb_mudra_"+code+".jpg");
-                    bmp2 = BitmapFactory.decodeStream(url2.openConnection().getInputStream());
-                    proof2.setImageBitmap(bmp2);
+                    bpBmp = BitmapFactory.decodeStream(url2.openConnection().getInputStream());
+                    bpProof.setImageBitmap(bpBmp);
 
 
 
@@ -625,15 +586,14 @@ public class loan_viewapp extends AppCompatActivity {
                     conn.setRequestProperty("Content-Type", "application/json");
                     conn.setRequestProperty("Accept-Charset", "UTF-8");
                     conn.setRequestMethod("GET");
-
                     String userCredentials = username.trim() + ":" + password.trim();
                     String basicAuth = "Basic " + new String(Base64.encodeBytes(userCredentials.getBytes()));
                     conn.setRequestProperty ("Authorization", basicAuth);*/
 
                     URL url3 = new URL("http://bankmgr.gramtarang.org:8081/mint/doc/downloadpd?fname=PD_apgvb_mudra_"+code+".jpg");
                     Log.d("Setproof bp url","http://bankmgr.gramtarang.org:8081/mint/doc/downloadpd?fname=PD_apgvb_mudra_"+code+".jpg");
-                    bmp3 = BitmapFactory.decodeStream(url3.openConnection().getInputStream());
-                    proof3.setImageBitmap(bmp3);
+                    pdBmp = BitmapFactory.decodeStream(url3.openConnection().getInputStream());
+                    pdProof.setImageBitmap(pdBmp);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -643,22 +603,22 @@ public class loan_viewapp extends AppCompatActivity {
 
         thread3.start();
 
-        proof1.setOnClickListener(new View.OnClickListener() {
+        aadhaarProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                zoomImageFromThumb(proof1,bmp);
+                zoomImageFromThumb(aadhaarProof, aadhaarBmp);
             }
         });
-        proof2.setOnClickListener(new View.OnClickListener() {
+        bpProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                zoomImageFromThumb(proof2,bmp2);
+                zoomImageFromThumb(bpProof, bpBmp);
             }
         });
-        proof3.setOnClickListener(new View.OnClickListener() {
+        pdProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                zoomImageFromThumb(proof3,bmp3);
+                zoomImageFromThumb(pdProof, pdBmp);
             }
         });
     }

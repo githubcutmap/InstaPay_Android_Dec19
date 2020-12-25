@@ -1,7 +1,5 @@
 package gramtarang.instamoney.loans;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,7 +21,15 @@ import gramtarang.instamoney.agent_login.activity_Login;
 import gramtarang.instamoney.utils.LogOutTimer;
 
 public class LoanActivity_FinalScreen extends AppCompatActivity implements LogOutTimer.LogOutListener {
-    private String TAG="LOAN_finalscreen";
+    private String TAG = "LOAN_finalscreen";
+    SharedPreferences preferences, preferences2;
+    public static final String mypreference2 = "mypref";
+    public static final String mypreference = "Loanpreferences";
+    private Button print, back;
+    private TextView tv_scheme, tv_status, tv_timestamp, tv_agentName, bId, bloanAmount, bName, bBank, bLoanType, bIdDetails;
+    private String schemetype, beneficiaryUniqueId, agentName, beneficiaryName, beneficiaryBank, beneficiaryloanType, timestamp, beneficiaryLoanAmount, beneficiaryiddetails;
+    boolean doubleBackToExitPressedOnce = false;
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -56,16 +64,10 @@ public class LoanActivity_FinalScreen extends AppCompatActivity implements LogOu
     @Override
     public void doLogout() {
         // Toast.makeText(getApplicationContext(),"Session Expired",Toast.LENGTH_SHORT).show();
-        Intent intent=new Intent(getApplicationContext(), activity_Login.class);
+        Intent intent = new Intent(getApplicationContext(), activity_Login.class);
         startActivity(intent);
     }
-    SharedPreferences preferences,preferences2;
-    public static final String mypreference2 = "mypref";
-    public static final String mypreference = "Loanpreferences";
-    Button print,back;
-    TextView tv_scheme,tv_status,tv_timestamp,tv_agentName,bId, bloanAmount,bName, bBank, bLoanType,bIdDetails;
-    String schemetype,beneficiaryUniqueId, agentName, beneficiaryName, beneficiaryBank, beneficiaryloanType, timestamp,beneficiaryLoanAmount,beneficiaryiddetails;
-    boolean doubleBackToExitPressedOnce = false;
+
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -86,32 +88,26 @@ public class LoanActivity_FinalScreen extends AppCompatActivity implements LogOu
             }
         }, 2000);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loan__final_screen);
-        preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
-        preferences2= getSharedPreferences(mypreference2, Context.MODE_PRIVATE);
-        tv_scheme=findViewById(R.id.textView023);
-        schemetype= preferences.getString("LoanScheme","No name defined");
-        agentName=preferences2.getString("AgentName","Null");
-        beneficiaryUniqueId = preferences.getString("BeneficiaryUniqueId2","Null");
-        beneficiaryName = preferences.getString("BeneficiaryName","Null");
-        beneficiaryBank = preferences.getString("BeneficiaryBank","Null");
-        beneficiaryloanType = preferences.getString("LoanType","Null");
-        beneficiaryLoanAmount= preferences.getString("LoanAmount","Null");
-        beneficiaryiddetails= preferences.getString("BeneficiaryIdDetails","Null");
-        print=findViewById(R.id.print);
-        back=findViewById(R.id.back);
 
-        tv_timestamp=findViewById(R.id.timestamp);
-        bId=findViewById(R.id.applicationId);
-        bBank=findViewById(R.id.bank_location);
-        bName=findViewById(R.id.customer_name);
-        tv_agentName=findViewById(R.id.agent_name);
-        /*bLoanType=findViewById(R.id.loantype);*/
-        tv_status=findViewById(R.id.status);
-        bloanAmount=findViewById(R.id.loanamount);
+        init();
+
+        preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
+        preferences2 = getSharedPreferences(mypreference2, Context.MODE_PRIVATE);
+
+        schemetype = preferences.getString("LoanScheme", "No name defined");
+        agentName = preferences2.getString("AgentName", "Null");
+        beneficiaryUniqueId = preferences.getString("BeneficiaryUniqueId2", "Null");
+        beneficiaryName = preferences.getString("BeneficiaryName", "Null");
+        beneficiaryBank = preferences.getString("BeneficiaryBank", "Null");
+        beneficiaryloanType = preferences.getString("LoanType", "Null");
+        beneficiaryLoanAmount = preferences.getString("LoanAmount", "Null");
+        beneficiaryiddetails = preferences.getString("BeneficiaryIdDetails", "Null");
+
         tv_scheme.setText(schemetype);
         bId.setText(beneficiaryUniqueId);
         bName.setText(beneficiaryName);
@@ -119,41 +115,9 @@ public class LoanActivity_FinalScreen extends AppCompatActivity implements LogOu
         SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         timestamp = s.format(new Date());
         tv_timestamp.setText(timestamp);
-        /*
-        bLoanType.setText(beneficiaryloanType);*/
         bBank.setText(beneficiaryBank);
         tv_agentName.setText(agentName);
         bloanAmount.setText(beneficiaryLoanAmount);
-       // bIdDetails.setText(beneficiaryiddetails);
-      /*  tv_timestamp.setText("timestamp");
-        bLoanType.setText("beneficiaryloanType");
-        bBank.setText("beneficiaryBank");
-
-        tv_agentName.setText("agentName");*/
-       /* bAadhaar=findViewById(R.id.aadhaar_number);
-
-        tv_add1=findViewById(R.id.address1);
-        tv_add2=findViewById(R.id.address2);
-        tv_add3=findViewById(R.id.address3);
-        bOccupation=findViewById(R.id.occupation);
-        bRepaymentPeriod=findViewById(R.id.repaymentperiod);
-
-  bLoanAmount.setText("beneficiaryLoanAmount");
-        bphone.setText(beneficiaryPhone);
-        bAadhaar.setText(beneficiaryAadhaar);
-
-        bGender.setText(beneficiaryGender);
-
-        tv_add1.setText(beneficiaryAddressLane);
-        tv_add2.setText(beneficiaryAddressLane2);
-        tv_pincode.setText(beneficiaryPincode);
-
-        bOccupation.setText(beneficiaryOccupation);
-        bLoanPurpose.setText(beneficiaryLoanPurpose);
-        bTenure.setText(beneficiaryTenure);
-        bRepaymentPeriod.setText(beneficiaryRepaymentPeriod);*/
-
-
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,5 +129,18 @@ public class LoanActivity_FinalScreen extends AppCompatActivity implements LogOu
         });
 
 
+    }
+
+    private void init() {
+        tv_scheme = findViewById(R.id.textView023);
+        print = findViewById(R.id.print);
+        back = findViewById(R.id.back);
+        tv_timestamp = findViewById(R.id.timestamp);
+        bId = findViewById(R.id.applicationId);
+        bBank = findViewById(R.id.bank_location);
+        bName = findViewById(R.id.customer_name);
+        tv_agentName = findViewById(R.id.agent_name);
+        tv_status = findViewById(R.id.status);
+        bloanAmount = findViewById(R.id.loanamount);
     }
 }

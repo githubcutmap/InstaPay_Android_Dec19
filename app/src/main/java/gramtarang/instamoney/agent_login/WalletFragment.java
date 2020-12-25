@@ -1,7 +1,5 @@
 package gramtarang.instamoney.agent_login;
 
-import androidx.fragment.app.Fragment;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,10 +38,10 @@ import okhttp3.Response;
 public class WalletFragment extends Fragment {
     OkHttpClient httpClient;
     Utils utils;
-    TextView tv_totComlastsevenDays,tv_totWDlastsevenDays,tv_totTransferlastsevenDays,tv_amountTransferTillDate,tv_amountTransferCurrentDate,tv_commissionAmountCurrentDate, tv_commissionAmountTillDate, tv_totalwd, tv_totalms, tv_walletamount, tv_totalbe, tv_totaltransAmountT, tv_totalWDtransCurrentDate;
+    TextView tv_totComlastsevenDays, tv_totWDlastsevenDays, tv_totTransferlastsevenDays, tv_amountTransferTillDate, tv_amountTransferCurrentDate, tv_commissionAmountCurrentDate, tv_commissionAmountTillDate, tv_totalwd, tv_totalms, tv_walletamount, tv_totalbe, tv_totaltransAmountT, tv_totalWDtransCurrentDate;
     SharedPreferences preferences;
     public static final String mypreference = "mypref";
-    String totTransferlastsevenDays,totWDlastsevenDays,totComlastsevenDays,pastweekDate,amountTransferTillDate,amountTransferCurrentDate,commissionAmountCurrentDate, commissionAmountTillDate, currentDate, totalWDtransCurrentDate, totaltransAmountT, totalWithdrawCount, totalMinistatementCount, agentPhn, agentId, password, totalBECount, walletAmount;
+    String totTransferlastsevenDays, totWDlastsevenDays, totComlastsevenDays, pastweekDate, amountTransferTillDate, amountTransferCurrentDate, commissionAmountCurrentDate, commissionAmountTillDate, currentDate, totalWDtransCurrentDate, totaltransAmountT, totalWithdrawCount, totalMinistatementCount, agentPhn, agentId, password, totalBECount, walletAmount;
 
     public WalletFragment() {
         // Required empty public constructor
@@ -62,30 +62,30 @@ public class WalletFragment extends Fragment {
         tv_totalWDtransCurrentDate = v.findViewById(R.id.id_totalwdtransCurrent);
         tv_commissionAmountTillDate = v.findViewById(R.id.id_comAmountTillDate);
         tv_commissionAmountCurrentDate = v.findViewById(R.id.commAmountCurrentDate);
-        tv_amountTransferCurrentDate=v.findViewById(R.id.id_amountTransferCurrentDate);
-        tv_amountTransferTillDate=v.findViewById(R.id.id_amountTransferTillDate);
-        tv_totComlastsevenDays=v.findViewById(R.id.totComlastsevenDays);
-        tv_totWDlastsevenDays=v.findViewById(R.id.totWDlastsevenDays);
-        tv_totTransferlastsevenDays=v.findViewById(R.id.totTransferlastsevenDays);
-        SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+        tv_amountTransferCurrentDate = v.findViewById(R.id.id_amountTransferCurrentDate);
+        tv_amountTransferTillDate = v.findViewById(R.id.id_amountTransferTillDate);
+        tv_totComlastsevenDays = v.findViewById(R.id.totComlastsevenDays);
+        tv_totWDlastsevenDays = v.findViewById(R.id.totWDlastsevenDays);
+        tv_totTransferlastsevenDays = v.findViewById(R.id.totTransferlastsevenDays);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String currentDateandTime = sdf.format(new Date());
-        Date cdate= null;
+        Date cdate = null;
         try {
             cdate = sdf.parse(currentDateandTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        Calendar now2= Calendar.getInstance();
+        Calendar now2 = Calendar.getInstance();
         now2.add(Calendar.DATE, -7);
-       pastweekDate=now2.get(Calendar.YEAR)+"-"+(now2.get(Calendar.MONTH) + 1)+"-"+now2.get(Calendar.DATE);
-        Date BeforeDate1= null;
+        pastweekDate = now2.get(Calendar.YEAR) + "-" + (now2.get(Calendar.MONTH) + 1) + "-" + now2.get(Calendar.DATE);
+        Date BeforeDate1 = null;
         try {
             BeforeDate1 = sdf.parse(pastweekDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         cdate.compareTo(BeforeDate1);
-        Log.d("TAG","Before Date"+pastweekDate);
+        Log.d("TAG", "Before Date" + pastweekDate);
         preferences = getActivity().getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         agentPhn = preferences.getString("AgentPhone", "No name defined");
         agentId = preferences.getString("Username", "No name defined");
@@ -103,7 +103,7 @@ public class WalletFragment extends Fragment {
     }
 
     class apiCall_getWalletDashboardDetails extends AsyncTask<Request, Void, String> {
-        String response_String, jsonString, jsonString2, jsonString3, jsonString4, jsonString5,jsonString6,jsonString7;
+        String response_String, jsonString, jsonString2, jsonString3, jsonString4, jsonString5, jsonString6, jsonString7;
 
 
         ProgressDialog dialog = new ProgressDialog(getActivity(), ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
@@ -277,7 +277,7 @@ public class WalletFragment extends Fragment {
                         JSONObject jsonResponse = null;
                         try {
                             jsonResponse = new JSONObject(response_String);
-                            totalBECount= jsonResponse.getString("count");
+                            totalBECount = jsonResponse.getString("count");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -296,7 +296,7 @@ public class WalletFragment extends Fragment {
 
             });
             //4.Total Wallet Amount Including Commission
-JSONObject jsonObject5=new JSONObject();
+            JSONObject jsonObject5 = new JSONObject();
             try {
 
                 jsonObject5.put("agentid", agentId);
@@ -355,7 +355,7 @@ JSONObject jsonObject5=new JSONObject();
                             }
                         });
                         //tv_totalwd.setText(count);
-                        Log.d("TAG", "Total Wallet Amount Including Commission " +walletAmount);
+                        Log.d("TAG", "Total Wallet Amount Including Commission " + walletAmount);
 
                     }
 
@@ -412,7 +412,7 @@ JSONObject jsonObject5=new JSONObject();
                             }
                         });
                         //tv_totalwd.setText(count);
-                        Log.d("TAG", "Total Transaction Amount till Date " +totaltransAmountT);
+                        Log.d("TAG", "Total Transaction Amount till Date " + totaltransAmountT);
 
                     }
 
@@ -628,7 +628,7 @@ JSONObject jsonObject5=new JSONObject();
 
             });
             //9.Amount Transferred Till Date
-            Request request9= new Request.Builder()
+            Request request9 = new Request.Builder()
                     .url("https://aepsapi.gramtarang.org:8008/mint/aeps/TransferredAmountByagentID")
                     .addHeader("Accept", "*/*")
                     // .addHeader("Authorization","Basic MTAxMDpUZXN0QDEyMw==")
@@ -665,7 +665,7 @@ JSONObject jsonObject5=new JSONObject();
                         JSONObject jsonResponse = null;
                         try {
                             jsonResponse = new JSONObject(response_String);
-                           amountTransferTillDate = jsonResponse.getString("sum");
+                            amountTransferTillDate = jsonResponse.getString("sum");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -790,7 +790,7 @@ JSONObject jsonObject5=new JSONObject();
                         JSONObject jsonResponse = null;
                         try {
                             jsonResponse = new JSONObject(response_String);
-                           totWDlastsevenDays = jsonResponse.getString("count");
+                            totWDlastsevenDays = jsonResponse.getString("count");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -860,7 +860,7 @@ JSONObject jsonObject5=new JSONObject();
                         JSONObject jsonResponse = null;
                         try {
                             jsonResponse = new JSONObject(response_String);
-                           totComlastsevenDays = jsonResponse.getString("sum");
+                            totComlastsevenDays = jsonResponse.getString("sum");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

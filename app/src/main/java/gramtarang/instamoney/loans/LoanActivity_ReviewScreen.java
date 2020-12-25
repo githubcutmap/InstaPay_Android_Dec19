@@ -3,6 +3,7 @@ package gramtarang.instamoney.loans;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -14,10 +15,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
-import android.os.AsyncTask;
-
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,12 +25,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import gramtarang.instamoney.R;
 import gramtarang.instamoney.agent_login.activity_Login;
-
 import gramtarang.instamoney.utils.LogOutTimer;
-
 import gramtarang.instamoney.utils.Utils;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -43,13 +41,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 public class LoanActivity_ReviewScreen extends AppCompatActivity implements LogOutTimer.LogOutListener {
-    private String TAG="LOAN_review";
+    private String TAG = "LOAN_review";
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -84,11 +78,12 @@ public class LoanActivity_ReviewScreen extends AppCompatActivity implements LogO
     @Override
     public void doLogout() {
         // Toast.makeText(getApplicationContext(),"Session Expired",Toast.LENGTH_SHORT).show();
-        Intent intent=new Intent(getApplicationContext(), activity_Login.class);
+        Intent intent = new Intent(getApplicationContext(), activity_Login.class);
         startActivity(intent);
     }
-    SharedPreferences preferences,preferences2;
-    int i=0,imLoanType=2;
+
+    SharedPreferences preferences, preferences2;
+    int i = 0, imLoanType = 2;
     OkHttpClient client;
 
     public static final String mypreference = "Loanpreferences";
@@ -96,7 +91,7 @@ public class LoanActivity_ReviewScreen extends AppCompatActivity implements LogO
     public static final String mypreference2 = "mypref";
 
 
-    TextView bId,
+    private TextView bId,
             bIddetails,
             bName,
             bphone,
@@ -108,14 +103,14 @@ public class LoanActivity_ReviewScreen extends AppCompatActivity implements LogO
             bLoanPurpose;
 
 
-    String beneficiaryUniqueId,beneficiary_unitName,beneficiary_unitAddress,beneficiaryotherLoans_2,
-            beneficiaryIddetails,beneficiary_adult,beneficiary_child,beneficiaryincome,
-            beneficiaryexpenses,beneficiaryotherexp,beneficiarynetsurplus,beneficiaryEducation,
-            beneficiarysustenance,beneficiarybusinessperiod,beneficiarycategory,
-            agentName,agentId,agent_contact,beneficiaryotherLoans,
-            beneficiaryName,beneficiaryAccNumber,beneficiaryPan,beneficiary_father_husband,
-            beneficiaryPhone,beneficiaryProName,beneficiaryDOB,
-            beneficiaryAadhaar,latitude,longitude,
+    private String beneficiaryUniqueId, beneficiary_unitName, beneficiary_unitAddress, beneficiaryotherLoans_2,
+            beneficiaryIddetails, beneficiary_adult, beneficiary_child, beneficiaryincome,
+            beneficiaryexpenses, beneficiaryotherexp, beneficiarynetsurplus, beneficiaryEducation,
+            beneficiarysustenance, beneficiarybusinessperiod, beneficiarycategory,
+            agentName, agentId, agent_contact, beneficiaryotherLoans,
+            beneficiaryName, beneficiaryAccNumber, beneficiaryPan, beneficiary_father_husband,
+            beneficiaryPhone, beneficiaryProName, beneficiaryDOB,
+            beneficiaryAadhaar, latitude, longitude,
             beneficiaryBank,
             beneficiaryGender,
             beneficiaryloanType,
@@ -124,12 +119,12 @@ public class LoanActivity_ReviewScreen extends AppCompatActivity implements LogO
             beneficiaryOccupation,
             beneficiaryLoanPurpose,
             beneficiaryTenure,
-            beneficiaryRepaymentPeriod,beneficiaryOwnProp,
-            timestamp,regionalOffice,
-            response_String,data_json,
-            username,password,loanBankName,loanBankScheme;
+            beneficiaryRepaymentPeriod, beneficiaryOwnProp,
+            timestamp, regionalOffice,
+            response_String, data_json,
+            username, password, loanBankName, loanBankScheme;
 
-    Button cancel,confirm;
+    private Button cancel, confirm;
     boolean doubleBackToExitPressedOnce = false;
 
 
@@ -158,6 +153,35 @@ public class LoanActivity_ReviewScreen extends AppCompatActivity implements LogO
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loan__review_screen);
+        init();
+        getDetails();
+        setText();
+        onClickActivities();
+
+        SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        timestamp = s.format(new Date());
+        client = new OkHttpClient();
+
+
+    }
+
+    private void init() {
+        bId = findViewById(R.id.beneficiary_id);
+        bName = findViewById(R.id.beneficiary_name);
+        bphone = findViewById(R.id.beneficiary_phone);
+        bBank = findViewById(R.id.beneficiary_bank);
+        bGender = findViewById(R.id.beneficiary_gender);
+        bAddress = findViewById(R.id.beneficiary_address);
+        bLoanAmount = findViewById(R.id.beneficiary_loan_amount);
+        bOccupation = findViewById(R.id.beneficiary_occupation);
+        bLoanPurpose = findViewById(R.id.beneficiary_loan_purpose);
+
+
+        cancel = findViewById(R.id.cancel);
+        confirm = findViewById(R.id.confirm);
+    }
+
+    private void getDetails() {
         preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         preferences2 = getSharedPreferences(mypreference2, Context.MODE_PRIVATE);
         agentName = preferences2.getString("AgentName", " Null");
@@ -200,28 +224,14 @@ public class LoanActivity_ReviewScreen extends AppCompatActivity implements LogO
         regionalOffice = preferences.getString("RegionalOffice", "Null");
         beneficiaryTenure = "24";
         beneficiaryIddetails = preferences.getString("BeneficiaryIdDetails", "Null");
-        loanBankName = preferences.getString("LoanBank","No name defined");
-        loanBankScheme = preferences.getString("LoanScheme","No name defined");
-        username=preferences2.getString("Username","No name defined");
-        password=preferences2.getString("Password","No name defined");
+        loanBankName = preferences.getString("LoanBank", "No name defined");
+        loanBankScheme = preferences.getString("LoanScheme", "No name defined");
+        username = preferences2.getString("Username", "No name defined");
+        password = preferences2.getString("Password", "No name defined");
 
+    }
 
-
-
-        bId = findViewById(R.id.beneficiary_id);
-        bName = findViewById(R.id.beneficiary_name);
-        bphone = findViewById(R.id.beneficiary_phone);
-        bBank = findViewById(R.id.beneficiary_bank);
-        bGender = findViewById(R.id.beneficiary_gender);
-        bAddress = findViewById(R.id.beneficiary_address);
-        bLoanAmount = findViewById(R.id.beneficiary_loan_amount);
-        bOccupation = findViewById(R.id.beneficiary_occupation);
-        bLoanPurpose = findViewById(R.id.beneficiary_loan_purpose);
-
-
-        cancel = findViewById(R.id.cancel);
-        confirm = findViewById(R.id.confirm);
-
+    private void setText() {
         bId.setText(beneficiaryUniqueId);
         bName.setText(beneficiaryName);
         bphone.setText(beneficiaryPhone);
@@ -232,96 +242,62 @@ public class LoanActivity_ReviewScreen extends AppCompatActivity implements LogO
         bLoanAmount.setText(beneficiaryLoanAmount);
         bOccupation.setText(beneficiaryOccupation);
         bLoanPurpose.setText(beneficiaryLoanPurpose);
+    }
 
-
-        SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-        timestamp = s.format(new Date());
-        client = new OkHttpClient();
-
-
-
+    private void onClickActivities() {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
                 apiCall_loanRegister();
-                Log.d("TAG", "after apicall try");
-                Log.d("TAG sharedpref", beneficiaryUniqueId + agentName + agentId + agent_contact + beneficiaryName +
+                Log.d("TAG sharedpref", "after apicall try " + beneficiaryUniqueId + agentName + agentId + agent_contact + beneficiaryName +
                         beneficiaryPhone + beneficiaryAccNumber + beneficiaryOccupation + beneficiary_father_husband + beneficiaryDOB +
                         beneficiaryAadhaar + beneficiaryPan + beneficiaryAddressLane + beneficiary_unitName + beneficiary_unitAddress +
                         beneficiaryProName + beneficiarybusinessperiod + beneficiaryEducation + beneficiarycategory + beneficiary_adult +
                         beneficiary_child + beneficiarysustenance + beneficiaryLoanPurpose + beneficiaryLoanAmount + beneficiaryTenure +
                         beneficiaryotherLoans + beneficiaryotherLoans_2 + beneficiaryOwnProp + beneficiaryIddetails + beneficiaryBank + regionalOffice
                 );
-              new SendLoanConfirmationSMS().execute();
+                new SendLoanConfirmationSMS().execute();
                 Intent intent = new Intent(LoanActivity_ReviewScreen.this, LoanActivity_FinalScreen.class);
                 startActivity(intent);
-
-
-
-
-
-               /* SQLQueries insertlog=new SQLQueries();
-                insertlog.insertloanapplication(i, beneficiaryUniqueId,agentName, agentId,agent_contact,beneficiaryName,
-                        beneficiaryPhone,beneficiaryAccNumber,beneficiaryOccupation,beneficiary_father_husband,beneficiaryDOB,
-                        beneficiaryAadhaar, beneficiaryPan,beneficiaryAddressLane,beneficiary_unitName, beneficiary_unitAddress,
-                        beneficiaryProName, beneficiarybusinessperiod,beneficiaryEducation,beneficiarycategory,beneficiary_adult,
-                        beneficiary_child,beneficiarysustenance,beneficiaryLoanPurpose,beneficiaryLoanAmount,beneficiaryTenure,
-                        beneficiaryotherLoans,beneficiaryotherLoans_2,beneficiaryOwnProp,"null",beneficiaryIddetails,"null",
-                        "null","null","null", 0,"null",beneficiaryBank,0
-                       );*/
-               /* SQLQueries insertlog=new SQLQueries();
-
-                insertlog.insertloanlogs(i,beneficiaryUniqueId,agentName,beneficiaryGender,
-                        beneficiaryName,beneficiaryAddressLane,beneficiaryOccupation,beneficiaryPhone,beneficiaryAadhaar,beneficiaryBank,
-                        beneficiaryLoanAmount,beneficiaryLoanPurpose,beneficiaryTenure,beneficiaryRepaymentPeriod,
-                        beneficiaryloanType,timestamp,"0",0);
-                Log.d("Status","Success");*/
 
             }
         });
 
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoanActivity_ReviewScreen.this, LoanActivity_FinalScreen.class);
+                startActivity(intent);
+            }
+        });
+    }
 
 
-
-
-            cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(LoanActivity_ReviewScreen.this, LoanActivity_FinalScreen.class);
-                    startActivity(intent);
-                }
-            });
-
-        }
-    public String gethour(){
+    public String gethour() {
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         String greeting;
-        if(hour<12){
-            greeting="Good Morning";
-        }
-        else if(hour<17){
-            greeting="Good Afternoon";
-        }
-        else{
-            greeting="Good Evening";
+        if (hour < 12) {
+            greeting = "Good Morning";
+        } else if (hour < 17) {
+            greeting = "Good Afternoon";
+        } else {
+            greeting = "Good Evening";
         }
         return greeting;
     }
-    public  class SendLoanConfirmationSMS extends AsyncTask<Void, Void, Void> {
+
+    public class SendLoanConfirmationSMS extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             HttpURLConnection urlConnection = null;
-            String greet=gethour();
-            String flagurl= null;
+            String greet = gethour();
+            String flagurl = null;
             try {
-                String message= URLEncoder.encode(greet+","+" "+beneficiaryName+"\n"+"Thank you for banking with us"+"\n"+"Your Loan Application ID is:"+beneficiaryUniqueId+"\n"+"\n"+"With Regards,"+"\n"+"GTIDS IT Team", "UTF-8");
-                flagurl =  "http://smslogin.mobi/spanelv2/api.php?username=gramtarang&password=Ind123456&to="+beneficiaryPhone+"&from=GTIDSP&message="+message;
+                String message = URLEncoder.encode(greet + "," + " " + beneficiaryName + "\n" + "Thank you for banking with us" + "\n" + "Your Loan Application ID is:" + beneficiaryUniqueId + "\n" + "\n" + "With Regards," + "\n" + "GTIDS IT Team", "UTF-8");
+                flagurl = "http://smslogin.mobi/spanelv2/api.php?username=gramtarang&password=Ind123456&to=" + beneficiaryPhone + "&from=GTIDSP&message=" + message;
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -330,7 +306,7 @@ public class LoanActivity_ReviewScreen extends AppCompatActivity implements LogO
                         flagurl);
                 urlConnection = (HttpURLConnection) url.openConnection();
                 int code = urlConnection.getResponseCode();
-                if (code !=  200) {
+                if (code != 200) {
                     throw new IOException("Invalid response from server: " + code);
                 }
                 BufferedReader rd = new BufferedReader(new InputStreamReader(
@@ -350,91 +326,88 @@ public class LoanActivity_ReviewScreen extends AppCompatActivity implements LogO
             return null;
         }
     }
+
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();
 
         // Check which checkbox was clicked
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.id_cb_tandc:
                 if (checked)
                     confirm.setEnabled(true);
                 else
                     confirm.setEnabled(false);
-                    break;
+                break;
 
         }
     }
 
-
-
-
-
-    private void apiCall_loanRegister(){
-        if (loanBankScheme.matches("Suyog")){
+    private void apiCall_loanRegister() {
+        if (loanBankScheme.matches("Suyog")) {
             imLoanType = 1;
         }
-            username=preferences2.getString("Username","No name defined");
-            password=preferences2.getString("Password","No name defined");
-            Log.d("User + Pass: ",username+password);
-            Utils utils = new Utils();
-            OkHttpClient httpClient = utils.createAuthenticatedClient(username, password);
-            JSONObject jsonObject = new JSONObject();
-            try {
-                Log.d("TAG","Inside apicall try");
-                jsonObject.put("uniqueid",beneficiaryUniqueId);
-                jsonObject.put("bankmitra_name",agentName);
-                jsonObject.put("latitude",latitude);
-                jsonObject.put("longitude",longitude);
-                jsonObject.put("bankmitra_id",agentId);
-                jsonObject.put("bankmitra_contactno",agent_contact);
-                jsonObject.put("beneficiary_name", beneficiaryName);
-                jsonObject.put("beneficiary_phn", beneficiaryPhone);
-                jsonObject.put("beneficiary_accno",beneficiaryAccNumber);
-                jsonObject.put("beneficiarylineofactivity",beneficiaryOccupation);
-                jsonObject.put("beneficiary_fatherhusband", beneficiary_father_husband);
-                jsonObject.put("beneficiary_dob",beneficiaryDOB);
-                jsonObject.put("beneficiary_aadhaarno", beneficiaryAadhaar);
-                jsonObject.put("beneficiary_pancard", beneficiaryPan);
-                jsonObject.put("beneficiary_resaddress", beneficiaryAddressLane);
-                jsonObject.put("beneficiary_businessname", beneficiary_unitName);
-                jsonObject.put("beneficiary_businessaddress",beneficiary_unitAddress);
-                jsonObject.put("business_proname",beneficiaryProName);
-                jsonObject.put("beneficiary_businessexistence",beneficiarybusinessperiod);
-                jsonObject.put("beneficiary_education", beneficiaryEducation);
-                jsonObject.put("beneficiary_category",    beneficiarycategory);
-                jsonObject.put("beneficiary_family_child",beneficiary_adult);
-                jsonObject.put("beneficiary_family_adult",beneficiary_child);
-                jsonObject.put("beneficiary_sustenance",beneficiarysustenance);
-                jsonObject.put("beneficiary_purpose",  beneficiaryLoanPurpose);
-                jsonObject.put("beneficiary_termloan",beneficiaryLoanAmount);
-                jsonObject.put("beneficiary_tenor",  beneficiaryTenure);
-                jsonObject.put("existing_apgvb_loan", beneficiaryotherLoans);
-                jsonObject.put("existing_otherbank_loans",beneficiaryotherLoans_2);
-                jsonObject.put("own_property", beneficiaryOwnProp);
-                jsonObject.put("remark",  null);
-                jsonObject.put("id_details",   beneficiaryIddetails);
-                jsonObject.put("conductedon",  null);
-                jsonObject.put("conductedby",  null);
-                jsonObject.put("observation",  null);
-                jsonObject.put("status",0);
-                //posting Date and nearestbank
-                jsonObject.put("PostingDate", null);
-                jsonObject.put("nearestapgvbbank",  beneficiaryBank);
+        username = preferences2.getString("Username", "No name defined");
+        password = preferences2.getString("Password", "No name defined");
+        Log.d("User + Pass: ", username + password);
+        Utils utils = new Utils();
+        OkHttpClient httpClient = utils.createAuthenticatedClient(username, password);
+        JSONObject jsonObject = new JSONObject();
+        try {
+            Log.d("TAG", "Inside apicall try");
+            jsonObject.put("uniqueid", beneficiaryUniqueId);
+            jsonObject.put("bankmitra_name", agentName);
+            jsonObject.put("latitude", latitude);
+            jsonObject.put("longitude", longitude);
+            jsonObject.put("bankmitra_id", agentId);
+            jsonObject.put("bankmitra_contactno", agent_contact);
+            jsonObject.put("beneficiary_name", beneficiaryName);
+            jsonObject.put("beneficiary_phn", beneficiaryPhone);
+            jsonObject.put("beneficiary_accno", beneficiaryAccNumber);
+            jsonObject.put("beneficiarylineofactivity", beneficiaryOccupation);
+            jsonObject.put("beneficiary_fatherhusband", beneficiary_father_husband);
+            jsonObject.put("beneficiary_dob", beneficiaryDOB);
+            jsonObject.put("beneficiary_aadhaarno", beneficiaryAadhaar);
+            jsonObject.put("beneficiary_pancard", beneficiaryPan);
+            jsonObject.put("beneficiary_resaddress", beneficiaryAddressLane);
+            jsonObject.put("beneficiary_businessname", beneficiary_unitName);
+            jsonObject.put("beneficiary_businessaddress", beneficiary_unitAddress);
+            jsonObject.put("business_proname", beneficiaryProName);
+            jsonObject.put("beneficiary_businessexistence", beneficiarybusinessperiod);
+            jsonObject.put("beneficiary_education", beneficiaryEducation);
+            jsonObject.put("beneficiary_category", beneficiarycategory);
+            jsonObject.put("beneficiary_family_child", beneficiary_adult);
+            jsonObject.put("beneficiary_family_adult", beneficiary_child);
+            jsonObject.put("beneficiary_sustenance", beneficiarysustenance);
+            jsonObject.put("beneficiary_purpose", beneficiaryLoanPurpose);
+            jsonObject.put("beneficiary_termloan", beneficiaryLoanAmount);
+            jsonObject.put("beneficiary_tenor", beneficiaryTenure);
+            jsonObject.put("existing_apgvb_loan", beneficiaryotherLoans);
+            jsonObject.put("existing_otherbank_loans", beneficiaryotherLoans_2);
+            jsonObject.put("own_property", beneficiaryOwnProp);
+            jsonObject.put("remark", null);
+            jsonObject.put("id_details", beneficiaryIddetails);
+            jsonObject.put("conductedon", null);
+            jsonObject.put("conductedby", null);
+            jsonObject.put("observation", null);
+            jsonObject.put("status", 0);
+            //posting Date and nearestbank
+            jsonObject.put("PostingDate", null);
+            jsonObject.put("nearestapgvbbank", beneficiaryBank);
 
-                jsonObject.put("is_read",0);
-                jsonObject.put("ro",regionalOffice);
-                jsonObject.put("armgrlatitude","0");
-                jsonObject.put("armgrlongitude","0");
-                jsonObject.put("armgrstatus",0);
-                jsonObject.put("ddate",null);
-                jsonObject.put("dmoney",null);
-                jsonObject.put("rreason",null);
-                //jsonObject.put("imloanstypeid",imLoanType);
-                JSONObject jsonObject2 = new JSONObject();
-                jsonObject2.put("id",imLoanType);
-                jsonObject.put("imloanstype",jsonObject2);
-                data_json = jsonObject.toString();
+            jsonObject.put("is_read", 0);
+            jsonObject.put("ro", regionalOffice);
+            jsonObject.put("armgrlatitude", "0");
+            jsonObject.put("armgrlongitude", "0");
+            jsonObject.put("armgrstatus", 0);
+            jsonObject.put("ddate", null);
+            jsonObject.put("dmoney", null);
+            jsonObject.put("rreason", null);
+            //jsonObject.put("imloanstypeid",imLoanType);
+            JSONObject jsonObject2 = new JSONObject();
+            jsonObject2.put("id", imLoanType);
+            jsonObject.put("imloanstype", jsonObject2);
+            data_json = jsonObject.toString();
 
                 /*
          {
@@ -478,38 +451,38 @@ public class LoanActivity_ReviewScreen extends AppCompatActivity implements LogO
     }
                  */
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            Log.d("RESPONSE","ID"+imLoanType)
-;        Log.d("RESPONSE","JSON"+data_json);
-            MediaType JSON = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(JSON, data_json);
-            okhttp3.Request request = new Request.Builder()
-                    .url("https://aepsapi.gramtarang.org:8008/mint/loans/registration")
-                    .addHeader("Accept", "*/*")
-                    .post(body)
-                    .build();
-            httpClient.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                }
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    assert response.body() != null;
-                    //the response we are getting from api
-                    response_String = response.body().string();
-                    if (response_String != null) {
-                        Log.d("TAG","Success");
-                        Log.d("TAG","Success Response is: "+response_String.toString());
-
-                    } else {
-                        Log.d("TAG","failed");
-                        }
-                }
-            });
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+        Log.d("RESPONSE", "ID" + imLoanType)
+        ;
+        Log.d("RESPONSE", "JSON" + data_json);
+        MediaType JSON = MediaType.parse("application/json");
+        RequestBody body = RequestBody.create(JSON, data_json);
+        okhttp3.Request request = new Request.Builder()
+                .url("https://aepsapi.gramtarang.org:8008/mint/loans/registration")
+                .addHeader("Accept", "*/*")
+                .post(body)
+                .build();
+        httpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
 
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                assert response.body() != null;
+                //the response we are getting from api
+                response_String = response.body().string();
+                if (response_String != null) {
+                    Log.d("TAG", "Success");
+                    Log.d("TAG", "Success Response is: " + response_String.toString());
 
+                } else {
+                    Log.d("TAG", "failed");
+                }
+            }
+        });
+    }
 
 }

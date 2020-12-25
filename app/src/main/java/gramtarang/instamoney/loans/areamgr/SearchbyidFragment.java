@@ -36,9 +36,9 @@ public class SearchbyidFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 appId = et_appId.getText().toString();
-                Log.d("appID",appId);
-                Intent intent = new Intent(v.getContext(),loan_viewapp.class);
-                intent.putExtra("applicationId",appId);
+                Log.d("appID", appId);
+                Intent intent = new Intent(v.getContext(), loan_viewapp.class);
+                intent.putExtra("applicationId", appId);
                 startActivity(intent);
             }
         });

@@ -2,18 +2,17 @@ package gramtarang.instamoney.loans.areamgr;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
-
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 
 import gramtarang.instamoney.R;
 import gramtarang.instamoney.agent_login.activity_Login;
@@ -23,6 +22,7 @@ import gramtarang.instamoney.loans.areamgr.ui.main.SectionsPagerAdapter;
 public class MainActivity extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
     ImageView backbtn;
+
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
