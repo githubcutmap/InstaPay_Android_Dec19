@@ -178,28 +178,24 @@ public class activity_Aeps_BalanceEnq_Receipt extends AppCompatActivity implemen
         sendmsg.sendtransmsg(agent_phone_number,agent_name,message,transtype);
 */
         new SendTransDetailsSMS().execute();
-        tv_bankname.setText(bankName);
-        if(rrn_no==null){
-            tv_rrnno.setText("Not Applicable");
-        }
-        else{
-            tv_rrnno.setText(rrn_no);
-        }
-        if(trans_id==null){
-            tv_transid.setText("Not Applicable");
-        }
-        else{
-            tv_transid.setText(trans_id);
-        }
-        if(available_balance==null){
-            tv_bal.setText("Not Applicable");
-        }
-        else{
-            tv_bal.setText(available_balance);
-        }
+
 
 
         try {
+            tv_bankname.setText(bankName);
+
+            if(trans_id==null){
+                tv_transid.setText("Not Applicable");
+            }
+            else{
+                tv_transid.setText(trans_id);
+            }
+            if(available_balance==null){
+                tv_bal.setText("Not Applicable");
+            }
+            else{
+                tv_bal.setText(available_balance);
+            }
             tv_descriptionMessage.setText(status);
             tv_CustomerName.setText(custName);
             tv_transid.setText(trans_id);

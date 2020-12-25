@@ -263,7 +263,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:fontFamily="@font/bentham"
-                        android:text="TXN ID"
+                        android:text="TXN ID :"
                         android:textColor="@color/grayblack"
                         android:textSize="16sp"
                         android:textStyle="bold" />

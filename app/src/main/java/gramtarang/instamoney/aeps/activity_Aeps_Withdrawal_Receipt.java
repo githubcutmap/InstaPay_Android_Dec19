@@ -176,6 +176,7 @@ public class activity_Aeps_Withdrawal_Receipt extends AppCompatActivity implemen
         // fpTransId=intent.getStringExtra("fpTransId");
         status=intent.getStringExtra("status");
         status_code=intent.getStringExtra("status_code");
+        Toast.makeText(activity_Aeps_Withdrawal_Receipt.this,"BALANCE IS"+available_balance,Toast.LENGTH_SHORT).show();
    /*  MobileSMSAPI sendmsg=new MobileSMSAPI();
         sendmsg.sendtransmsg(agent_phone_number,agent_name,message,transtype);*/
 new SendTransDetailsSMS().execute();
