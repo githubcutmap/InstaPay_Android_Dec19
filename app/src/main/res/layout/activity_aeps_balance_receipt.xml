@@ -129,6 +129,9 @@
                         android:textSize="16sp"
                         />
                 </LinearLayout>
+
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -147,16 +150,16 @@
                         android:textStyle="bold"
 
                         />
-
                     <TextView
-                        android:id="@+id/rrn_no"
+                        android:id="@+id/imid"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
                         android:fontFamily="sans-serif"
-            android:textColor="@color/grayblack"
+                        android:textColor="@color/grayblack"
+                        android:textSize="14sp"
 
                         />
+
                 </LinearLayout>
 
                 <LinearLayout

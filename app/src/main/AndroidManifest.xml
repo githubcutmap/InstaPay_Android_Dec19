@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="gramtarang.mint">
-    <uses-permission android:name="android.permission.SHUTDOWN"
-        tools:ignore="ProtectedPermissions" />
+    package="gramtarang.instamoney">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -11,11 +10,13 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
+
     <uses-permission
-        android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
-        tools:ignore="ProtectedPermissions" />
+        android:name="android.permission.READ_PHONE_STATE"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -28,87 +29,87 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".utils.DatePick"></activity>
+        <activity android:name="gramtarang.instamoney.utils.DatePick"></activity>
 
-        <activity android:name=".utils.DatePickers" />
+        <activity android:name="gramtarang.instamoney.utils.DatePickers" />
         <activity
-            android:name=".agent_login.WalletFragment"
+            android:name="gramtarang.instamoney.agent_login.WalletFragment"
             tools:ignore="Instantiatable" />
         <activity
-            android:name=".agent_login.activity_AgentProfile"
+            android:name="gramtarang.instamoney.agent_login.activity_AgentProfile"
             android:label="@string/title_activity__agent_profile"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" >
 
         </activity>
-        <activity android:name=".loans.LoanActivity_Category" />
-        <activity android:name=".bbps.bbps_receipt" />
-        <activity android:name=".bbps.bbps_billpayment" />
-        <activity android:name=".bbps.bbps_billfetch" />
-        <activity android:name=".bbps.bbps_biller" />
-        <activity android:name=".loans.LoanActivity_PrimaryScreen" />
+        <activity android:name="gramtarang.instamoney.loans.LoanActivity_Category" />
+        <activity android:name="gramtarang.instamoney.bbps.bbps_receipt" />
+        <activity android:name="gramtarang.instamoney.bbps.bbps_billpayment" />
+        <activity android:name="gramtarang.instamoney.bbps.bbps_billfetch" />
+        <activity android:name="gramtarang.instamoney.bbps.bbps_biller" />
+        <activity android:name="gramtarang.instamoney.loans.LoanActivity_PrimaryScreen" />
         <activity
-            android:name=".loans.areamgr.MainActivity"
+            android:name="gramtarang.instamoney.loans.areamgr.MainActivity"
             android:label="@string/title_activity_main" />
-        <activity android:name=".utils.LoginVerification" />
-        <activity android:name=".loans.LoanActivity_viewAppId" />
-        <activity android:name=".loans.LoanActivity_ReviewScreen" />
-        <activity android:name=".loans.LoanActivity_DocumentsUpload" />
-        <activity android:name=".aeps.activity_Aeps_Ministatement_Report" />
-        <activity android:name=".agent_login.activity_Login" />
-        <activity android:name=".agent_login.Dashboard">
+        <activity android:name="gramtarang.instamoney.utils.LoginVerification" />
+        <activity android:name="gramtarang.instamoney.loans.LoanActivity_viewAppId" />
+        <activity android:name="gramtarang.instamoney.loans.LoanActivity_ReviewScreen" />
+        <activity android:name="gramtarang.instamoney.loans.LoanActivity_DocumentsUpload" />
+        <activity android:name="gramtarang.instamoney.aeps.activity_Aeps_Ministatement_Report" />
+        <activity android:name="gramtarang.instamoney.agent_login.activity_Login" />
+        <activity android:name="gramtarang.instamoney.agent_login.Dashboard">
 
         </activity>
-        <activity android:name=".loans.areamgr.loan_viewapp" />
+        <activity android:name="gramtarang.instamoney.loans.areamgr.loan_viewapp" />
         <activity
-            android:name=".aeps.activity_Aeps_HomeScreen"
-            android:parentActivityName=".agent_login.Dashboard" />
+            android:name="gramtarang.instamoney.aeps.activity_Aeps_HomeScreen"
+            android:parentActivityName="gramtarang.instamoney.agent_login.Dashboard" />
         <activity
-            android:name=".pan.PanCard"
-            android:parentActivityName=".agent_login.Dashboard" />
+            android:name="gramtarang.instamoney.pan.PanCard"
+            android:parentActivityName="gramtarang.instamoney.agent_login.Dashboard" />
         <activity
-            android:name=".loans.LoanActivity_FinalScreen"
-            android:parentActivityName=".aeps.activity_Aeps_HomeScreen" />
+            android:name="gramtarang.instamoney.loans.LoanActivity_FinalScreen"
+            android:parentActivityName="gramtarang.instamoney.aeps.activity_Aeps_HomeScreen" />
         <activity
-            android:name=".loans.LoanActivity_MainScreen"
-            android:parentActivityName=".agent_login.Dashboard" />
+            android:name="gramtarang.instamoney.loans.LoanActivity_MainScreen"
+            android:parentActivityName="gramtarang.instamoney.agent_login.Dashboard" />
         <activity
-            android:name=".loans.LoanActivity_SecondaryScreen"
-            android:parentActivityName=".loans.LoanActivity_MainScreen" />
+            android:name="gramtarang.instamoney.loans.LoanActivity_SecondaryScreen"
+            android:parentActivityName="gramtarang.instamoney.loans.LoanActivity_MainScreen" />
         <activity
-            android:name=".loans.LoanActivity_SearchViewApplication"
-            android:parentActivityName=".loans.LoanActivity_MainScreen" />
+            android:name="gramtarang.instamoney.loans.LoanActivity_SearchViewApplication"
+            android:parentActivityName="gramtarang.instamoney.loans.LoanActivity_MainScreen" />
         <activity
-            android:name=".loans.LoanActuivity_ViewApplication"
-            android:parentActivityName=".loans.LoanActivity_MainScreen" />
+            android:name="gramtarang.instamoney.loans.LoanActuivity_ViewApplication"
+            android:parentActivityName="gramtarang.instamoney.loans.LoanActivity_MainScreen" />
         <activity
-            android:name=".agent_login.activity_AgentsProfile"
-            android:parentActivityName=".aeps.activity_Aeps_HomeScreen" />
+            android:name="gramtarang.instamoney.agent_login.activity_AgentsProfile"
+            android:parentActivityName="gramtarang.instamoney.aeps.activity_Aeps_HomeScreen" />
         <activity
-            android:name=".aeps.activity_Aeps_BalanceEnq_Receipt"
-            android:parentActivityName=".aeps.activity_Aeps_HomeScreen" />
+            android:name="gramtarang.instamoney.aeps.activity_Aeps_BalanceEnq_Receipt"
+            android:parentActivityName="gramtarang.instamoney.aeps.activity_Aeps_HomeScreen" />
         <activity
-            android:name=".aeps.activity_Aeps_BalanceEnquiry"
-            android:parentActivityName=".aeps.activity_Aeps_HomeScreen" />
+            android:name="gramtarang.instamoney.aeps.activity_Aeps_BalanceEnquiry"
+            android:parentActivityName="gramtarang.instamoney.aeps.activity_Aeps_HomeScreen" />
         <activity
-            android:name=".aeps.activity_Aeps_Withdraw"
-            android:parentActivityName=".aeps.activity_Aeps_HomeScreen" />
+            android:name="gramtarang.instamoney.aeps.activity_Aeps_Withdraw"
+            android:parentActivityName="gramtarang.instamoney.aeps.activity_Aeps_HomeScreen" />
         <activity
-            android:name=".aeps.activity_Aeps_Withdrawal_Receipt"
-            android:parentActivityName=".aeps.activity_Aeps_HomeScreen" />
+            android:name="gramtarang.instamoney.aeps.activity_Aeps_Withdrawal_Receipt"
+            android:parentActivityName="gramtarang.instamoney.aeps.activity_Aeps_HomeScreen" />
         <activity
-            android:name=".utils.EodReport"
-            android:parentActivityName=".aeps.activity_Aeps_HomeScreen" />
+            android:name="gramtarang.instamoney.utils.EodReport"
+            android:parentActivityName="gramtarang.instamoney.aeps.activity_Aeps_HomeScreen" />
         <activity
-            android:name=".aeps.activity_Aeps_Ministatement"
-            android:parentActivityName=".aeps.activity_Aeps_HomeScreen" />
+            android:name="gramtarang.instamoney.aeps.activity_Aeps_Ministatement"
+            android:parentActivityName="gramtarang.instamoney.aeps.activity_Aeps_HomeScreen" />
 
-        <receiver android:name=".utils.OTPReceiver">
+        <receiver android:name="gramtarang.instamoney.utils.OTPReceiver">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
 
-        <activity android:name=".agent_login.activity_WelcomeScreen">
+        <activity android:name="gramtarang.instamoney.agent_login.activity_WelcomeScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
