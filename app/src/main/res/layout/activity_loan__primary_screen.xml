@@ -324,21 +324,26 @@
                         android:layout_column="3"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
+             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/password"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:passwordToggleEnabled="true"
                         app:hintTextAppearance="@style/tf"
                         app:boxBackgroundColor="#f1f1f1"
-
                         app:boxStrokeColor="@color/colorPrimary"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_margin="5dp"
@@ -346,11 +351,10 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/aadhaar_number"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/editbox"
                             android:ems="13"
-                            android:layout_weight="1"
                             android:fontFamily="sans-serif"
                             android:hint="Aadhar Number"
                             android:inputType="numberPassword"
@@ -365,7 +369,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
-                        android:id="@+id/verify"
+                        android:id="@+id/aadverify"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|center"
@@ -373,15 +377,14 @@
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/bentham"
-                        android:text="verify"
+                        android:text="Verify"
                         android:textColor="@color/colorPrimary" />
 
                 </LinearLayout>
-                <TextView
-                    android:id="@+id/aadverify"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="VERIFY"/>
+
+             </LinearLayout>
+
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/pan_d"
                     android:hint="PAN No. (Optional)"
