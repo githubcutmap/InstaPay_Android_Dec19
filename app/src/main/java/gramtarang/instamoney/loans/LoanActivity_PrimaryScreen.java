@@ -538,8 +538,8 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
         String username = pref.getString("Username", "No name defined");
         String password = pref.getString("Password", "No name defined");
         Utils utils = new Utils();
-        //OkHttpClient httpClient = utils.createAuthenticatedClient(username, password);
-        OkHttpClient httpClient = utils.createAuthenticatedClient("1010", "Test@123");
+        OkHttpClient httpClient = utils.createAuthenticatedClient(username, password);
+       // OkHttpClient httpClient = utils.createAuthenticatedClient("1010", "Test@123");
 
         @Override
         protected String doInBackground(Request... requests) {
@@ -554,8 +554,8 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
 
                 //of the api calling got failed then it will go for onFailure,inside this we have added one alertDialog
                 public void onFailure(Call call, IOException e) {
-                    // Toast.makeText(activity_Login.this,"Agent not registered.\nPlease Contact Administrator"+androidId,Toast.LENGTH_SHORT).show();
-
+                     //Toast.makeText(LoanActivity_PrimaryScreen.this,"Get Bank: Failure "+e,Toast.LENGTH_SHORT).show();
+                    Log.d(TAG,"Get Bank: Failure \nIOEx"+e);
                 }
 
                 //if API call got success then it will go for this onResponse also where we are collection
@@ -564,6 +564,7 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
                 public void onResponse(Call call, Response response) throws IOException {
                     assert response.body() != null;
                     response_String = response.body().string();
+                    Log.d(TAG,"Get Bank: Responce "+ response_String);
                     if (response_String != null) {
                         JSONArray jsonResponse = null;
                         //Log.d("TAG", "Response:" + response_String);
@@ -581,6 +582,7 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Log.d(TAG,"Get Bank: catch "+e);
                         }
 
 
