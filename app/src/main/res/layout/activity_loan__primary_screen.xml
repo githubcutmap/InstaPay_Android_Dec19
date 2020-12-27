@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@drawable/bg1"
     >
-     <TextView
+    <TextView
         android:id="@+id/textView118"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,16 +18,16 @@
         android:textSize="16sp" />
 
     <TextView
-            android:id="@+id/tv_loanscheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:text="MSME SUYOG\n APPLICATION"
-            android:fontFamily="@font/bentham"
-            android:textColor="@color/maroon"
-            android:textStyle="bold"
-            android:textSize="24sp" />
+        android:id="@+id/tv_loanscheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:text="MSME SUYOG\n APPLICATION"
+        android:fontFamily="@font/bentham"
+        android:textColor="@color/maroon"
+        android:textStyle="bold"
+        android:textSize="24sp" />
 
 
     <ScrollView android:layout_marginTop="10dp"
@@ -56,21 +56,21 @@
                     android:layout_margin="5dp"
                     app:hintTextAppearance="@style/tf"
                     app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <EditText
-                    android:id="@+id/beneficiary_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:ems="10"
-                    android:maxLength="50"
-                    android:hint="Name of the Applicant"
-                    android:inputType="textPersonName"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="@color/grayblack"
-                    android:textCursorDrawable="@null" />
+                    app:boxStrokeColor="@color/colorPrimary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <EditText
+                        android:id="@+id/beneficiary_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:ems="10"
+                        android:maxLength="50"
+                        android:hint="Name of the Applicant"
+                        android:inputType="textPersonName"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/grayblack"
+                        android:textCursorDrawable="@null" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -81,51 +81,51 @@
                     android:layout_margin="5dp"
                     app:hintTextAppearance="@style/tf"
                     app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <EditText
-                    android:id="@+id/accno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/editbox"
-                    android:paddingLeft="10dp"
-                    android:ems="10"
-                    android:maxLength="11"
-                    android:hint="Account Number"
-                    android:inputType="number"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="@color/grayblack"
-                    android:textCursorDrawable="@null" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                  <!--<EditText
-                    android:id="@+id/unitname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/editbox"
-                    android:paddingLeft="10dp"
-                    android:ems="10"
-                    android:hint="Name of the Unit"
-                    android:inputType="textPersonName"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="@color/grayblack"
-                    android:textCursorDrawable="@null" />-->
-
-                    <Spinner
-                        android:id="@+id/unitname"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <EditText
+                        android:id="@+id/accno"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_margin="5dp"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/editbox"
                         android:paddingLeft="10dp"
                         android:ems="10"
-                        android:autofillHints="Gender "
+                        android:maxLength="11"
+                        android:hint="Account Number"
+                        android:inputType="number"
+                        android:textSize="16sp"
                         android:fontFamily="sans-serif"
                         android:textColor="@color/grayblack"
-                        android:entries="@array/unit"/>
+                        android:textCursorDrawable="@null" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--<EditText
+                  android:id="@+id/unitname"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="@drawable/editbox"
+                  android:paddingLeft="10dp"
+                  android:ems="10"
+                  android:hint="Name of the Unit"
+                  android:inputType="textPersonName"
+                  android:textSize="16sp"
+                  android:fontFamily="sans-serif"
+                  android:textColor="@color/grayblack"
+                  android:textCursorDrawable="@null" />-->
+
+                <Spinner
+                    android:id="@+id/unitname"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/editbox"
+                    android:paddingLeft="10dp"
+                    android:ems="10"
+                    android:autofillHints="Gender "
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/grayblack"
+                    android:entries="@array/unit"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_field3"
@@ -135,21 +135,21 @@
                     android:layout_margin="5dp"
                     app:hintTextAppearance="@style/tf"
                     app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <EditText
-                    android:id="@+id/unitaddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/editbox"
-                    android:paddingLeft="10dp"
-                    android:ems="10"
-                    android:hint="Business/Unit Address"
-                    android:inputType="textPersonName"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="@color/grayblack"
-                    android:textCursorDrawable="@null" />
+                    app:boxStrokeColor="@color/colorPrimary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <EditText
+                        android:id="@+id/unitaddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/editbox"
+                        android:paddingLeft="10dp"
+                        android:ems="10"
+                        android:hint="Business/Unit Address"
+                        android:inputType="textPersonName"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/grayblack"
+                        android:textCursorDrawable="@null" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -160,22 +160,22 @@
                     android:layout_margin="5dp"
                     app:hintTextAppearance="@style/tf"
                     app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <EditText
-                    android:id="@+id/pro_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:background="@drawable/editbox"
-                    android:ems="10"
-                    android:hint="Name of the Propreitor"
-                    android:inputType="textPersonName"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="@color/grayblack"
-                    android:textCursorDrawable="@null"
-                    android:layout_column="3"/>
+                    app:boxStrokeColor="@color/colorPrimary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <EditText
+                        android:id="@+id/pro_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:background="@drawable/editbox"
+                        android:ems="10"
+                        android:hint="Name of the Propreitor"
+                        android:inputType="textPersonName"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/grayblack"
+                        android:textCursorDrawable="@null"
+                        android:layout_column="3"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -186,22 +186,22 @@
                     android:layout_margin="5dp"
                     app:hintTextAppearance="@style/tf"
                     app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <EditText
-                    android:id="@+id/resaddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:background="@drawable/editbox"
-                    android:ems="10"
-                    android:hint="Residential Address"
-                    android:inputType="textPersonName"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="@color/grayblack"
-                    android:textCursorDrawable="@null"
-                    android:layout_column="3"/>
+                    app:boxStrokeColor="@color/colorPrimary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <EditText
+                        android:id="@+id/resaddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:background="@drawable/editbox"
+                        android:ems="10"
+                        android:hint="Residential Address"
+                        android:inputType="textPersonName"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/grayblack"
+                        android:textCursorDrawable="@null"
+                        android:layout_column="3"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -212,24 +212,24 @@
                     android:layout_margin="5dp"
                     app:hintTextAppearance="@style/tf"
                     app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <EditText
-                    android:id="@+id/et_add_villagepo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="-5dp"
-                    android:paddingLeft="10dp"
-                    android:background="@drawable/editbox"
-                    android:ems="10"
-                    android:hint="Village P/O Mandal"
-                    android:inputType="textPersonName"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="@color/grayblack"
-                    android:textCursorDrawable="@null"
-                    android:layout_column="3"/>
+                    app:boxStrokeColor="@color/colorPrimary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <EditText
+                        android:id="@+id/et_add_villagepo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="-5dp"
+                        android:paddingLeft="10dp"
+                        android:background="@drawable/editbox"
+                        android:ems="10"
+                        android:hint="Village P/O Mandal"
+                        android:inputType="textPersonName"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/grayblack"
+                        android:textCursorDrawable="@null"
+                        android:layout_column="3"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -247,9 +247,9 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
                         app:hintTextAppearance="@style/tf"
-                    app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxBackgroundColor="#f1f1f1"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_weight="1">
 
                         <EditText
@@ -273,25 +273,25 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
                         app:hintTextAppearance="@style/tf"
-                    app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxBackgroundColor="#f1f1f1"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_weight="1">
-                    <EditText
-                        android:id="@+id/et_add_pincode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:paddingLeft="10dp"
-                        android:background="@drawable/editbox"
-                        android:hint="Pin-Code"
-                        android:maxLength="6"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:textSize="16sp"
-                        android:fontFamily="sans-serif"
-                        android:textColor="@color/grayblack"
-                        android:textCursorDrawable="@null"/>
+                        <EditText
+                            android:id="@+id/et_add_pincode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:paddingLeft="10dp"
+                            android:background="@drawable/editbox"
+                            android:hint="Pin-Code"
+                            android:maxLength="6"
+                            android:ems="10"
+                            android:inputType="number"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif"
+                            android:textColor="@color/grayblack"
+                            android:textCursorDrawable="@null"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
@@ -305,62 +305,83 @@
                     android:layout_margin="5dp"
                     app:hintTextAppearance="@style/tf"
                     app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <EditText
-                    android:id="@+id/dob"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:background="@drawable/editbox"
-                    android:ems="10"
-                    android:maxLength="10"
-                    android:hint="Date of Birth(DD/MM/YYYY)"
-                    android:inputType="date"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="@color/grayblack"
-                    android:textCursorDrawable="@null"
-                    android:layout_column="3"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:passwordToggleEnabled="true"
-                    app:hintTextAppearance="@style/tf"
-                    app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_margin="5dp"
-                    android:layout_column="3">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/aadhaar_number"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <EditText
+                        android:id="@+id/dob"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/editbox"
-                        android:ems="13"
-                        android:fontFamily="sans-serif"
-                        android:hint="Aadhar Number"
-                        android:inputType="numberPassword"
-                        android:maxLength="12"
                         android:paddingLeft="10dp"
-                        android:textColor="#6B6B6B"
+                        android:background="@drawable/editbox"
+                        android:ems="10"
+                        android:maxLength="10"
+                        android:hint="Date of Birth(DD/MM/YYYY)"
+                        android:inputType="date"
                         android:textSize="16sp"
-                        app:hintTextAppearance="@style/tf"
-                    app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" />
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/grayblack"
+                        android:textCursorDrawable="@null"
+                        android:layout_column="3"/>
                 </com.google.android.material.textfield.TextInputLayout>
-<TextView
-    android:id="@+id/aadverify"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="VERIFY"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:passwordToggleEnabled="true"
+                        app:hintTextAppearance="@style/tf"
+                        app:boxBackgroundColor="#f1f1f1"
+
+                        app:boxStrokeColor="@color/colorPrimary"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_margin="5dp"
+                        android:layout_column="3">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/aadhaar_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/editbox"
+                            android:ems="13"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif"
+                            android:hint="Aadhar Number"
+                            android:inputType="numberPassword"
+                            android:maxLength="12"
+                            android:paddingLeft="10dp"
+                            android:textColor="#6B6B6B"
+                            android:textSize="16sp"
+                            app:hintTextAppearance="@style/tf"
+                            app:boxBackgroundColor="#f1f1f1"
+                            app:boxStrokeColor="@color/colorPrimary"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/verify"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right|center"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/bentham"
+                        android:text="verify"
+                        android:textColor="@color/colorPrimary" />
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/aadverify"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="VERIFY"/>
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/pan_d"
                     android:hint="PAN No. (Optional)"
@@ -370,8 +391,8 @@
                     android:layout_margin="5dp"
                     app:hintTextAppearance="@style/tf"
                     app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_column="3">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/pan_number"
@@ -380,13 +401,14 @@
                         android:paddingLeft="10dp"
                         android:background="@drawable/editbox"
                         android:ems="12"
+                        android:enabled="false"
                         android:fontFamily="sans-serif"
                         android:inputType="textPassword"
                         android:maxLength="10"
                         app:hintTextAppearance="@style/tf"
-                    app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxBackgroundColor="#f1f1f1"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:textCursorDrawable="@null"
                         android:textSize="18sp"
                         />
@@ -430,49 +452,50 @@
                     android:layout_margin="5dp"
                     app:hintTextAppearance="@style/tf"
                     app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <AutoCompleteTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:paddingLeft="10dp"
-                    android:background="@drawable/editbox"
-                    android:id="@+id/near_bank_auto"
-                    android:layout_column="3"
-                    android:hint="Nearest APGVB Bank"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="@color/grayblack"
-                    />
+                    app:boxStrokeColor="@color/colorPrimary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <AutoCompleteTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingLeft="10dp"
+                        android:background="@drawable/editbox"
+                        android:id="@+id/near_bank_auto"
+                        android:layout_column="3"
+                        android:hint="Nearest APGVB Bank"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/grayblack"
+                        />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-                  <!--<EditText
+                <!--<EditText
+                  android:id="@+id/occupation"
+                  android:ems="10"
+                  android:inputType="textPersonName"
+                  android:hint="Line of Activity"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:paddingLeft="10dp"
+                  android:background="@drawable/editbox"
+                  android:textSize="16sp"
+                  android:fontFamily="sans-serif"
+                  android:textColor="@color/grayblack"
+                  android:textCursorDrawable="@null" />-->
+                <Spinner
                     android:id="@+id/occupation"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:hint="Line of Activity"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_margin="5dp"
                     android:background="@drawable/editbox"
-                    android:textSize="16sp"
+                    android:paddingLeft="10dp"
+                    android:ems="10"
+
+                    android:autofillHints="Gender "
                     android:fontFamily="sans-serif"
                     android:textColor="@color/grayblack"
-                    android:textCursorDrawable="@null" />-->
-                    <Spinner
-                        android:id="@+id/occupation"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/editbox"
-                        android:paddingLeft="10dp"
-                        android:ems="10"
-                        android:autofillHints="Gender "
-                        android:fontFamily="sans-serif"
-                        android:textColor="@color/grayblack"
-                        android:entries="@array/lineofactivity"/>
+                    android:entries="@array/lineofactivity"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -487,28 +510,29 @@
                         android:fontFamily="sans-serif"
                         android:layout_margin="5dp"
                         app:hintTextAppearance="@style/tf"
-                    app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxBackgroundColor="#f1f1f1"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_column="3">
-                    <EditText
-                        android:id="@+id/phone_number"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:background="@drawable/editbox"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:maxLength="10"
-                        android:hint="Phone No. "
-                        android:inputType="number"
-                        android:textSize="16sp"
-                        android:fontFamily="sans-serif"
-                        android:textColor="@color/grayblack"
-                        android:textCursorDrawable="@null"
-                        >
+                        <EditText
+                            android:id="@+id/phone_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:background="@drawable/editbox"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:enabled="false"
+                            android:maxLength="10"
+                            android:hint="Phone No. "
+                            android:inputType="number"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif"
+                            android:textColor="@color/grayblack"
+                            android:textCursorDrawable="@null"
+                            >
 
-                    </EditText>
+                        </EditText>
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -534,23 +558,23 @@
                     android:layout_margin="5dp"
                     app:hintTextAppearance="@style/tf"
                     app:boxBackgroundColor="#f1f1f1"
-        app:boxStrokeColor="@color/colorPrimary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <EditText
-                    android:id="@+id/enteredotp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:background="@drawable/editbox"
-                    android:ems="10"
-                    android:maxLength="6"
-                    android:hint="Enter OTP "
-                    android:inputType="number"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="@color/grayblack"
-                    android:textCursorDrawable="@null"
-                    android:layout_column="3"/>
+                    app:boxStrokeColor="@color/colorPrimary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <EditText
+                        android:id="@+id/enteredotp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:background="@drawable/editbox"
+                        android:ems="10"
+                        android:maxLength="6"
+                        android:hint="Enter OTP "
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/grayblack"
+                        android:textCursorDrawable="@null"
+                        android:layout_column="3"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>

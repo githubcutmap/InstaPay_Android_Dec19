@@ -147,6 +147,7 @@ public class LoginVerification extends AppCompatActivity implements LogOutTimer.
         agentemail=preferences.getString("AgentEmail","No name defined");
         agentname=preferences.getString("AgentName","No name defined");
         generated_pin=preferences.getString("LoginOTP","No name defined");
+        Log.d("TAG","OTP for Login:"+generated_pin);
         otp_type.setText(agentphn);
 
 

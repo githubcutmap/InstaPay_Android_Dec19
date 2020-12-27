@@ -66,7 +66,7 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
     private Spinner sp_gender, sp_unitname, sp_lineactivity;
     boolean isValidDOB;
     private AutoCompleteTextView bank_autofill;
-    private String response_String, beneficiaryId2, branchcode, trim_branch, beneficiarydob, pro_name, accountno,
+    private String aadresponse="null",response_String, beneficiaryId2, branchcode, trim_branch, beneficiarydob, pro_name, accountno,
             unitname, unitaddress, resaddress, vpo, distt, pin, lineactivity, loan_id_generation1, load_id_generation2,
             selected_bank_id, businessexistance, selected_apgvb_branch, selected_bank_name, generated_otp, beneficiary_name,
             beneficiary_aadhaar, beneficiary_pan, beneficiary_phone, beneficiary_uniqueId, loan_type, gender, entered_otp;
@@ -78,7 +78,7 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
     public final String preference = "mypref";
     boolean doubleBackToExitPressedOnce = false;
     private int selected_index;
-
+Utils utils=new Utils();
     @Override
     protected void onStart() {
         super.onStart();
@@ -184,15 +184,23 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
         String selectedBankLoanScheme = preferences2.getString("LoanScheme", "LoanScheme");
         loanScheme.setText(selectedBankLoanScheme + "\nApplication");
 
-/*aadverify.setOnClickListener(new View.OnClickListener() {
+aadverify.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        beneficiary_aadhaar=et_aadhaar.getText().toString();
+        try{
+        beneficiary_aadhaar=et_aadhaar.getText().toString();}catch (Exception e){
+            Toast.makeText(LoanActivity_PrimaryScreen.this,"Enter Aadhaar Number",Toast.LENGTH_SHORT).show();
+
+        }
+        isValidAadhaar = utils.isValidAadhaar(beneficiary_aadhaar);
+        if(isValidAadhaar){
         Log.d("TAG","AADHAAR RESPONSE-1"+beneficiary_aadhaar);
-       new apiCall_verifyAadhaar().execute();
+       new apiCall_verifyAadhaar().execute();}else{
+            Toast.makeText(LoanActivity_PrimaryScreen.this,"Invalid Aadhaar Number",Toast.LENGTH_SHORT).show();
+        }
 
     }
-});*/
+});
 
         new apiCall_getloanbanks().execute();
         Utils utils = new Utils();
@@ -234,7 +242,7 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
                 //selected_apgvb_branch= utils.AutoCompleteTV_ApgvbBranch(LoanActivity_PrimaryScreen.this,bank_autofill,apgvbBranch_arr,apgvbBranchID_arr,"LoanActivity_Primary");
                 selected_apgvb_branch = selected_apgvb_branch.replaceAll("\\s", "");
                 isValidPhone = utils.isValidPhone(beneficiary_phone);
-                isValidAadhaar = utils.isValidAadhaar(beneficiary_aadhaar);
+
                 // isValidEmail=utils.isValidEmail(beneficiary_email);
                 isValidDOB = utils.isValidDOB(beneficiarydob);
 
@@ -259,7 +267,7 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
                 String flagid = utils.getOTPString();
                 beneficiary_uniqueId = "apgvb" + "/" + "mudra" + "/" + trim_branch.toLowerCase() + "/" + flagid;
                 beneficiaryId2 = "APGVB" + "/" + branchcode + "/" + flagid;
-                new apiCall_verifyAadhaar().execute();
+                //new apiCall_verifyAadhaar().execute();
                 Log.d("TAG", "CHECK" + checkAadhaar);
                 Log.d("TAG", "ID is" + beneficiary_uniqueId);
 
@@ -385,7 +393,7 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
         verify_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (response_String.equals("false")) {
+
                     entered_otp = et_enteredotp.getText().toString().trim();
                     if (entered_otp.equals(generated_otp)) {
                         preferences = getSharedPreferences(mypreference,
@@ -422,9 +430,7 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
                     if (isSelectSendOTP == 0) {
                         et_enteredotp.setError("Please click on Send OTP");
                     }
-                } else {
-                    Toast.makeText(LoanActivity_PrimaryScreen.this, "Duplicate Aadhaar", Toast.LENGTH_SHORT).show();
-                }
+
 
             }
         });
@@ -450,15 +456,16 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
 
             unitaddress = et_unitaddress.getText().toString().trim();
             resaddress = et_resaddress.getText().toString().trim();
-
+Log.d("TAG","BOOLEAN FOR CHECK AADHAAR"+checkAadhaar);
             if (beneficiary_name != null && beneficiarydob != null && pro_name != null && beneficiary_name != null && beneficiary_phone.length() == 10 &&
-                    entered_otp.length() == 6 && accountno.length() == 11 && unitaddress != null && resaddress != null) {
+                    entered_otp.length() == 6 && accountno.length() == 11 && unitaddress != null && resaddress != null ) {
+
 
                 verify_otp.setEnabled(true);
-                verify_otp.setBackground(getDrawable(R.drawable.button));
+                verify_otp.setBackground(getDrawable(R.drawable.button));}
 
 
-            }
+
 
 
         }
@@ -475,8 +482,8 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
         String username = pref.getString("Username", "No name defined");
         String password = pref.getString("Password", "No name defined");
         Utils utils = new Utils();
-        // OkHttpClient httpClient = utils.createAuthenticatedClient(username, password);
-        OkHttpClient httpClient = utils.createAuthenticatedClient("1010", "Test@123");
+        OkHttpClient httpClient = utils.createAuthenticatedClient(username, password);
+        //OkHttpClient httpClient = utils.createAuthenticatedClient("1010", "Test@123");
 
 
         @Override
@@ -509,19 +516,41 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     assert response.body() != null;
-                    response_String = response.body().string();
-                    if (response_String != null) {
+                   aadresponse = response.body().string();
+                    if (aadresponse!= null) {
 
-                        Log.d("AADHAAR", "VERIFIED AADHAAR RESPONSE" + response_String);
+                        Log.d("AADHAAR", "VERIFIED AADHAAR RESPONSE" + aadresponse);
 
 
                     }
-                    if (response_String.equals("true")) {
+                    if (aadresponse.equals("true")) {
+                        LoanActivity_PrimaryScreen.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(LoanActivity_PrimaryScreen.this,"Duplicate Aadhaar",Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         checkAadhaar = false;
                     } else {
+                        LoanActivity_PrimaryScreen.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(LoanActivity_PrimaryScreen.this,"Aadhaar Verified",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        LoanActivity_PrimaryScreen.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                et_aadhaar.setEnabled(false);
+                                et_pan.setEnabled(true);
+                                et_phn.setEnabled(true);
+                                aadverify.setText("VERIFIED");
+                            }
+                        });
+
                         checkAadhaar = true;
                     }
-                    System.out.println("RESPONSE STRING IS" + response_String);
+                    System.out.println("RESPONSE STRING IS" + aadresponse);
 
                 }
 
@@ -578,7 +607,7 @@ public class LoanActivity_PrimaryScreen extends AppCompatActivity implements Log
                                 apgvbBranchID_arr.add(jresponse.getString("branchcode"));
                             }
                             //Log.d("TAG", "Response Banks:" + array1+ array2);
-                            Log.d("TAG", "Response Banks:" + apgvbBranch_arr + apgvbBranchID_arr);
+                            Log.d("TAG", "Response Banks from Loans:" + apgvbBranch_arr + apgvbBranchID_arr);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
