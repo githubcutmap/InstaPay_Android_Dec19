@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +25,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -342,7 +345,7 @@ public class loan_viewapp extends AppCompatActivity {
                             //nearestapgvb bank
                             String nearestapgvbbank = llist1.getJSONObject(i).getString("nearestapgvbbank");
 
-                            String beneficiary_lineofactivity = llist1.getJSONObject(i).getString("beneficiary_lineofactivity");
+                            String beneficiary_lineofactivity = llist1.getJSONObject(i).getString("beneficiarylineofactivity");
                             String beneficiary_fatherhusband = llist1.getJSONObject(i).getString("beneficiary_fatherhusband");
                             String beneficiary_dob = llist1.getJSONObject(i).getString("beneficiary_dob");
                             String beneficiary_aadhaarno = llist1.getJSONObject(i).getString("beneficiary_aadhaarno");
@@ -532,6 +535,7 @@ public class loan_viewapp extends AppCompatActivity {
 
         Thread thread = new Thread(new Runnable() {
 
+            @SuppressLint("ResourceType")
             @Override
             public void run() {
                 try  {
@@ -543,6 +547,8 @@ public class loan_viewapp extends AppCompatActivity {
 
                     
                 } catch (Exception e) {
+                    /*Snackbar.make(findViewById(R.layout.activity_loan_areamgr_viewapp), "Image Not Loaded"+e, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();*/
                     e.printStackTrace();
                 }
             }

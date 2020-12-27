@@ -13,6 +13,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -27,6 +28,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -206,7 +209,7 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
                 Log.d(TAG, "application ID: " + userSearchID);
 
                 if (userSearchID.length() == 17) {
-                    api_getAppdetails(userSearchID);
+                    api_getAppdetails(userSearchID,view);
                 } else {
                     etUserEnteredSearchID.setError("Invalid Application ID");
                 }
@@ -362,7 +365,7 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
     }
 
 
-    private void api_getAppdetails(String id) {
+    private void api_getAppdetails(String id,View v) {
         Utils utils = new Utils();
         preferences = getSharedPreferences(userpreference, Context.MODE_PRIVATE);
         username = preferences.getString("Username", "No name defined");
@@ -413,7 +416,7 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
                             //nearestapgvb bank
                             String nearestapgvbbank = llist1.getJSONObject(i).getString("nearestapgvbbank");
 
-                            String beneficiary_lineofactivity = llist1.getJSONObject(i).getString("beneficiary_lineofactivity");
+                            String beneficiary_lineofactivity = llist1.getJSONObject(i).getString("beneficiarylineofactivity");
                             String beneficiary_fatherhusband = llist1.getJSONObject(i).getString("beneficiary_fatherhusband");
                             String beneficiary_dob = llist1.getJSONObject(i).getString("beneficiary_dob");
                             String beneficiary_aadhaarno = llist1.getJSONObject(i).getString("beneficiary_aadhaarno");
@@ -476,7 +479,7 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
                         }
                         runOnUiThread(new Runnable() {
                             public void run() {
-                                fillDetails(appdetails);
+                                fillDetails(appdetails,v);
                             }
                         });
 
@@ -491,7 +494,7 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
         });
     }
 
-    private void fillDetails(ArrayList<String> appdetails) {
+    private void fillDetails(ArrayList<String> appdetails,View v) {
         tableView.setVisibility(View.VISIBLE);
         applicationArr = appdetails.toArray(new String[0]);
         Log.d(TAG, "application Arr: " + appdetails);
@@ -545,11 +548,11 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
         if (applicationArr[29].matches("1")) {
             appStatus.setText("Accepted By Area Manager");
         }
-        setproof(applicationArr[28], applicationArr[0]);
+        setproof(applicationArr[28], applicationArr[0],v);
 
     }
 
-    private void setproof(String bankname, String id) {
+    private void setproof(String bankname, String id,View view) {
 
         preferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         username = preferences.getString("Username", "No name defined");
@@ -561,30 +564,60 @@ public class LoanActivity_SearchViewApplication extends AppCompatActivity implem
         String code = bankname.toLowerCase().substring(0, 4) + "_" + id.substring(11, 17);
         Log.d("Setproof code", code);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         Authenticator.setDefault(new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password.toCharArray());
             }
         });
 
-        Thread thread = new Thread(new Runnable() {
+        /*URL myUrl = new URL("http://bankmgr.gramtarang.org:8081/mint/doc/downloadpd?fname=PD_apgvb_mudra_"+code+".jpg");
+                    HttpURLConnection conn = (HttpURLConnection) myUrl.openConnection();
+                    conn.setDoOutput(true);
+                    conn.setReadTimeout(30000);
+                    conn.setConnectTimeout(30000);
+                    conn.setUseCaches(false);
+                    conn.setAllowUserInteraction(false);
+                    conn.setRequestProperty("Content-Type", "application/json");
+                    conn.setRequestProperty("Accept-Charset", "UTF-8");
+                    conn.setRequestMethod("GET");
+                    String userCredentials = username.trim() + ":" + password.trim();
+                    String basicAuth = "Basic " + new String(Base64.encodeBytes(userCredentials.getBytes()));
+                    conn.setRequestProperty ("Authorization", basicAuth);*/
 
+
+
+        LoanActivity_SearchViewApplication.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    URL url = new URL("http://bankmgr.gramtarang.org:8081/mint/doc/downloadadh?fname=ADH_apgvb_mudra_" + code + ".jpg");
-                    Log.d("Setproof url", "http://bankmgr.gramtarang.org:8081/mint/doc/downloadadh?fname=ADH_apgvb_mudra_" + code + ".jpg");
-                    aadhaarBmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                    aadhaarProof.setImageBitmap(aadhaarBmp);
+            try {
+            URL url = new URL("http://bankmgr.gramtarang.org:8081/mint/doc/downloadadh?fname=ADH_apgvb_mudra_" + code + ".jpg");
+            Log.d("Setproof url", "http://bankmgr.gramtarang.org:8081/mint/doc/downloadadh?fname=ADH_apgvb_mudra_" + code + ".jpg");
+            aadhaarBmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            aadhaarProof.setImageBitmap(aadhaarBmp);
 
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        } catch (Exception e) {
+            Snackbar.make(view, "Image Not Found "+e, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            e.printStackTrace();
+        }
+
             }
         });
 
-        thread.start();
+        /*Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+
+            }
+        });
+
+        thread.start();*/
 
         Thread thread2 = new Thread(new Runnable() {
 
