@@ -62,6 +62,7 @@ public class Payout extends Fragment {
     private EditText et_amount, et_remarks;
     private ArrayList<String> banks_arr = new ArrayList<String>();
     private Button b_submit;
+    private TextView test;
 
 
     public Payout() {
@@ -93,6 +94,7 @@ public class Payout extends Fragment {
         et_amount = view.findViewById(R.id.id_et_amount);
         et_remarks = view.findViewById(R.id.id_et_remarks);
         b_submit = view.findViewById(R.id.id_button_submit);
+        test = view.findViewById(R.id.test);
 
     }
 
@@ -192,6 +194,8 @@ public class Payout extends Fragment {
             jsonObject.put("remarks", rm);
             jsonObject.put("otp_auth", "0");
             jsonObject.put("otp", "");
+            test.setText("spkey "+type+"\nexternal ref "+outletId+"\naccount "+bankAccountNo+"\nifsc "+ifsccode+
+                    "\nlat "+latitude+"\nlon "+longitude+"ipaddress "+ipaddress);
 
             jsonString = jsonObject.toString();
 
@@ -210,15 +214,6 @@ public class Payout extends Fragment {
             @Override
             public void onFailure(Call call, IOException e) {
             }
-
-            /* "agentid": "1011",
-                     "ipaccountno": "9160884610",
-                     "bankaccountno": "1234561235",
-                     "bankname": "SBI",
-                     "ifsccode": "IDCF1234B",
-                     "branch": "VSKP",
-                     "status": "1",
-                     "updatedon": "2020-12-03 11:00:00"*/
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 assert response.body() != null;
