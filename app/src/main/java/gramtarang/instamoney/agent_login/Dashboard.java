@@ -123,7 +123,6 @@ public class Dashboard extends AppCompatActivity implements LogOutTimer.LogOutLi
         improfile = findViewById(R.id.agentprofile);
         tv_timestamp = findViewById(R.id.menu_timestamp);
         tv_agentname = findViewById(R.id.agent_name);
-        tv_agentname.setText(agentname);
         tv_textMessage = findViewById(R.id.textMessage);
         llaeps = findViewById(R.id.ll_aeps);
         llbbps = findViewById(R.id.ll_bbps);
@@ -143,6 +142,7 @@ public class Dashboard extends AppCompatActivity implements LogOutTimer.LogOutLi
         bbps = preferences.getInt("bbps", 0);
         loan = preferences.getInt("loan", 0);
         card = preferences.getInt("card", 0);
+        tv_agentname.setText(agentname);
         String hour = utils.gethour();
         tv_textMessage.setText(hour + "!");
         new apiCall_getlastlogin().execute();//GET LAST LOGIN API

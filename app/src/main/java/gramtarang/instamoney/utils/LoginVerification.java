@@ -272,7 +272,7 @@ else{
                 jsonObject.put("s_id", null);
                 jsonObject.put("agentid",username);
                 jsonObject.put("androidid", androidId);
-                jsonObject.put("latitude",latitude.toString());
+                jsonObject.put("latitude",latitude);
                 jsonObject.put("longitude",longitude);
                 jsonObject.put("timestamp",null);
                 jsonObject.put("loginstatus",login_status);
@@ -283,6 +283,7 @@ else{
             }
             MediaType JSON = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(JSON, jsonString);
+            Log.d("RAF","Message 2"+jsonString);
             Request request = new Request.Builder()
                     .url("https://aepsapi.gramtarang.org:8008/mint/im/loginlogs")
                     .addHeader("Accept", "*/*")
@@ -299,6 +300,8 @@ else{
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     assert response.body() != null;
+                    String flag=response.body().toString();
+                    Log.d("RAF","Message 3"+flag);
                 }
 
             });
