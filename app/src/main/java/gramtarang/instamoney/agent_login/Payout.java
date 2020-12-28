@@ -1,6 +1,7 @@
 package gramtarang.instamoney.agent_login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -240,6 +241,10 @@ public class Payout extends Fragment {
                         String orderid = jsonResponse.getString("orderid");
                         Snackbar.make(v, payoutstatus + "  " + ipay_uuid + "  " + orderid, Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
+                        if (payoutstatus.matches("Transaction Successful")){
+                            Intent intent = new Intent(getActivity(),WalletFragment.class);
+                            startActivity(intent);
+                        }
 
 
                     } catch (JSONException e) {

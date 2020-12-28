@@ -124,7 +124,7 @@ public class BankInfo extends Fragment {
                         agentId = jsonResponse.getString("agentid");
                         ipAccountNo = jsonResponse.getString("ipaccountno");
                         bankName = jsonResponse.getString("bankname");
-                        bankAccountNo = jsonResponse.getString("ipaccountno");
+                        bankAccountNo = jsonResponse.getString("bankaccountno");
                         ifsccode = jsonResponse.getString("ifsccode");
                         branch = jsonResponse.getString("branch");
                         status = jsonResponse.getString("status");
