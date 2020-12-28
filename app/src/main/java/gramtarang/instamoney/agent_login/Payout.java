@@ -60,7 +60,7 @@ public class Payout extends Fragment {
     private Spinner sp_key, sp_bank;
     private AutoCompleteTextView actv_bank;
     private EditText et_amount, et_remarks;
-    private ArrayList<String> banks_arr = new ArrayList<String>();
+    //private ArrayList<String> banks_arr = new ArrayList<String>();
     private Button b_submit;
     private TextView test;
 
@@ -171,7 +171,7 @@ public class Payout extends Fragment {
         String longitude = preferences.getString("Longitude", "No name defined");
 
         Utils utils = new Utils();
-        String ipaddress = utils.getMobileIPAddress();
+        String ipaddress = utils.getLocalIpAddress();
         OkHttpClient httpClient = utils.createAuthenticatedClient(username, password);
         Log.d("username", "usr getagent pending" + username + password);
 
@@ -195,11 +195,15 @@ public class Payout extends Fragment {
             jsonObject.put("otp_auth", "0");
             jsonObject.put("otp", "");
             test.setText("spkey "+type+"\nexternal ref "+outletId+"\naccount "+bankAccountNo+"\nifsc "+ifsccode+
-                    "\nlat "+latitude+"\nlon "+longitude+"ipaddress "+ipaddress);
+                    "\nlat "+latitude+"\nlon "+longitude+"\nipaddress "+ipaddress);
 
             jsonString = jsonObject.toString();
 
         } catch (Exception e) {
+
+            test.setText("spkey "+type+"\nexternal ref "+outletId+"\naccount "+bankAccountNo+"\nifsc "+ifsccode+
+                    "\nlat "+latitude+"\nlon "+longitude+"\nipaddress "+ipaddress+"\n\ne "+e);
+
             e.printStackTrace();
         }
         System.out.println("JSON STRING IS" + jsonString);
@@ -213,6 +217,7 @@ public class Payout extends Fragment {
         httpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                Snackbar.make(v,"Server Not Connected",Snackbar.LENGTH_LONG);
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
@@ -236,8 +241,9 @@ public class Payout extends Fragment {
                         String orderid = jsonResponse.getString("orderid");
                         Snackbar.make(v, payoutstatus + "  " + ipay_uuid + "  " + orderid, Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
+
                         if (payoutstatus.matches("Transaction Successful")){
-                            Intent intent = new Intent(getActivity(),WalletFragment.class);
+                            Intent intent = new Intent(getActivity(),activity_AgentProfile.class);
                             startActivity(intent);
                         }
 
@@ -337,6 +343,7 @@ public class Payout extends Fragment {
     }
 
     private void setbanks(View v, String bankName) {
+        ArrayList<String> banks_arr = new ArrayList<>();
         banks_arr.add("Select Bank");
         try {
             //set spinner text view banks
