@@ -100,7 +100,7 @@
             android:name="gramtarang.instamoney.aeps.activity_Aeps_Ministatement"
             android:parentActivityName="gramtarang.instamoney.aeps.activity_Aeps_HomeScreen" />
 
-        <activity android:name="gramtarang.instamoney.agent_login.activity_WelcomeScreen">
+        <activity android:name=".agent_login.activity_WelcomeScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

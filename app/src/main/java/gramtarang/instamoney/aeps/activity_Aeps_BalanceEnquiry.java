@@ -54,28 +54,28 @@ public class activity_Aeps_BalanceEnquiry extends AppCompatActivity implements L
     protected void onStart() {
         super.onStart();
         LogOutTimer.startLogoutTimer(this, this);
-        Log.e(TAG, "OnStart () &&& Starting timer");
+        //Log.e(TAG, "OnStart () &&& Starting timer");
     }
 
     @Override
     public void onUserInteraction() {
         super.onUserInteraction();
         LogOutTimer.startLogoutTimer(this, this);
-        Log.e(TAG, "User interacting with screen");
+        //Log.e(TAG, "User interacting with screen");
     }
 
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.e(TAG, "onPause()");
+         //Log.e(TAG, "onPause()");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        Log.e(TAG, "onResume()");
+         //Log.e(TAG, "onResume()");
     }
 
     /**
@@ -184,7 +184,8 @@ public class activity_Aeps_BalanceEnquiry extends AppCompatActivity implements L
                     isValidName = util.isValidName(en_name);
                      if (isValidAadhar && isValidName) {
                         try {
-                            Matra_capture(pidOptions);
+                           Matra_capture(pidOptions);
+                           // fingerprintDataConvertedtoJSON();
                         } catch (Exception e) {
                            e.printStackTrace();
                         }
@@ -398,7 +399,7 @@ public class activity_Aeps_BalanceEnquiry extends AppCompatActivity implements L
         JSONObject jsonObject = new JSONObject();
 
         try {
-            /*jsonObject.put("errcode", "errcode1");
+           /* jsonObject.put("errcode", "errcode1");
             jsonObject.put("errInfo", "errInfo1");
             jsonObject.put("fCount", "fCount1");
             jsonObject.put("fType", "fType1");
@@ -453,7 +454,8 @@ public class activity_Aeps_BalanceEnquiry extends AppCompatActivity implements L
     class apiCall_BalanceEnquiry extends AsyncTask<Request, Void, String> {
         @Override
         protected String doInBackground(Request... requests) {
-            httpClient = utils.createAuthenticatedClient(username, password);
+           // httpClient = utils.createAuthenticatedClient(username, password);
+            httpClient = utils.createAuthenticatedClient("1011","Test@123");
             MediaType JSON = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(JSON, pidData_json);
             Request request = new Request.Builder()
@@ -467,7 +469,7 @@ public class activity_Aeps_BalanceEnquiry extends AppCompatActivity implements L
                     .addHeader("longitude", longitude)
                     .addHeader("outletid",outletid)
                     .addHeader("Accept", "*/*")
-                   /* .addHeader("AdhaarNumber", "123456781190")
+                /*   .addHeader("AdhaarNumber", "123456781190")
                      .addHeader("Bankid", "1234")
                      .addHeader("phnumber", "7896541230")
                      .addHeader("name", "Testinggg")

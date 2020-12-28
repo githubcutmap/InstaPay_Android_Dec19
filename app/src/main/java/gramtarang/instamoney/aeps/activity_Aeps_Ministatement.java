@@ -63,28 +63,28 @@ public class activity_Aeps_Ministatement extends AppCompatActivity implements Lo
     protected void onStart() {
         super.onStart();
         LogOutTimer.startLogoutTimer(this, this);
-        Log.e(TAG, "OnStart () &&& Starting timer");
+        //Log.e(TAG, "OnStart () &&& Starting timer");
     }
 
     @Override
     public void onUserInteraction() {
         super.onUserInteraction();
         LogOutTimer.startLogoutTimer(this, this);
-        Log.e(TAG, "User interacting with screen");
+        //Log.e(TAG, "User interacting with screen");
     }
 
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.e(TAG, "onPause()");
+         //Log.e(TAG, "onPause()");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        Log.e(TAG, "onResume()");
+         //Log.e(TAG, "onResume()");
     }
 
     /**
@@ -614,8 +614,8 @@ public class activity_Aeps_Ministatement extends AppCompatActivity implements Lo
             String greet=gethour();
             String flagurl= null;
             try {
-                String message= URLEncoder.encode(greet+","+" "+agent_name+"\n"+"Thank you for banking with us"+"\n"+"Your transaction details are:"+"\n"+"Transaction Type:"+"\n"+transtype+"Message:"+status+"\n"+"\n"+"With Regards,"+"\n"+"GTIDS IT Team", "UTF-8");
-                flagurl =  "http://smslogin.mobi/spanelv2/api.php?username=gramtarang&password=Ind123456&to="+agent_phone_number+"&from=GTIDSP&message="+message;
+                String message= URLEncoder.encode(greet+","+" "+agent_name+"\n"+"Thank you for banking with us"+"\n"+"Your transaction details are:"+"\n"+"Transaction Type:"+"\n"+transtype+"\n"+"\n"+"Message:"+status+"\n"+"\n"+"With Regards,"+"\n"+"GTIDS IT Team", "UTF-8");
+                flagurl =  "http://smslogin.mobi/spanelv2/api.php?username=gramtarang&password=Ind123456&to="+agentphn+"&from=GTIDSP&message="+message;
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
