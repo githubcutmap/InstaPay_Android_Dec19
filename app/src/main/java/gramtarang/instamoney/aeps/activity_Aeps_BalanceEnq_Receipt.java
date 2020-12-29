@@ -126,6 +126,10 @@ public class activity_Aeps_BalanceEnq_Receipt extends AppCompatActivity implemen
         agent_phone_number=preferences.getString("AgentPhone","No name defined");
         agent_name=preferences.getString("AgentName","No name defined");
         agentid=preferences.getString("Username","No name defined");
+        status_code=preferences.getString("status_code","No name defined");
+        if(status_code.equals("TXN")){
+
+        }
         Log.d("BER","AGENT PHN IS"+agent_phone_number);
 
          //CURRENT DATE
