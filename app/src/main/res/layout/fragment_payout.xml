@@ -121,7 +121,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:id="@+id/test"
-        android:text="Hello"
+        android:text="res"
         android:layout_gravity="center"/>
 
 

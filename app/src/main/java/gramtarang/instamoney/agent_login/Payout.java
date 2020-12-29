@@ -53,6 +53,9 @@ public class Payout extends Fragment {
     private String bank;
     private String amount;
     private String remarks;
+    private String ipay_uuid;
+    private String payoutstatus;
+    private String orderid;
 
     SharedPreferences preferences;
     public final String mypreference = "mypref";
@@ -126,7 +129,10 @@ public class Payout extends Fragment {
             Log.d("onclick", method + " " + bank + " " + spkey + " " + amount + " " + remarks);
 
             if (!spkey.matches("Select Type") && !bank.matches("Select Bank") && !amount.isEmpty() && !remarks.isEmpty()) {
-                api_payoutdirect(v, spkey, amount, remarks);
+                //if(spkey.matches(("DPN")) || spkey.matches(("BPN")) ||(spkey.matches("CPN") && Integer.parseInt(amount)>200000)){
+                    api_payoutdirect(v, spkey, amount, remarks);
+                //}
+
             }
             if (spkey.matches("Select Type")) {
                 ((TextView) sp_key.getSelectedView()).setError("Select Type");
@@ -139,6 +145,9 @@ public class Payout extends Fragment {
             }
             if (remarks.isEmpty()) {
                 et_remarks.setError("Enter Amount");
+            }
+            if (spkey.matches("CPN") && Integer.parseInt(amount)<200000){
+                et_amount.setError("Amount should be more than 2,00,000");
             }
         });
 
@@ -194,16 +203,12 @@ public class Payout extends Fragment {
             jsonObject.put("remarks", rm);
             jsonObject.put("otp_auth", "0");
             jsonObject.put("otp", "");
-            test.setText("spkey "+type+"\nexternal ref "+outletId+"\naccount "+bankAccountNo+"\nifsc "+ifsccode+
-                    "\nlat "+latitude+"\nlon "+longitude+"\nipaddress "+ipaddress);
+            /*test.setText("spkey "+type+"\nexternal ref "+outletId+"\naccount "+bankAccountNo+"\nifsc "+ifsccode+
+                    "\nlat "+latitude+"\nlon "+longitude+"\nipaddress "+ipaddress);*/
 
             jsonString = jsonObject.toString();
 
         } catch (Exception e) {
-
-            test.setText("spkey "+type+"\nexternal ref "+outletId+"\naccount "+bankAccountNo+"\nifsc "+ifsccode+
-                    "\nlat "+latitude+"\nlon "+longitude+"\nipaddress "+ipaddress+"\n\ne "+e);
-
             e.printStackTrace();
         }
         System.out.println("JSON STRING IS" + jsonString);
@@ -225,31 +230,27 @@ public class Payout extends Fragment {
                 //the response we are getting from api
                 response_String = response.body().string();
 
+
                 if (response_String != null) {
                     Log.d("TAG", "Response is+" + response_String.toString());
-                    /*if (response_String.equals("Insufficient Funds to transfer pls contact customer support")) {
-                        Snackbar.make(v, "Insufficient Funds to transfer pls contact customer support", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                    }*/
+                    //test.setText("ifCase: "+response_String);
                     JSONObject jsonResponse = null;
 
                     try {
                         jsonResponse = new JSONObject(response_String);
+                        test.setText("tryBlock : "+response_String);
 
-                        String payoutstatus = jsonResponse.getString("status");
-                        String ipay_uuid = jsonResponse.getString("ipay_uuid");
-                        String orderid = jsonResponse.getString("orderid");
+                        payoutstatus = jsonResponse.getString("status");
+                        ipay_uuid = jsonResponse.getString("ipay_uuid");
+                        orderid = jsonResponse.getString("orderid");
                         Snackbar.make(v, payoutstatus + "  \nipayUUID: " + ipay_uuid + "  \nOrderID: " + orderid, Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
-
-                        test.setText(response_String);
-
-                        if (payoutstatus.matches("Transaction Successful")){
-                            Intent intent = new Intent(getActivity(),activity_AgentProfile.class);
-                            startActivity(intent);
-                        }
-
-
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                clear();
+                            }
+                        });
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -260,6 +261,15 @@ public class Payout extends Fragment {
                 }
             }
         });
+    }
+
+    private void clear() {
+        et_amount.setText("");
+        et_remarks.setText("");
+        if (payoutstatus.matches("Transaction Successful")){
+            Intent intent = new Intent(getActivity(),activity_AgentProfile.class);
+            startActivity(intent);
+        }
     }
 
     private void api_getBankInfo(View v) {
