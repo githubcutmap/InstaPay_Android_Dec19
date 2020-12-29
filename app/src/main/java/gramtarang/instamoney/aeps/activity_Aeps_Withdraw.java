@@ -193,7 +193,7 @@ public class activity_Aeps_Withdraw extends AppCompatActivity implements LogOutT
                     if (isValidAadhar  && isValidName ) {
                         try {
                             Matra_capture(pidOptions);
-                            //parseData();
+                           // parseData();
                             btn_submit.setEnabled(true);
                         }catch (Exception e){
                             e.printStackTrace();
@@ -569,7 +569,7 @@ public class activity_Aeps_Withdraw extends AppCompatActivity implements LogOutT
     //HARDCODED DATA PARSING
     public void parseData(){
         Log.d("TAG","IN PARSER");
-       response_String="{\"statuscode\":\"TXN\"," +
+       response_String="{\"statuscode\":\"TXS\"," +
                "\"status\":\"Transaction Successful\"," +
                "\"data\":{\"opening_bal\":\"554.39\"," +
                "\"ipay_id\":\"CIJ012035113112983\",\"amount\":\"2.00\"," +

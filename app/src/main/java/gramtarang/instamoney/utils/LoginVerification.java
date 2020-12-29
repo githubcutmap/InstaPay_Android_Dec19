@@ -164,7 +164,7 @@ public class LoginVerification extends AppCompatActivity implements LogOutTimer.
                     resend_btn.setEnabled(false);
                     resend_btn.setBackground(getDrawable(R.color.silver_colour));
                     generated_pin=utils.getOTPString();
-                    new SendOTP().execute();
+                   new SendOTP().execute();
                     timer();
                 }
                 else{

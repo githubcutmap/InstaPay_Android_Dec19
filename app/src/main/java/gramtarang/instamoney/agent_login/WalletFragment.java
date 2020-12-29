@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -101,6 +102,14 @@ public class WalletFragment extends Fragment {
 
 Log.d("Date Check","Current Date"+currentDate+" "+"Last 7 Days:"+pastweekDate);
         new apiCall_getWalletDashboardDetails().execute();
+        final SwipeRefreshLayout pullToRefresh = v.findViewById(R.id.refresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new apiCall_getWalletDashboardDetails().execute();
+                pullToRefresh.setRefreshing(false);
+            }
+        });
         return v;
     }
 

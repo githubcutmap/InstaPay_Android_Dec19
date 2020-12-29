@@ -88,7 +88,7 @@
             android:name="gramtarang.instamoney.aeps.activity_Aeps_BalanceEnquiry"
             android:parentActivityName="gramtarang.instamoney.aeps.activity_Aeps_HomeScreen" />
         <activity
-            android:name="gramtarang.instamoney.aeps.activity_Aeps_Withdraw"
+            android:name=".aeps.activity_Aeps_Withdraw"
             android:parentActivityName="gramtarang.instamoney.aeps.activity_Aeps_HomeScreen" />
         <activity
             android:name="gramtarang.instamoney.aeps.activity_Aeps_Withdrawal_Receipt"

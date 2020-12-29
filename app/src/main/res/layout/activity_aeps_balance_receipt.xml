@@ -378,7 +378,7 @@
     <ImageView
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:id="@+id/trans_success"
+        android:id="@+id/trans_status"
         android:layout_gravity="center"
         app:srcCompat="@drawable/success" />
 

@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -75,6 +77,7 @@ public class activity_Aeps_BalanceEnq_Receipt extends AppCompatActivity implemen
     TextView tv_timestamp,tv_bal,tv_bankname,tv_aadhaarnumber,tv_transid,tv_agentid,tv_rrnno, tv_CustomerName, tv_descriptionMessage;
     String agent_name,agent_phone_number,transtype="AEPS BALANCE ENQUIRY",latitude,longitude,status,status_code,transaction_type,transaction_amount="0.00",timestamp,fpTransId, available_balance, bankName, aadhaar_number, trans_id, agentid, rrn_no, custName, message, ipAddress, androidId;
     Button btn_back;
+    ImageView trans_status;
 
 
     //BACK PRESSED HANDLING
@@ -115,7 +118,7 @@ public class activity_Aeps_BalanceEnq_Receipt extends AppCompatActivity implemen
         tv_descriptionMessage =findViewById(R.id.tex_message);
         tv_CustomerName =findViewById(R.id.customer_name);
         btn_back =findViewById(R.id.back);
-
+trans_status=findViewById(R.id.trans_status);
 
 
         //SHARED PREFERENCES
@@ -127,10 +130,7 @@ public class activity_Aeps_BalanceEnq_Receipt extends AppCompatActivity implemen
         agent_name=preferences.getString("AgentName","No name defined");
         agentid=preferences.getString("Username","No name defined");
         status_code=preferences.getString("status_code","No name defined");
-        if(status_code.equals("TXN")){
 
-        }
-        Log.d("BER","AGENT PHN IS"+agent_phone_number);
 
          //CURRENT DATE
          SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
@@ -149,7 +149,25 @@ public class activity_Aeps_BalanceEnq_Receipt extends AppCompatActivity implemen
         status=intent.getStringExtra("status");
         status_code=intent.getStringExtra("status_code");
         transaction_type=intent.getStringExtra("transaction_type");
+        status_code=intent.getStringExtra("status_code");
+        try{
+            if(status_code.equals("TXN")){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    trans_status.setImageDrawable(getResources().getDrawable(R.drawable.success, getApplicationContext().getTheme()));
+                } else {
+                    trans_status.setImageDrawable(getResources().getDrawable(R.drawable.success));
+                }
 
+            }
+            else{
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    trans_status.setImageDrawable(getResources().getDrawable(R.drawable.fail, getApplicationContext().getTheme()));
+                } else {
+                    trans_status.setImageDrawable(getResources().getDrawable(R.drawable.fail));
+                }
+
+            }
+        }catch (Exception e){e.printStackTrace();}
         Log.d("BER","Calling SEND SMS");
         new SendTransDetailsSMS().execute();
 

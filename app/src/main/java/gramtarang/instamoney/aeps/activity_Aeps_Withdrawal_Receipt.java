@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -76,6 +78,7 @@ public class activity_Aeps_Withdrawal_Receipt extends AppCompatActivity implemen
     TextView tv_timestamp,tv_bal,tv_bankname,tv_aadhaarnumber,tv_transid,tv_agentid,tv_rrnno,customer_name,tex_message,tv_transamount;
     String agent_phone_number,agent_name,transtype="AEPS WITHDRAW",latitude,longitude,ipAddress,timestamp,available_balance,bankName,aadhaar_number,trans_id,agentid,rrn_no,custName,message,trans_amount,macAddress,androidId,fpTransId,status,status_code,transaction_type="Withdraw";
     Button btn_back;
+    ImageView trans_status;
     boolean doubleBackToExitPressedOnce = false;
 
 
@@ -116,6 +119,7 @@ public class activity_Aeps_Withdrawal_Receipt extends AppCompatActivity implemen
         tv_transamount=findViewById(R.id.trans_amount);
         tex_message=findViewById(R.id.tex_message);
         customer_name=findViewById(R.id.customer_name);
+        trans_status=findViewById(R.id.trans_status);
         btn_back =findViewById(R.id.back);
 
 
@@ -147,8 +151,24 @@ public class activity_Aeps_Withdrawal_Receipt extends AppCompatActivity implemen
         trans_amount=intent.getStringExtra("trans_amount");
         status=intent.getStringExtra("status");
         status_code=intent.getStringExtra("status_code");
+try{
+if(status_code.equals("TXN")){
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        trans_status.setImageDrawable(getResources().getDrawable(R.drawable.success, getApplicationContext().getTheme()));
+    } else {
+        trans_status.setImageDrawable(getResources().getDrawable(R.drawable.success));
+    }
 
+}
+else{
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        trans_status.setImageDrawable(getResources().getDrawable(R.drawable.fail, getApplicationContext().getTheme()));
+    } else {
+        trans_status.setImageDrawable(getResources().getDrawable(R.drawable.fail));
+    }
 
+}
+}catch (Exception e){e.printStackTrace();}
         new SendTransDetailsSMS().execute();//SEND SMS
 
         //SET DATA TO TEXTVIEWS
