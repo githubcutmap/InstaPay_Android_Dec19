@@ -56,7 +56,7 @@ public class Payout extends Fragment {
     private String ipay_uuid;
     private String payoutstatus;
     private String orderid;
-
+    private static int TIME_OUT = 1500;
     SharedPreferences preferences;
     public final String mypreference = "mypref";
     private Handler mHandler = new Handler(Looper.getMainLooper());
@@ -230,7 +230,6 @@ public class Payout extends Fragment {
                 //the response we are getting from api
                 response_String = response.body().string();
 
-
                 if (response_String != null) {
                     Log.d("TAG", "Response is+" + response_String.toString());
                     //test.setText("ifCase: "+response_String);
@@ -238,38 +237,63 @@ public class Payout extends Fragment {
 
                     try {
                         jsonResponse = new JSONObject(response_String);
-                        test.setText("tryBlock : "+response_String);
+                       // test.setText("tryBlock : "+response_String);
 
                         payoutstatus = jsonResponse.getString("status");
                         ipay_uuid = jsonResponse.getString("ipay_uuid");
                         orderid = jsonResponse.getString("orderid");
-                        Snackbar.make(v, payoutstatus + "  \nipayUUID: " + ipay_uuid + "  \nOrderID: " + orderid, Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                clear();
-                            }
-                        });
-                    } catch (JSONException e) {
+                       setText(et_amount,"",et_remarks,"");
+                    }
+
+                    catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-                } else {
+
+
+                }  else {
                     Snackbar.make(v, "You are not getting any Response From Server !! ", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                }
+                } Snackbar.make(v, payoutstatus + "  \nipayUUID: " + ipay_uuid + "  \nOrderID: " + orderid, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+
+                move();
+
+
+
+
             }
         });
     }
+    private void setText(final TextView text,final String value,final TextView text2,final String value2){
+       getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                text.setText(value);
+                text2.setText(value2);
+            }
+        });
+    }
+    private void move(){
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (payoutstatus.matches("Transaction Successful")){
 
-    private void clear() {
-        et_amount.setText("");
-        et_remarks.setText("");
-        if (payoutstatus.matches("Transaction Successful")){
-            Intent intent = new Intent(getActivity(),activity_AgentProfile.class);
-            startActivity(intent);
-        }
+                            Intent intent = new Intent(getActivity(),activity_AgentProfile.class);
+                            startActivity(intent);
+
+                        }
+
+                    }
+                }, TIME_OUT);
+            }
+        });
+
     }
 
     private void api_getBankInfo(View v) {
