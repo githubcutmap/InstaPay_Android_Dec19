@@ -144,7 +144,7 @@ public class Payout extends Fragment {
                 et_amount.setError("Enter Amount");
             }
             if (remarks.isEmpty()) {
-                et_remarks.setError("Enter Amount");
+                et_remarks.setError("Enter Remarks");
             }
             if (spkey.matches("CPN") && Integer.parseInt(amount)<200000){
                 et_amount.setError("Amount should be more than 2,00,000");
