@@ -53,7 +53,6 @@ public class Payout extends Fragment {
     private String bank;
     private String amount;
     private String remarks;
-
     SharedPreferences preferences;
     public final String mypreference = "mypref";
     private Handler mHandler = new Handler(Looper.getMainLooper());
@@ -172,6 +171,7 @@ public class Payout extends Fragment {
 
         Utils utils = new Utils();
         String ipaddress = utils.getMobileIPAddress();
+        System.out.println("IP ADDRESS IS"+ipaddress);
         OkHttpClient httpClient = utils.createAuthenticatedClient(username, password);
         Log.d("username", "usr getagent pending" + username + password);
 
