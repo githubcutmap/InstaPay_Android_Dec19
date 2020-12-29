@@ -67,6 +67,10 @@ public class WalletFragment extends Fragment {
         tv_totComlastsevenDays = v.findViewById(R.id.totComlastsevenDays);
         tv_totWDlastsevenDays = v.findViewById(R.id.totWDlastsevenDays);
         tv_totTransferlastsevenDays = v.findViewById(R.id.totTransferlastsevenDays);
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+        SimpleDateFormat dfc = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        currentDate = dfc.format(c);
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String currentDateandTime = sdf.format(new Date());
         Date cdate = null;
@@ -91,13 +95,11 @@ public class WalletFragment extends Fragment {
         agentId = preferences.getString("Username", "No name defined");
         password = preferences.getString("Password", "No name defined");
         //Get Date
-        Date c = Calendar.getInstance().getTime();
-        System.out.println("Current time => " + c);
-
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-DD", Locale.getDefault());
-        currentDate = df.format(c);
 
 
+
+
+Log.d("Date Check","Current Date"+currentDate+" "+"Last 7 Days:"+pastweekDate);
         new apiCall_getWalletDashboardDetails().execute();
         return v;
     }
@@ -424,7 +426,7 @@ public class WalletFragment extends Fragment {
             JSONObject jsonObject2 = new JSONObject();
             try {
                 jsonObject2.put("txndate", currentDate);
-                jsonObject2.put("status", "SUCCESS");
+                jsonObject2.put("status", "TXN");
                 jsonObject2.put("accountno", agentPhn);
 
                 jsonString3 = jsonObject2.toString();
@@ -432,6 +434,7 @@ public class WalletFragment extends Fragment {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            Log.d("TAG","Total Withdrawal Transactions Count current date REQUEST"+jsonString3);
             MediaType JSON3 = MediaType.parse("application/json");
             RequestBody body3 = RequestBody.create(JSON3, jsonString3);
             Request request6 = new Request.Builder()
@@ -466,7 +469,7 @@ public class WalletFragment extends Fragment {
                 public void onResponse(Call call, Response response) throws IOException {
                     assert response.body() != null;
                     response_String = response.body().string();
-                    System.out.println("RESPONSE IS" + response_String);
+                    System.out.println("Total Withdrawal Transactions Count current date Response" + response_String);
                     if (response_String != null) {
                         JSONObject jsonResponse = null;
                         try {
@@ -501,8 +504,9 @@ public class WalletFragment extends Fragment {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            Log.d("TAG","COMMISSION AMOUNT REQUEST"+jsonString4);
             MediaType JSON4 = MediaType.parse("application/json");
-            RequestBody body4 = RequestBody.create(JSON4, jsonString3);
+            RequestBody body4 = RequestBody.create(JSON4, jsonString4);
             Request request7 = new Request.Builder()
                     .url("https://aepsapi.gramtarang.org:8008/mint/aeps/CommissionSumByagentID")
                     .addHeader("Accept", "*/*")
@@ -535,7 +539,8 @@ public class WalletFragment extends Fragment {
                 public void onResponse(Call call, Response response) throws IOException {
                     assert response.body() != null;
                     response_String = response.body().string();
-                    System.out.println("RESPONSE IS" + response_String);
+                    Log.d("TAG","COMMISSION AMOUNT RESPONSE IS" + response_String);
+                    System.out.println("COMMISSION AMOUNT RESPONSE IS" + response_String);
                     if (response_String != null) {
                         JSONObject jsonResponse = null;
                         try {
@@ -571,7 +576,7 @@ public class WalletFragment extends Fragment {
             }
 
             MediaType JSON5 = MediaType.parse("application/json");
-            RequestBody body5 = RequestBody.create(JSON5, jsonString3);
+            RequestBody body5 = RequestBody.create(JSON5, jsonString4);
             Request request8 = new Request.Builder()
                     .url("https://aepsapi.gramtarang.org:8008/mint/aeps/CommissionSumByagentIDandDate")
                     .addHeader("Accept", "*/*")
@@ -742,7 +747,7 @@ public class WalletFragment extends Fragment {
             //11.Total Withdrawal Transactions last 7 days
             JSONObject jsonObject6 = new JSONObject();
             try {
-                jsonObject6.put("agentid", agentPhn);
+                jsonObject6.put("agentid", agentId);
                 jsonObject6.put("datefrom", pastweekDate);
                 jsonObject6.put("dateto", currentDate);
 
@@ -751,7 +756,7 @@ public class WalletFragment extends Fragment {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+Log.d("TAG","WITHDRAWAL LAST 7 DAYS REQUEST"+jsonString6);
             MediaType JSON6 = MediaType.parse("application/json");
             RequestBody body6 = RequestBody.create(JSON6, jsonString6);
             Request request11 = new Request.Builder()
@@ -785,6 +790,7 @@ public class WalletFragment extends Fragment {
                 public void onResponse(Call call, Response response) throws IOException {
                     assert response.body() != null;
                     response_String = response.body().string();
+                    Log.d("TAG","WITHDRAWAL LAST 7 DAYS RESPONSE"+response_String);
                     System.out.println("RESPONSE IS" + response_String);
                     if (response_String != null) {
                         JSONObject jsonResponse = null;
