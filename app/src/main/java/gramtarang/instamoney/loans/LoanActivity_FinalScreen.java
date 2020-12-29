@@ -34,28 +34,28 @@ public class LoanActivity_FinalScreen extends AppCompatActivity implements LogOu
     protected void onStart() {
         super.onStart();
         LogOutTimer.startLogoutTimer(this, this);
-        Log.e(TAG, "OnStart () &&& Starting timer");
+        //Log.e(TAG, "OnStart () &&& Starting timer");
     }
 
     @Override
     public void onUserInteraction() {
         super.onUserInteraction();
         LogOutTimer.startLogoutTimer(this, this);
-        Log.e(TAG, "User interacting with screen");
+        //Log.e(TAG, "User interacting with screen");
     }
 
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.e(TAG, "onPause()");
+         //Log.e(TAG, "onPause()");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        Log.e(TAG, "onResume()");
+         //Log.e(TAG, "onResume()");
     }
 
     /**

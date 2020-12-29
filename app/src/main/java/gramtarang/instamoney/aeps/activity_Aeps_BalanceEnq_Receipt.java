@@ -34,28 +34,28 @@ public class activity_Aeps_BalanceEnq_Receipt extends AppCompatActivity implemen
     protected void onStart() {
         super.onStart();
         LogOutTimer.startLogoutTimer(this, this);
-        Log.e(TAG, "OnStart () &&& Starting timer");
+        //Log.e(TAG, "OnStart () &&& Starting timer");
     }
 
     @Override
     public void onUserInteraction() {
         super.onUserInteraction();
         LogOutTimer.startLogoutTimer(this, this);
-        Log.e(TAG, "User interacting with screen");
+        //Log.e(TAG, "User interacting with screen");
     }
 
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.e(TAG, "onPause()");
+         //Log.e(TAG, "onPause()");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        Log.e(TAG, "onResume()");
+         //Log.e(TAG, "onResume()");
     }
 
     /**
@@ -123,10 +123,10 @@ public class activity_Aeps_BalanceEnq_Receipt extends AppCompatActivity implemen
         latitude=preferences.getString("Latitude","No name defined");
         longitude=preferences.getString("Longitude","No name defined");
         androidId=preferences.getString("AndroidId","No name defined");
-        agent_phone_number=preferences.getString("AgentPhn","No name defined");
+        agent_phone_number=preferences.getString("AgentPhone","No name defined");
         agent_name=preferences.getString("AgentName","No name defined");
         agentid=preferences.getString("Username","No name defined");
-
+        Log.d("BER","AGENT PHN IS"+agent_phone_number);
 
          //CURRENT DATE
          SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
@@ -145,6 +145,8 @@ public class activity_Aeps_BalanceEnq_Receipt extends AppCompatActivity implemen
         status=intent.getStringExtra("status");
         status_code=intent.getStringExtra("status_code");
         transaction_type=intent.getStringExtra("transaction_type");
+
+        Log.d("BER","Calling SEND SMS");
         new SendTransDetailsSMS().execute();
 
 
@@ -211,17 +213,20 @@ public class activity_Aeps_BalanceEnq_Receipt extends AppCompatActivity implemen
 
     //SEND SMS API
     public  class SendTransDetailsSMS extends AsyncTask<Void, Void, Void> {
+
         @Override
         protected Void doInBackground(Void... params) {
+            Log.d("BER","IN SEND SMS");
             HttpURLConnection urlConnection = null;
             String greet=gethour();
             String flagurl= null;
             try {
-                String message= URLEncoder.encode(greet+","+" "+agent_name+"\n"+"Thank you for banking with us"+"\n"+"Your transaction details are:"+"\n"+"Transaction Type:"+"\n"+transtype+"Message:"+status+"\n"+"\n"+"With Regards,"+"\n"+"GTIDS IT Team", "UTF-8");
+                String message= URLEncoder.encode(greet+","+" "+agent_name+"\n"+"Thank you for banking with us"+"\n"+"Your transaction details are:"+"\n"+"Transaction Type:"+"\n"+transtype+"\n"+"\n"+"Message:"+status+"\n"+"\n"+"With Regards,"+"\n"+"GTIDS IT Team", "UTF-8");
                 flagurl =  "http://smslogin.mobi/spanelv2/api.php?username=gramtarang&password=Ind123456&to="+agent_phone_number+"&from=GTIDSP&message="+message;
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
+            Log.d("BER","URL IS"+flagurl);
             try {
                 URL url = new URL(
                         flagurl);
