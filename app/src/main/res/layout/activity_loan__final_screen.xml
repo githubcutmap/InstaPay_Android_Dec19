@@ -634,6 +634,14 @@
             android:textStyle="bold"
             />
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/trans_success"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/success" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

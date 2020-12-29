@@ -8,6 +8,8 @@
     android:id="@+id/ll"
     >
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -26,13 +28,15 @@
             />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="NA"
             android:id="@+id/tv_walletamount"
             android:fontFamily="@font/helveticaneubold"
             android:textSize="22sp"/>
+
     </LinearLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -390,6 +394,9 @@
 
         </TableRow>
     </TableLayout>
+
+
+
 
     </ScrollView>
 

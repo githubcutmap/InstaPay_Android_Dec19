@@ -60,6 +60,14 @@
                     android:fontFamily="sans-serif"
                     android:text="Hardware ID"/>
             </LinearLayout-->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/support"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"/>
+
 
             <TextView
                 android:layout_width="wrap_content"
