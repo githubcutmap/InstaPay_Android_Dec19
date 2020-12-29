@@ -227,10 +227,10 @@ public class Payout extends Fragment {
 
                 if (response_String != null) {
                     Log.d("TAG", "Response is+" + response_String.toString());
-                    if (response_String.equals("Insufficient Funds to transfer pls contact customer support")) {
+                    /*if (response_String.equals("Insufficient Funds to transfer pls contact customer support")) {
                         Snackbar.make(v, "Insufficient Funds to transfer pls contact customer support", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
-                    }
+                    }*/
                     JSONObject jsonResponse = null;
 
                     try {
@@ -239,8 +239,10 @@ public class Payout extends Fragment {
                         String payoutstatus = jsonResponse.getString("status");
                         String ipay_uuid = jsonResponse.getString("ipay_uuid");
                         String orderid = jsonResponse.getString("orderid");
-                        Snackbar.make(v, payoutstatus + "  " + ipay_uuid + "  " + orderid, Snackbar.LENGTH_LONG)
+                        Snackbar.make(v, payoutstatus + "  \nipayUUID: " + ipay_uuid + "  \nOrderID: " + orderid, Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
+
+                        test.setText(response_String);
 
                         if (payoutstatus.matches("Transaction Successful")){
                             Intent intent = new Intent(getActivity(),activity_AgentProfile.class);
