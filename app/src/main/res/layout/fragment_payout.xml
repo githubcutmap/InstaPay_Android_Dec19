@@ -7,6 +7,19 @@
     tools:context=".agent_login.Payout"
     android:orientation="vertical">
 
+
+    <ScrollView android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+
     <!-- TODO: Update blank fragment layout -->
     <Spinner
         android:layout_width="match_parent"
@@ -116,17 +129,166 @@
         android:textSize="18dp"
         />
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:id="@+id/test"
         android:text="res"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"/>-->
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="20dp" >
 
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+       android:layout_margin="10dp">
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Message :"
+            android:layout_weight="1"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/msg"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_margin="10dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IPay ID :"
+            android:layout_weight="1"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/ipay_id"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_margin="10dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ORDER ID :"
+            android:layout_weight="1"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/order_id"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_margin="10dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount :"
+            android:layout_weight="1"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/amount"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/trans_success"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/success" />
+
+
+</LinearLayout>
+
+    <ImageView
+        android:id="@+id/backimg"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button1"
+        app:srcCompat="@drawable/backarrow" />
+
+
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>
