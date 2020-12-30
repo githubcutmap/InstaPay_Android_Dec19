@@ -3,6 +3,7 @@ package gramtarang.instamoney.agent_login;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,6 +15,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -25,7 +28,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import gramtarang.instamoney.R;
 import gramtarang.instamoney.utils.Utils;
@@ -48,14 +53,14 @@ public class Payout extends Fragment {
     private String ifsccode;
     private String branch;
     private String status;
-    private String updatedon;
+    private String updatedon,status_code;
     private String method, spkey;
     private String bank;
     private String amount;
     private String remarks;
     private String ipay_uuid;
     private String payoutstatus;
-    private String orderid;
+    private String orderid,timestamp;
     private static int TIME_OUT = 1500;
     SharedPreferences preferences;
     public final String mypreference = "mypref";
@@ -65,7 +70,9 @@ public class Payout extends Fragment {
     private EditText et_amount, et_remarks;
     //private ArrayList<String> banks_arr = new ArrayList<String>();
     private Button b_submit;
-    private TextView test;
+    private TextView tv_amount,tv_ipayid,tv_message,tv_orderid,tv_timestamp;
+    LinearLayout linearLayout;
+    ImageView imgback,imgstatus;
 
 
     public Payout() {
@@ -84,7 +91,8 @@ public class Payout extends Fragment {
         api_getBankInfo(v);
 
         onClickActivities(v);
-
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        timestamp = dateFormat.format(new Date()); // Find todays date
         return v;
 
     }
@@ -97,7 +105,16 @@ public class Payout extends Fragment {
         et_amount = view.findViewById(R.id.id_et_amount);
         et_remarks = view.findViewById(R.id.id_et_remarks);
         b_submit = view.findViewById(R.id.id_button_submit);
-        test = view.findViewById(R.id.test);
+
+        tv_amount=view.findViewById(R.id.amount);
+        tv_ipayid=view.findViewById(R.id.ipay_id);
+        tv_message=view.findViewById(R.id.msg);
+        tv_orderid=view.findViewById(R.id.order_id);
+        tv_timestamp=view.findViewById(R.id.timestamp);
+        imgback=view.findViewById(R.id.backimg);;
+        imgstatus=view.findViewById(R.id.trans_success);
+        linearLayout=view.findViewById(R.id.report);
+        linearLayout.setVisibility(View.INVISIBLE);
 
     }
 
@@ -228,8 +245,8 @@ public class Payout extends Fragment {
             public void onResponse(Call call, Response response) throws IOException {
                 assert response.body() != null;
                 //the response we are getting from api
-                response_String = response.body().string();
-
+               response_String = response.body().string();
+//response_String="{\"statuscode\":\"TXN\",\"status\":\"Transaction Successful\",\"data\":{\"external_ref\":\"88059\",\"ipay_id\":\"1201229112432XWNEK\",\"transfer_value\":\"11.00\",\"type_pricing\":\"CHARGE\",\"commercial_value\":\"1.1800\",\"value_tds\":\"0.0000\",\"ccf\":\"0.00\",\"vendor_ccf\":\"0.00\",\"charged_amt\":\"12.18\",\"payout\":{\"credit_refid\":\"023317188421\",\"account\":\"917010019014052\",\"ifsc\":\"UTIB0002943\",\"name\":\"KALYAN\"}},\"timestamp\":\"2020-12-29 11:24:35\",\"ipay_uuid\":\"B52A602876C7F9BFF375\",\"orderid\":\"1201229112432XWNEK\",\"environment\":\"PRODUCTION\"}";
                 if (response_String != null) {
                     Log.d("TAG", "Response is+" + response_String.toString());
                     //test.setText("ifCase: "+response_String);
@@ -242,7 +259,11 @@ public class Payout extends Fragment {
                         payoutstatus = jsonResponse.getString("status");
                         ipay_uuid = jsonResponse.getString("ipay_uuid");
                         orderid = jsonResponse.getString("orderid");
+                        status_code=jsonResponse.getString("statuscode");
+                        //timestamp=jsonResponse.getString("timestamp");
+
                        setText(et_amount,"",et_remarks,"");
+                       setText2(tv_amount,amount,tv_ipayid,ipay_uuid,tv_message,payoutstatus,tv_orderid,orderid,tv_timestamp,timestamp);
                     }
 
                     catch (JSONException e) {
@@ -254,11 +275,11 @@ public class Payout extends Fragment {
                 }  else {
                     Snackbar.make(v, "You are not getting any Response From Server !! ", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                } Snackbar.make(v, payoutstatus + "  \nipayUUID: " + ipay_uuid + "  \nOrderID: " + orderid, Snackbar.LENGTH_LONG)
+                } /*Snackbar.make(v, payoutstatus + "  \nipayUUID: " + ipay_uuid + "  \nOrderID: " + orderid, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+*/
 
-
-                move();
+               // move();
 
 
 
@@ -275,6 +296,42 @@ public class Payout extends Fragment {
             }
         });
     }
+    private void setText2(final TextView text,final String value,final TextView text2,final String value2,final TextView text3,final String value3,final TextView text4,final String value4,final TextView text5,final String value5){
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                linearLayout.setVisibility(View.VISIBLE);
+                try{
+                text.setText(value);
+                text2.setText(value2);
+                text3.setText(value3);
+                text4.setText(value4);
+                text5.setText(value5);
+                }catch (Exception e){e.printStackTrace();}
+                try{
+                    if(status_code.equals("TXS")){
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            imgstatus.setImageDrawable(getResources().getDrawable(R.drawable.success, getActivity().getTheme()));
+                        } else {
+                            imgstatus.setImageDrawable(getResources().getDrawable(R.drawable.success));
+                        }
+
+                    }
+                    else{
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            imgstatus.setImageDrawable(getResources().getDrawable(R.drawable.fail,getActivity().getTheme()));
+                        } else {
+                            imgstatus.setImageDrawable(getResources().getDrawable(R.drawable.fail));
+                        }
+
+                    }
+                } catch (Exception e){e.printStackTrace();}
+            }
+        });
+
+    }
+
+
     private void move(){
         getActivity().runOnUiThread(new Runnable() {
             @Override

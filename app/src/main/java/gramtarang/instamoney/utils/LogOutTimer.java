@@ -16,7 +16,7 @@ public class LogOutTimer{
     }
 
     static Timer longTimer;
-    static final int LOGOUT_TIME = 300000000; // delay in milliseconds i.e. 5 min = 300000 ms or use timeout argument
+    static final int LOGOUT_TIME = 300000; // delay in milliseconds i.e. 5 min = 300000 ms or use timeout argument
 
     public static synchronized void startLogoutTimer(final Context context, final LogOutListener logOutListener) {
         if (longTimer != null) {
