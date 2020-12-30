@@ -116,6 +116,8 @@ public class Payout extends Fragment {
         linearLayout=view.findViewById(R.id.report);
         linearLayout.setVisibility(View.INVISIBLE);
 
+
+
     }
 
     private String checkmethod(String m) {

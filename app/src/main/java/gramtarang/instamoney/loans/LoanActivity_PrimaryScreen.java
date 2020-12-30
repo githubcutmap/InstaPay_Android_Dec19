@@ -462,7 +462,7 @@ Log.d("TAG","BOOLEAN FOR CHECK AADHAAR"+checkAadhaar);
 
 
                 verify_otp.setEnabled(true);
-                verify_otp.setBackground(getDrawable(R.drawable.button));}
+            }
 
 
 

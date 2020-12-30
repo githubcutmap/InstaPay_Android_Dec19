@@ -32,263 +32,259 @@
                 android:entries="@array/spkey"
                 />
 
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                android:spinnerMode="dialog"
-                android:id="@+id/id_sp_bank"
-                android:fontFamily="@font/bentham"
-                android:background="@drawable/editbox"
-                />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:spinnerMode="dialog"
+        android:id="@+id/id_sp_bank"
+        android:fontFamily="@font/bentham"
+        android:background="@drawable/editbox"
+        />
 
-            <!--    <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/text_field13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:layout_margin="10dp"
-                    app:hintTextAppearance="@style/tf"
-                    app:boxBackgroundColor="#f1f1f1"
-                    app:boxStrokeColor="@color/colorPrimary"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                    <AutoCompleteTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:paddingLeft="10dp"
-                        android:background="@drawable/editbox"
-                        android:id="@+id/id_actv_bank"
-                        android:hint="Bank"
-                        android:textSize="16sp"
-                        android:fontFamily="sans-serif"
-                        android:textColor="@color/grayblack"
-                        />
-                </com.google.android.material.textfield.TextInputLayout>-->
-
-
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_field1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:layout_margin="10dp"
-                app:hintTextAppearance="@style/tf"
-                app:boxBackgroundColor="#f1f1f1"
-                app:boxStrokeColor="@color/colorPrimary"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <EditText
-                    android:id="@+id/id_et_amount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/editbox"
-                    android:paddingLeft="10dp"
-                    android:maxLength="6"
-                    android:hint="Amount"
-                    android:inputType="numberSigned"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="@color/grayblack"
-                    android:textCursorDrawable="@null" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_field2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:layout_margin="10dp"
-                app:hintTextAppearance="@style/tf"
-                app:boxBackgroundColor="#f1f1f1"
-                app:boxStrokeColor="@color/colorPrimary"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <EditText
-                    android:id="@+id/id_et_remarks"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/editbox"
-                    android:paddingLeft="10dp"
-                    android:hint="Remarks"
-                    android:inputType="text"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="@color/grayblack"
-                    android:textCursorDrawable="@null" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/id_button_submit"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Submit"
-                android:fontFamily="@font/bentham"
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                />
-
-            <!--<TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:id="@+id/test"
-                android:text="res"
-                android:layout_gravity="center"/>-->
-
-            <LinearLayout
-                android:id="@+id/report"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="20dp" >
+<!--    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_field13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:layout_margin="10dp"
+        app:hintTextAppearance="@style/tf"
+        app:boxBackgroundColor="#f1f1f1"
+        app:boxStrokeColor="@color/colorPrimary"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/editbox"
+            android:id="@+id/id_actv_bank"
+            android:hint="Bank"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/grayblack"
+            />
+    </com.google.android.material.textfield.TextInputLayout>-->
 
 
 
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="8"
-                    android:layout_margin="10dp">
 
-                    <TableRow>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_field1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:layout_margin="10dp"
+        app:hintTextAppearance="@style/tf"
+        app:boxBackgroundColor="#f1f1f1"
+        app:boxStrokeColor="@color/colorPrimary"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <EditText
+            android:id="@+id/id_et_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/editbox"
+            android:paddingLeft="10dp"
+            android:maxLength="6"
+            android:hint="Amount"
+            android:inputType="numberSigned"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/grayblack"
+            android:textCursorDrawable="@null" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Message :"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/bentham"
-                            android:textColor="@color/grayblack"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_field2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:layout_margin="10dp"
+        app:hintTextAppearance="@style/tf"
+        app:boxBackgroundColor="#f1f1f1"
+        app:boxStrokeColor="@color/colorPrimary"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <EditText
+            android:id="@+id/id_et_remarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/editbox"
+            android:paddingLeft="10dp"
+            android:hint="Remarks"
+            android:inputType="text"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/grayblack"
+            android:textCursorDrawable="@null" />
+    </com.google.android.material.textfield.TextInputLayout>
 
+    <Button
+        android:id="@+id/id_button_submit"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Submit"
+        android:fontFamily="@font/bentham"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:id="@+id/msg"
-                            android:fontFamily="@font/bentham"
-                            android:textColor="@color/grayblack"
-                            android:textSize="16sp"/>
-                    </TableRow>
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:id="@+id/test"
+        android:text="res"
+        android:layout_gravity="center"/>-->
 
-
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="IPay ID :"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/bentham"
-                            android:textColor="@color/grayblack"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:id="@+id/ipay_id"
-                            android:fontFamily="@font/bentham"
-                            android:textColor="@color/grayblack"
-                            android:textSize="16sp"/>
-
-                    </TableRow>
-
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ORDER ID :"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/bentham"
-                            android:textColor="@color/grayblack"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:id="@+id/order_id"
-                            android:fontFamily="@font/bentham"
-                            android:textColor="@color/grayblack"
-                            android:textSize="16sp"/>
-
-                    </TableRow>
-
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Amount :"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/bentham"
-                            android:textColor="@color/grayblack"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:id="@+id/report">
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:id="@+id/amount"
-                            android:fontFamily="@font/bentham"
-                            android:textColor="@color/grayblack"
-                            android:textSize="16sp"/>
 
-                    </TableRow>
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Timestamp :"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/bentham"
-                            android:textColor="@color/grayblack"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+       android:layout_margin="10dp">
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:id="@+id/timestamp"
-                            android:fontFamily="@font/bentham"
-                            android:textColor="@color/grayblack"
-                            android:textSize="16sp"/>
-
-                    </TableRow>
-
-
-                </TableLayout>
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:id="@+id/trans_success"
-                    android:layout_gravity="center"
-                    app:srcCompat="@drawable/success" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Message :"
+            android:layout_weight="1"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
 
-            </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/msg"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"/>
 
-            <ImageView
-                android:id="@+id/backimg"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/button1"
-                app:srcCompat="@drawable/backarrow" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_margin="10dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IPay ID :"
+            android:layout_weight="1"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/ipay_id"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_margin="10dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ORDER ID :"
+            android:layout_weight="1"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/order_id"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_margin="10dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount :"
+            android:layout_weight="1"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/amount"
+            android:fontFamily="@font/bentham"
+            android:textColor="@color/grayblack"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/trans_success"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/success" />
+
+
+</LinearLayout>
+
+    <ImageView
+        android:id="@+id/backimg"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button1"
+        app:srcCompat="@drawable/backarrow" />
 
 
 

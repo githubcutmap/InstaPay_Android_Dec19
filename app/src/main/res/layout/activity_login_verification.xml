@@ -109,6 +109,7 @@
             android:gravity="center"
             android:fontFamily="@font/bentham"
             android:textStyle="bold"
+            style="@style/AppTheme.NoActionBar.AppBarOverlay"
             android:enabled="false"
             android:text="Verify" />
 

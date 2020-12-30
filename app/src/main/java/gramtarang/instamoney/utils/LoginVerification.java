@@ -162,7 +162,6 @@ public class LoginVerification extends AppCompatActivity implements LogOutTimer.
                 counter++;
                 if(counter<=3){
                     resend_btn.setEnabled(false);
-                    resend_btn.setBackground(getDrawable(R.color.silver_colour));
                     generated_pin=utils.getOTPString();
                    new SendOTP().execute();
                     timer();
@@ -170,7 +169,6 @@ public class LoginVerification extends AppCompatActivity implements LogOutTimer.
                 else{
                     timer.setText("Please Login After Some time");
                     resend_btn.setEnabled(false);
-                    resend_btn.setBackground(getDrawable(R.drawable.disabled_button));
 
                 }
 
@@ -222,7 +220,6 @@ else{
             entered_otp=edit_otp.getText().toString().trim();
             if(entered_otp.length() == 6){
                 submit.setEnabled(true);
-                submit.setBackground(getDrawable(R.drawable.button));
 
 
             }
@@ -251,7 +248,6 @@ else{
             public void onFinish() {
                 timer.setText("");
                 resend_btn.setEnabled(true);
-                resend_btn.setBackground(getDrawable(R.drawable.button));
 
             }
         }.start();
