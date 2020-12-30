@@ -283,10 +283,8 @@ public class Payout extends Fragment {
                     @Override
                     public void run() {
                         if (payoutstatus.matches("Transaction Successful")){
-
                             Intent intent = new Intent(getActivity(),activity_AgentProfile.class);
                             startActivity(intent);
-
                         }
 
                     }
