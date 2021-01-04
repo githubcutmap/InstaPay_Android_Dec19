@@ -5,9 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,7 +23,7 @@ import java.io.IOException;
 import gramtarang.instamoney.R;
 import gramtarang.instamoney.aeps.activity_Aeps_HomeScreen;
 import gramtarang.instamoney.loans.LoanActivity_MainScreen;
-import gramtarang.instamoney.pan.PanCard;
+import gramtarang.instamoney.pan.Pan;
 import gramtarang.instamoney.utils.DialogActivity;
 import gramtarang.instamoney.utils.LogOutTimer;
 import gramtarang.instamoney.utils.Utils;
@@ -79,7 +79,7 @@ public class Dashboard extends AppCompatActivity implements LogOutTimer.LogOutLi
     private final String TAG = "Dashboard";
     SharedPreferences preferences;
     public static final String mypreference = "mypref";
-    String agentname, androidId, jsonString, response_String, lastlogin_time, username, password;
+    String agentname, androidId, jsonString, response_String, lastlogin_time, username, password,panNo;
     int aeps, bbps, loan, pan, card;
     ImageView imaeps, imbbps, impan, imcard, imloan, improfile, logout;
     LinearLayout llaeps, llbbps, llpan, llcard, llloan;
@@ -142,6 +142,8 @@ public class Dashboard extends AppCompatActivity implements LogOutTimer.LogOutLi
         bbps = preferences.getInt("bbps", 0);
         loan = preferences.getInt("loan", 0);
         card = preferences.getInt("card", 0);
+        panNo =preferences.getString("panno","No name defined");
+        Toast.makeText(Dashboard.this,panNo,Toast.LENGTH_SHORT).show();
         tv_agentname.setText(agentname);
         String hour = utils.gethour();
         tv_textMessage.setText(hour + "!");
@@ -178,9 +180,12 @@ public class Dashboard extends AppCompatActivity implements LogOutTimer.LogOutLi
         impan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (pan == 1) {
-                    Intent intent = new Intent(Dashboard.this, PanCard.class);
-                    startActivity(intent);
+                if ((pan == 1) && !panNo.isEmpty()) {
+                    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                        Intent intent = new Intent(Dashboard.this, Pan.class);
+                        startActivity(intent);
+                    }
+
                 } else {
                     DialogActivity.DialogCaller.showDialog(Dashboard.this, "Alert", "This feature is not available for your login.", new DialogInterface.OnClickListener() {
                         @Override

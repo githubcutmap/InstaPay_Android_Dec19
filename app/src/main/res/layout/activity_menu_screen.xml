@@ -97,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="3">
+            android:weightSum="2">
 
 
     <LinearLayout
@@ -108,15 +108,16 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_weight="1">
+
         <ImageView
             android:id="@+id/aeps_withdraw"
-            android:layout_width="match_parent"
+            android:layout_width="130dp"
             android:layout_height="match_parent"
             android:layout_gravity="top"
-            android:layout_weight="1"
-            android:padding="13dp"
             android:layout_margin="5dp"
+            android:layout_weight="1"
             android:background="@drawable/bluecard"
+            android:padding="13dp"
             app:srcCompat="@drawable/aeps_withdraw" />
 
         <TextView
@@ -132,6 +133,8 @@
             android:textColor="@color/maroon"
             android:textSize="18sp" />
     </LinearLayout>
+
+
             <LinearLayout
                 android:layout_height="160dp"
                 android:layout_width="160dp"
@@ -142,13 +145,13 @@
                 android:layout_weight="1">
                 <ImageView
                     android:id="@+id/image_ministatement"
-                    android:layout_width="match_parent"
+                    android:layout_width="130dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="top"
                     android:layout_weight="1"
                     android:padding="16dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/orangecard"
+                    android:background="@drawable/skybluecard"
                     app:srcCompat="@drawable/ministatement" />
 
                 <TextView
@@ -165,43 +168,85 @@
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_height="160dp"
-                android:layout_width="160dp"
-                android:layout_margin="5dp"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_weight="1">
-                <ImageView
-                    android:id="@+id/aeps_balenquiry"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="top"
-                    android:layout_weight="1"
-                    android:padding="16dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/purplecard"
-                    app:srcCompat="@drawable/balance_enquiry" />
-
-                <TextView
-                    android:id="@+id/be"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/bentham"
-                    android:gravity="center|bottom"
-                    android:textStyle="bold"
-                    android:text="Balance Enquiry"
-                    android:textColor="@color/maroon"
-                    android:textSize="18sp" />
-            </LinearLayout>
 
 
 
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
+
+        <LinearLayout
+            android:layout_height="160dp"
+            android:layout_width="160dp"
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/aeps_balenquiry"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/orangecard"
+                app:srcCompat="@drawable/balance_enquiry" />
+
+            <TextView
+                android:id="@+id/be"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/bentham"
+                android:gravity="center|bottom"
+                android:textStyle="bold"
+                android:text="Balance Enquiry"
+                android:textColor="@color/maroon"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="160dp"
+            android:layout_width="160dp"
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/aeps_report"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                android:padding="25dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/pinkcard"
+                app:srcCompat="@drawable/report" />
+
+            <TextView
+                android:id="@+id/report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/bentham"
+                android:gravity="center|bottom"
+                android:textStyle="bold"
+                android:text="Report"
+                android:textColor="@color/maroon"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
 
 
         <LinearLayout

@@ -105,7 +105,7 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
     private final String TAG = "Login_Activity";
     int role,aeps,loan,bbps,pan,card;
     SharedPreferences preferences;
-    String verification_type, agentname,bankmitraid,agentPassword, generated_pin, agentphn, agentemail, latitude, longitude, username,outletid, androidId, appversion, dateofrelease, response_String, agentAadhaar, jsonString, timestamp,areamanager_id,areamanager_name;
+    String verification_type, agentname,bankmitraid,agentPassword, generated_pin, agentphn, agentemail, latitude, longitude, username,outletid, androidId, appversion, dateofrelease, response_String, agentAadhaar, jsonString, timestamp,areamanager_id,areamanager_name,panNo;
     EditText et_userName,et_pass;
     boolean isValidUsername,isphnregistered,isemailregistered;
     TextView tv_version, tv_dateofrelease;
@@ -255,11 +255,12 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
                             bbps=jsonResponse1.getInt("bbps");
                             card=jsonResponse1.getInt("card");
                             loan=jsonResponse1.getInt("loan");
+                            panNo=jsonResponse1.getString("panno");
                            activity_Login.this.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
 
-                                    senddata(outletid,agentAadhaar,areamanager_name,agentemail,agentname,agentphn,bankmitraid,areamanager_id,aeps,pan,bbps,loan,card,isphnregistered,isemailregistered);
+                                    senddata(outletid,agentAadhaar,areamanager_name,agentemail,agentname,agentphn,bankmitraid,areamanager_id,aeps,pan,bbps,loan,card,isphnregistered,isemailregistered,panNo);
                                 }
                             });
 
@@ -292,7 +293,7 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
         }
 
     }
-    public void senddata(String outletid1, String aadhaar, String areamanager_name, String email, String name, String phn, String bankmitraid, String areamanagerid, int aeps, int pan, int bbps, int loan, int card, boolean isphnregistered, boolean isemailregistered){
+    public void senddata(String outletid1, String aadhaar, String areamanager_name, String email, String name, String phn, String bankmitraid, String areamanagerid, int aeps, int pan, int bbps, int loan, int card, boolean isphnregistered, boolean isemailregistered,String panNo){
         verification_type = "OTP";
         generated_pin = utils.getOTPString();
         new SendOTP().execute();//SEND OTP FOR VERIFICATION
@@ -326,6 +327,7 @@ public class activity_Login extends AppCompatActivity implements LogOutTimer.Log
         editor.putInt("loan",loan);
         editor.putInt("bbps",bbps);
         editor.putInt("card",card);
+        editor.putString("panno",panNo);
         editor.commit();
 
         //START INTENT

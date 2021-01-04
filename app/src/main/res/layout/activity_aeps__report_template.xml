@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".aeps.AepsActivity_Report">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:outlineAmbientShadowColor="@color/white"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/lightcolor">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="15">
+
+            <TableRow
+                android:layout_margin="5dp">
+
+
+
+                <TextView
+                    android:text="orderID"
+                    android:layout_weight="1"
+                    android:id="@+id/id_orderid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/grayblack"/>
+
+                <TextView
+                    android:id="@+id/id_timestamp"
+                    android:layout_weight="1"
+                    android:text="time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/grayblack"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:text="STAT"
+                    android:layout_weight="1"
+                    android:id="@+id/id_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bentham"
+                    android:textColor="@color/success_green_dark"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:text="Message"
+                    android:layout_weight="1"
+                    android:id="@+id/id_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bentham"
+                    android:textColor="@color/success_green"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_margin="5dp">
+                <TextView
+                    android:text="Amount"
+                    android:layout_weight="1"
+                    android:id="@+id/id_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/bluegreen"
+                    android:textStyle="bold"
+
+                    android:textSize="18sp"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_margin="5dp" >
+                <TextView
+                    android:text="AgentID:"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bentham"
+                    android:textColor="@color/grayblack"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:text=""
+                    android:layout_weight="1"
+                    android:id="@+id/id_agentid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/grayblack"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_margin="5dp">
+                <TextView
+                    android:text="Customer Name:"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bentham"
+                    android:textColor="@color/grayblack"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:text=""
+                    android:layout_weight="1"
+                    android:id="@+id/id_customer_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/grayblack" />
+            </TableRow>
+
+
+
+
+
+            <TableRow
+                android:layout_margin="5dp">
+                <TextView
+                    android:text="Commission:"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bentham"
+                    android:textColor="@color/grayblack"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:text=""
+                    android:layout_weight="1"
+                    android:id="@+id/id_commission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/grayblack"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_margin="5dp">
+                <TextView
+                    android:text="Transaction ID:"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bentham"
+                    android:textColor="@color/grayblack"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:text=""
+                    android:layout_weight="1"
+                    android:id="@+id/id_trans_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/grayblack"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_margin="5dp">
+                <TextView
+                    android:text="Transaction Type:"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bentham"
+                    android:textColor="@color/grayblack"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:text=""
+                    android:layout_weight="1"
+                    android:id="@+id/id_trans_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/grayblack"/>
+            </TableRow>
+
+
+
+        </TableLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</LinearLayout>

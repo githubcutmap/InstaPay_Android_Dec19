@@ -293,7 +293,7 @@ public class Payout extends Fragment {
        getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                text.setText(value);
+                  text.setText(value);
                 text2.setText(value2);
             }
         });
