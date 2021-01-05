@@ -25,7 +25,11 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name=".aeps.AepsActivity_Report">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".utils.DatePick" />
         <activity android:name=".utils.DatePickers" />
@@ -100,11 +104,7 @@
             android:name=".pan.Pan"
             android:parentActivityName=".aeps.activity_Aeps_HomeScreen" />
         <activity android:name=".agent_login.activity_WelcomeScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data
